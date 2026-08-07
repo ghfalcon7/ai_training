@@ -1,10 +1,4 @@
-node_modules/
-dist/
 *.pdf
 .DS_Store
-.agents
 .idea
-node_modules
-dist
-skills-lock.json
-package-lock.json
+.frontend-slides/
