@@ -225,7 +225,24 @@
     .proof-word { border:3px solid;border-radius:50%;height:430px;display:grid;place-items:center;font:700 64px/1 "Bodoni Moda"; }
     .proof-mark { font:800 122px/1 "Bodoni Moda";transform:rotate(-7deg); }
 
-    /* === AI-ASSISTED DEVELOPMENT WORKFLOW === */
+    /* === MERMAID WORKFLOW === */
+    .mermaid-scroll-container { height: 740px; width: 100%; overflow: auto; position: relative; border: 3px solid var(--outline); border-radius: 34px; background: var(--white); margin-top: 20px; box-shadow: 10px 10px 0 var(--shadow); box-sizing: border-box; -ms-overflow-style: none; scrollbar-width: none; }
+    .mermaid-scroll-container::-webkit-scrollbar { display: none; }
+    .mermaid-scroll-container .mermaid { width: 100%; min-height: 100%; display: flex; justify-content: center; padding: 40px 0; }
+    .mermaid-scroll-container svg { max-width: 90% !important; height: auto !important; }
+    .mermaid-scroll-container .node rect, .mermaid-scroll-container .node circle, .mermaid-scroll-container .node ellipse, .mermaid-scroll-container .node polygon, .mermaid-scroll-container .node path { stroke: var(--ink) !important; stroke-width: 2px !important; fill: var(--white) !important; transition: all 0.2s ease; }
+    .mermaid-scroll-container .node { cursor: pointer; }
+    .mermaid-scroll-container .node.highlighted rect, .mermaid-scroll-container .node.highlighted circle, .mermaid-scroll-container .node.highlighted ellipse, .mermaid-scroll-container .node.highlighted polygon, .mermaid-scroll-container .node.highlighted path { stroke: var(--coral) !important; stroke-width: 4px !important; fill: #fff7d6 !important; }
+    .mermaid-scroll-container .edgeLabel rect { fill: var(--yellow) !important; fill-opacity: 1 !important; opacity: 1 !important; }
+    .mermaid-controls { position: absolute; right: 20px; top: 20px; display: flex; flex-direction: column; gap: 8px; z-index: 10; }
+    .mermaid-controls button { width: 40px; height: 40px; border-radius: 50%; border: 2px solid var(--outline); background: var(--white); font-size: 20px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 2px 2px 0 var(--shadow); color: var(--ink); }
+    .mermaid-controls button:hover { background: var(--cream); }
+    .mermaid-scroll-container .edgePath .path { stroke: var(--ink) !important; stroke-width: 2px !important; }
+
+
+
+
+
     .workflow-evidence { display:grid;grid-template-columns:610px 1fr;gap:62px;align-items:center;height:750px; }
     .workflow-evidence.reverse { grid-template-columns:1fr 680px; }
     .workflow-evidence h2 { font-size:78px; }
@@ -233,21 +250,15 @@
     .quality-cloud { position:relative;height:680px;margin-top:10px; }
     .quality-core { position:absolute;left:683px;top:205px;width:370px;height:260px;border:3px solid;border-radius:50%;background:var(--coral);display:grid;place-items:center;text-align:center;font:700 48px/1 "Bodoni Moda";z-index:3; }
     .quality-tag { position:absolute;border:3px solid;border-radius:999px;padding:16px 24px;background:#fff;box-shadow:6px 6px 0 var(--shadow);font-size:18px;font-weight:600; }
-    .workflow-board { display:grid;grid-template-columns:1050px 1fr;gap:42px;height:755px;margin-top:8px; }
-    .workflow-map { position:relative;border:3px solid;border-radius:34px;background:rgba(255,255,255,.72);padding:34px 30px;overflow:hidden; }
-    .workflow-track { position:absolute;left:76px;right:76px;top:50%;height:5px;background:var(--ink);transform:translateY(-50%); }
-    .workflow-track::after { content:"";position:absolute;right:-2px;top:-9px;border-left:16px solid var(--ink);border-top:11px solid transparent;border-bottom:11px solid transparent; }
-    .phase-row { position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:20px;height:100%;align-items:center;z-index:2; }
-    .phase-node { min-height:150px;border:3px solid;border-radius:28px;background:#fff;padding:25px 18px;text-align:center;display:grid;place-items:center;font-weight:600;font-size:19px;transition:transform .25s var(--ease),background .25s,box-shadow .25s; }
-    .phase-node strong { display:block;font:800 43px/1 "Bodoni Moda";margin-bottom:12px; }
-    .phase-node.active { transform:translateY(-18px) scale(1.045);background:var(--yellow);box-shadow:10px 10px 0 rgba(26,26,26,.18); }
-    .workflow-detail { border:3px solid;border-radius:34px;background:var(--ink);color:#fff;padding:38px 34px;display:flex;flex-direction:column;justify-content:space-between; }
-    .workflow-detail h3 { color:var(--yellow);font-size:42px; }
-    .workflow-detail ol { margin:24px 0 0;padding-left:25px; }
-    .workflow-detail li { font-size:19px;line-height:1.35;margin-bottom:14px; }
-    .workflow-detail .loop-note { border:2px solid #fff6;border-radius:22px;padding:17px 19px;font-size:16px;line-height:1.35;color:#fff; }
-    .vim-hint { display:flex;align-items:center;gap:11px;font-size:15px;letter-spacing:.08em;text-transform:uppercase;color:#fff9; }
-    .keycap { min-width:36px;height:36px;border:2px solid #fff8;border-radius:8px;display:grid;place-items:center;color:#fff;font-weight:700; }
+
+
+
+
+
+
+
+
+
     .workflow-finale { display:grid;grid-template-columns:1fr 650px;gap:80px;align-items:center;height:735px; }
     .cycle { position:relative;width:620px;height:620px; }
     .cycle-ring { position:absolute;inset:45px;border:5px solid var(--ink);border-radius:50%;border-left-color:var(--coral);border-bottom-color:var(--sky); }
@@ -688,12 +699,100 @@
 
     <!-- === 48 INTERACTIVE WORKFLOW === -->
     <section class="slide workflow-slide" data-title="A navigable AI-assisted workflow">
-      <div class="slide-head"><div class="pill">Example workflow · interactive</div><div class="slide-num">48</div></div>
-      <div class="content"><h2 class="reveal" style="font-size:68px">Move through the engineering loop</h2><div class="workflow-board reveal">
-        <div class="workflow-map"><div class="workflow-track"></div><div class="phase-row" id="phaseRow"></div></div>
-        <aside class="workflow-detail"><div><div class="eyebrow" id="workflowPosition">Phase 1 of 8</div><h3 id="workflowTitle">Prepare context &amp; define task</h3><ol id="workflowSteps"></ol></div><div><div class="loop-note" id="workflowLoop"></div><div class="vim-hint" style="margin-top:20px"><span class="keycap">h</span><span class="keycap">j</span><span>previous</span><span class="keycap">k</span><span class="keycap">l</span><span>next</span></div></div></aside>
-      </div></div>
-      <aside class="speaker-notes"><p>This is an example workflow, not a universal prescription. Use H/L or J/K on this slide to inspect each phase. Start by preparing context and defining the task; inspect, clarify, and research before planning; plan reviewable milestones; implement incrementally; validate with increasingly broad checks; ask AI to conduct an adversarial review; perform the human final review; then finalize and convert learning into durable improvements.</p><p>Decision loops matter: important gaps trigger targeted questions; failed checks, adversarial findings, or rejected human review return the work to implementation. Approval leads to evidence, summary, documentation, and automation.</p></aside>
+      <div class="slide-head"><div class="pill">Example workflow</div><div class="slide-num">48</div></div>
+      <div class="content"><h2 class="reveal" style="font-size:68px;">Move through the engineering loop</h2>
+      <div class="reveal" style="position: relative; width: 100%;">
+        <div class="mermaid-controls">
+            <button id="zoomInBtn" title="Zoom In">+</button>
+            <button id="zoomOutBtn" title="Zoom Out">−</button>
+            <button id="scrollUpBtn" title="Scroll Up">↑</button>
+            <button id="scrollDownBtn" title="Scroll Down">↓</button>
+        </div>
+        <div class="mermaid-scroll-container" style="margin-top: 0;">
+          <div class="mermaid" id="workflowMermaid">
+flowchart TD
+    A([Start])
+
+    A --> B["1. Prepare Context & Define Task"]
+    B --> B1["Ensure project guidelines and context are current"]
+    B1 --> B2["Define outcome, scope, constraints
+and acceptance criteria"]
+    B2 --> B3["Provide relevant files, docs, examples,
+tools, skills, MCPs and permissions"]
+
+    B3 --> C["2. Inspect, Clarify & Research"]
+    C --> C1["Inspect the existing implementation"]
+    C1 --> C2["Identify gaps, assumptions, risks
+and missing context"]
+    C2 --> C3["Research unknowns using repo, docs
+and connected tools"]
+    C3 --> C4{"Important gaps remain?"}
+
+    C4 -- Yes --> C5["Ask targeted questions"]
+    C5 --> D
+    C4 -- No --> D
+
+    D["3. Plan"]
+    D --> D1["Break work into reviewable milestones"]
+    D1 --> D2["Define implementation approach,
+tests, security and compatibility"]
+    D2 --> D3["Challenge the plan:
+risks, edge cases, regressions,
+simpler alternatives"]
+
+    D3 --> E["4. Implement Incrementally"]
+    E --> E1["Make the smallest coherent change"]
+    E1 --> E2["Follow project conventions"]
+    E2 --> E3["Avoid unrelated changes
+and unnecessary dependencies"]
+
+    E3 --> F["5. Validate"]
+    F --> F1["Format / Lint"]
+    F1 --> F2["Build / Type-check"]
+    F2 --> F3["Unit / Integration / E2E tests"]
+    F3 --> F4["Security, vulnerability
+and dependency checks"]
+
+    F4 --> F5{"All checks pass?"}
+    F5 -- No --> E
+    F5 -- Yes --> G["6. Adversarial AI Review"]
+
+    G --> G1["Try to find bugs, regressions,
+edge cases and failure paths"]
+    G1 --> G2["Challenge assumptions,
+design and architecture"]
+    G2 --> G3["Check security and unintended changes"]
+    G3 --> G4{"Issues found?"}
+
+    G4 -- Yes --> E
+    G4 -- No --> H["7. Human Final Review"]
+
+    H --> H1["Review final diff against
+requirements and acceptance criteria"]
+    H1 --> H2["Check readability, maintainability,
+naming and design patterns"]
+    H2 --> H3["Review new dependencies:
+necessity, origin, maintenance,
+vulnerabilities and licensing"]
+    H3 --> H4{"Approved?"}
+
+    H4 -- No --> E
+    H4 -- Yes --> I["8. Finalize & Learn"]
+
+    I --> I1["Verify desired outcome with evidence"]
+    I1 --> I2["Summarize changes, checks,
+risks and limitations"]
+    I2 --> I3["Update guidelines, docs and context
+when reusable knowledge was learned"]
+    I3 --> I4["Turn recurring issues into
+tests, lint rules or automation"]
+
+    I4 --> J([Done])
+        </div>
+      </div>
+      </div>
+      </div>
+      <aside class="speaker-notes"><p>This is an example workflow, not a universal prescription. Start by preparing context and defining the task; inspect, clarify, and research before planning; plan reviewable milestones; implement incrementally; validate with increasingly broad checks; ask AI to conduct an adversarial review; perform the human final review; then finalize and convert learning into durable improvements.</p><p>Decision loops matter: important gaps trigger targeted questions; failed checks, adversarial findings, or rejected human review return the work to implementation. Approval leads to evidence, summary, documentation, and automation.</p></aside>
     </section>
 
     <!-- === 49 BUILD YOUR WORKFLOW === -->
@@ -714,29 +813,59 @@
     class SlidePresentation {
       constructor(){this.slides=[...document.querySelectorAll('.slide')];this.stage=document.getElementById('deckStage');this.index=0;this.notesOpen=false;this.touchX=0;this.wheelLock=false;this.scaleStage();this.bind();this.show(0);}
       scaleStage(){const fit=()=>{const k=Math.min(innerWidth/1920,innerHeight/1080);const x=(innerWidth-1920*k)/2;const y=(innerHeight-1080*k)/2;this.stage.style.transform=`translate(${x}px,${y}px) scale(${k})`;};fit();addEventListener('resize',fit);}
-      bind(){document.addEventListener('keydown',e=>{if(e.target.isContentEditable)return;const active=this.slides[this.index];if(active.classList.contains('workflow-slide')&&['h','j','k','l'].includes(e.key.toLowerCase())){e.preventDefault();moveWorkflow(['h','j'].includes(e.key.toLowerCase())?-1:1);return;}if(['ArrowRight','ArrowDown',' ','PageDown'].includes(e.key)){e.preventDefault();this.show(this.index+1)}if(['ArrowLeft','ArrowUp','PageUp'].includes(e.key)){e.preventDefault();this.show(this.index-1)}if(e.key==='Home')this.show(0);if(e.key==='End')this.show(this.slides.length-1);if(e.key.toLowerCase()==='n')this.toggleNotes();});
+      bind(){document.addEventListener('keydown',e=>{if(e.target.isContentEditable)return;
+        const activeSlide=this.slides[this.index];
+        if(activeSlide.classList.contains('workflow-slide')&&['j','k','=','+','-','_'].includes(e.key.toLowerCase())){
+            e.preventDefault();
+            const container = activeSlide.querySelector('.mermaid-scroll-container');
+            if(container) {
+                if(e.key.toLowerCase() === 'j') { e.preventDefault(); container.scrollBy({top: 150, behavior: 'smooth'}); }
+                else if(e.key.toLowerCase() === 'k') { e.preventDefault(); container.scrollBy({top: -150, behavior: 'smooth'}); }
+                else if(e.key === '=' || e.key === '+') { e.preventDefault(); window.currentMermaidZoom = (window.currentMermaidZoom || 0.4) + 0.1; const svg = container.querySelector('svg'); if(svg) { svg.style.transform = `scale(${window.currentMermaidZoom})`; svg.style.transformOrigin = 'top center'; } }
+                else if(e.key === '-' || e.key === '_') { e.preventDefault(); window.currentMermaidZoom = Math.max(0.3, (window.currentMermaidZoom || 0.4) - 0.1); const svg = container.querySelector('svg'); if(svg) { svg.style.transform = `scale(${window.currentMermaidZoom})`; svg.style.transformOrigin = 'top center'; } }
+            }
+            return;
+        }
+        if(['ArrowRight','ArrowDown',' ','PageDown'].includes(e.key)){e.preventDefault();this.show(this.index+1)}
+        if(['ArrowLeft','ArrowUp','PageUp'].includes(e.key)){e.preventDefault();this.show(this.index-1)}
+        if(e.key==='Home')this.show(0);
+        if(e.key==='End')this.show(this.slides.length-1);
+        if(e.key.toLowerCase()==='n')this.toggleNotes();});
         addEventListener('touchstart',e=>this.touchX=e.touches[0].clientX,{passive:true});addEventListener('touchend',e=>{const d=e.changedTouches[0].clientX-this.touchX;if(Math.abs(d)>50)this.show(this.index+(d<0?1:-1));},{passive:true});
-        addEventListener('wheel',e=>{if(this.wheelLock||Math.abs(e.deltaY)<20)return;this.wheelLock=true;this.show(this.index+(e.deltaY>0?1:-1));setTimeout(()=>this.wheelLock=false,550);},{passive:true});}
+        addEventListener('wheel',e=>{if(e.target.closest('.mermaid-scroll-container'))return;if(this.wheelLock||Math.abs(e.deltaY)<20)return;this.wheelLock=true;this.show(this.index+(e.deltaY>0?1:-1));setTimeout(()=>this.wheelLock=false,550);},{passive:true});}
       show(next){this.index=Math.max(0,Math.min(next,this.slides.length-1));this.slides.forEach((s,i)=>{const active=i===this.index;s.classList.toggle('active',active);s.classList.toggle('visible',active);s.querySelectorAll('video').forEach(video=>{if(active){video.play().catch(()=>{});}else{video.pause();video.currentTime=0;}})});document.getElementById('counter').textContent=`${String(this.index+1).padStart(2,'0')} / ${this.slides.length}`;this.renderNotes();location.hash=`slide-${this.index+1}`;}
       toggleNotes(){this.notesOpen=!this.notesOpen;const p=document.getElementById('notesPanel');p.classList.toggle('open',this.notesOpen);p.setAttribute('aria-hidden',String(!this.notesOpen));this.renderNotes();}
       renderNotes(){const slide=this.slides[this.index];document.getElementById('notesTitle').textContent=`${this.index+1}. ${slide.dataset.title}`;document.getElementById('notesBody').innerHTML=slide.querySelector('.speaker-notes')?.innerHTML||'<p>No notes.</p>';}
     }
 
-    /* === INTERACTIVE WORKFLOW DIAGRAM === */
-    const workflowPhases=[
-      {title:'Prepare context & define task',steps:['Ensure project guidelines and context are current','Define outcome, scope, constraints, and acceptance criteria','Provide relevant files, docs, examples, tools, skills, MCPs, and permissions'],loop:'Start here. Better inputs reduce avoidable ambiguity downstream.'},
-      {title:'Inspect, clarify & research',steps:['Inspect the existing implementation','Identify gaps, assumptions, risks, and missing context','Research unknowns using the repo, docs, and connected tools'],loop:'Important gaps remain? Yes → ask targeted questions. No → continue to planning.'},
-      {title:'Plan',steps:['Break work into reviewable milestones','Define implementation approach, tests, security, and compatibility','Challenge risks, edge cases, regressions, and simpler alternatives'],loop:'A plan is a review checkpoint, not ceremony.'},
-      {title:'Implement incrementally',steps:['Make the smallest coherent change','Follow project conventions','Avoid unrelated changes and unnecessary dependencies'],loop:'Failed validation or review returns here.'},
-      {title:'Validate',steps:['Format and lint','Build and type-check','Run unit, integration, and E2E tests','Run security, vulnerability, and dependency checks'],loop:'All checks pass? No → implement again. Yes → adversarial review.'},
-      {title:'Adversarial AI review',steps:['Try to find bugs, regressions, edge cases, and failure paths','Challenge assumptions, design, and architecture','Check security and unintended changes'],loop:'Issues found? Yes → implement again. No → human final review.'},
-      {title:'Human final review',steps:['Review the final diff against requirements and acceptance criteria','Check readability, maintainability, naming, and design patterns','Review dependencies: necessity, origin, maintenance, vulnerabilities, and licensing'],loop:'Approved? No → implement again. Yes → finalize and learn.'},
-      {title:'Finalize & learn',steps:['Verify the desired outcome with evidence','Summarize changes, checks, risks, and limitations','Update guidelines, docs, and context when reusable knowledge was learned','Turn recurring issues into tests, lint rules, or automation'],loop:'Done. Feed reusable learning into the next task.'}
-    ];
-    let workflowIndex=0;
-    function renderWorkflow(){const row=document.getElementById('phaseRow');if(!row)return;row.innerHTML=workflowPhases.map((phase,i)=>`<div class="phase-node${i===workflowIndex?' active':''}"><div><strong>${i+1}</strong>${phase.title}</div></div>`).join('');const phase=workflowPhases[workflowIndex];document.getElementById('workflowPosition').textContent=`Phase ${workflowIndex+1} of 8`;document.getElementById('workflowTitle').textContent=phase.title;document.getElementById('workflowSteps').innerHTML=phase.steps.map(step=>`<li>${step}</li>`).join('');document.getElementById('workflowLoop').textContent=phase.loop;}
-    function moveWorkflow(delta){workflowIndex=Math.max(0,Math.min(workflowPhases.length-1,workflowIndex+delta));renderWorkflow();}
-    renderWorkflow();
+
+
+    
+
+    
+    function updateMermaidNav() {
+        if (mermaidNodes.length === 0) return;
+        mermaidNodes.forEach((n, i) => n.classList.toggle('active-node', i === currentMermaidIndex));
+        
+        const activeNode = mermaidNodes[currentMermaidIndex];
+        const svg = document.querySelector('.mermaid-scroll-container svg');
+        const container = document.querySelector('.mermaid-scroll-container');
+        if(!svg || !container || !svg.viewBox || !svg.viewBox.baseVal) return;
+        
+        const viewBox = svg.viewBox.baseVal;
+        const scale = container.clientWidth / viewBox.width;
+        
+        const bbox = activeNode.getBBox();
+        const nodeCenterY = (bbox.y + bbox.height / 2) * scale;
+        
+        let translateY = (container.clientHeight / 2) - nodeCenterY;
+        const minTranslate = container.clientHeight - (viewBox.height * scale);
+        
+        if (translateY > 0) translateY = 0;
+        if (translateY < minTranslate) translateY = minTranslate;
+        
+        svg.style.transform = `translateY(${translateY}px)`;
+    }
 
     /* === INLINE TEXT EDITOR === */
     class InlineEditor {
@@ -745,8 +874,113 @@
       save(){const values=[...document.querySelectorAll('[contenteditable]')].map(el=>el.innerHTML);localStorage.setItem(this.key,JSON.stringify(values));}
       load(){const values=JSON.parse(localStorage.getItem(this.key)||'null');if(!values)return;const els=[...document.querySelectorAll('.slide h1,.slide h2,.slide h3,.slide p,.slide .pill,.slide .chip,.slide .node,.slide .loop-step,.slide .limit-pill')];values.forEach((v,i)=>{if(els[i])els[i].innerHTML=v});}
     }
+    /* === MERMAID WORKFLOW ZOOM & SCROLL CONTROLS === */
+    window.currentMermaidZoom = 0.4;
+    document.addEventListener('DOMContentLoaded', () => {
+        const container = document.querySelector('.mermaid-scroll-container');
+        if (!container) return;
+
+        const updateZoom = () => {
+            const svg = container.querySelector('svg');
+            if (svg) {
+                svg.style.transform = `scale(${window.currentMermaidZoom})`;
+                svg.style.transformOrigin = 'top center';
+            }
+        };
+        // Apply initial zoom when SVG is rendered
+        const initZoomInterval = setInterval(() => {
+            if (container.querySelector('svg')) {
+                updateZoom();
+                clearInterval(initZoomInterval);
+            }
+        }, 100);
+
+        const zoomInBtn = document.getElementById('zoomInBtn');
+        const zoomOutBtn = document.getElementById('zoomOutBtn');
+        const scrollUpBtn = document.getElementById('scrollUpBtn');
+        const scrollDownBtn = document.getElementById('scrollDownBtn');
+
+        if (zoomInBtn) zoomInBtn.addEventListener('click', () => { window.currentMermaidZoom += 0.1; updateZoom(); });
+        if (zoomOutBtn) zoomOutBtn.addEventListener('click', () => { window.currentMermaidZoom = Math.max(0.3, window.currentMermaidZoom - 0.1); updateZoom(); });
+        if (scrollUpBtn) scrollUpBtn.addEventListener('click', () => container.scrollBy({top: -200, behavior: 'smooth'}));
+        if (scrollDownBtn) scrollDownBtn.addEventListener('click', () => container.scrollBy({top: 200, behavior: 'smooth'}));
+
+        // Drag to scroll
+        let isDown = false;
+        let isDragging = false;
+        let startX, startY, scrollLeft, scrollTop;
+        container.style.cursor = 'grab';
+
+        container.addEventListener('mousedown', (e) => {
+            isDown = true;
+            isDragging = false;
+            container.style.cursor = 'grabbing';
+            startX = e.pageX - container.offsetLeft;
+            startY = e.pageY - container.offsetTop;
+            scrollLeft = container.scrollLeft;
+            scrollTop = container.scrollTop;
+        });
+
+        container.addEventListener('mouseleave', () => {
+            isDown = false;
+            container.style.cursor = 'grab';
+        });
+
+        container.addEventListener('mouseup', () => {
+            isDown = false;
+            container.style.cursor = 'grab';
+        });
+
+        container.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - container.offsetLeft;
+            const y = e.pageY - container.offsetTop;
+            const walkX = (x - startX); 
+            const walkY = (y - startY);
+            if (Math.abs(walkX) > 3 || Math.abs(walkY) > 3) isDragging = true;
+            container.scrollLeft = scrollLeft - walkX;
+            container.scrollTop = scrollTop - walkY;
+        });
+
+        // Click to highlight
+        container.addEventListener('click', (e) => {
+            if (isDragging) return;
+            const node = e.target.closest('.node');
+            if (node) {
+                const isHighlighted = node.classList.contains('highlighted');
+                container.querySelectorAll('.node').forEach(n => n.classList.remove('highlighted'));
+                if (!isHighlighted) {
+                    node.classList.add('highlighted');
+                }
+            } else if (!e.target.closest('button')) {
+                // Click on background clears highlight
+                container.querySelectorAll('.node').forEach(n => n.classList.remove('highlighted'));
+            }
+        });
+    });
+
     const deck=new SlidePresentation();const editor=new InlineEditor();const toggle=document.getElementById('editToggle');const hotzone=document.querySelector('.edit-hotzone');let hideTimer;
     toggle.addEventListener('click',()=>editor.toggle());hotzone.addEventListener('click',()=>editor.toggle());hotzone.addEventListener('mouseenter',()=>{clearTimeout(hideTimer);toggle.classList.add('show')});hotzone.addEventListener('mouseleave',()=>hideTimer=setTimeout(()=>{if(!editor.active)toggle.classList.remove('show')},400));toggle.addEventListener('mouseenter',()=>clearTimeout(hideTimer));toggle.addEventListener('mouseleave',()=>hideTimer=setTimeout(()=>{if(!editor.active)toggle.classList.remove('show')},400));document.addEventListener('keydown',e=>{if(e.key.toLowerCase()==='e'&&!e.target.isContentEditable)editor.toggle();if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='s'&&editor.active){e.preventDefault();editor.save();}});
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        mermaid.initialize({
+          startOnLoad: true,
+          theme: 'base',
+          themeVariables: {
+            primaryColor: '#ffffff',
+            primaryTextColor: '#1a1a1a',
+            primaryBorderColor: '#1e1e1e',
+            lineColor: '#1e1e1e',
+            fontFamily: 'sans-serif',
+            fontSize: '16px',
+            fontWeight: 'normal'
+          },
+          flowchart: { curve: 'basis', nodeSpacing: 60, rankSpacing: 60, htmlLabels: false }
+        });
+    });
   </script>
 </body>
 </html>
