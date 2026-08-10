@@ -5,21 +5,74 @@ Understand the fundamentals of the technology. I'm not saying you need to unders
 Artificial intelligence is an umbrella field covering many approaches and technologies. This is a simplified map; in practice, several fields overlap:
 
 ```text
-Artificial Intelligence            Systems performing tasks associated with human intelligence
-|-- Machine Learning                Systems that learn patterns from data
-|   |-- Supervised Learning         Learns from examples with known answers
-|   |-- Unsupervised Learning       Finds structures in data without labeled answers
-|   |-- Reinforcement Learning      Learns actions through rewards and penalties
-|   `-- Deep Learning               Uses multilayer neural networks to learn complex patterns
-|       |-- Computer Vision         Interprets images and video
-|       |-- Speech Processing       Recognizes, understands, or generates speech
-|       `-- Generative AI           Creates new content from learned patterns
-|           |-- Image/Video Models  Generate or transform visual content
-|           `-- LLMs                Understand and generate language and code
-|-- Robotics                        Connects perception and decisions to physical actions
-|-- Planning and Search             Explores possible actions to reach a goal
-`-- Expert Systems                  Applies explicit human-authored rules to a narrow domain
+Artificial Intelligence
+|-- Machine Learning
+|   |-- Supervised Learning
+|   |-- Unsupervised Learning
+|   |-- Reinforcement Learning
+|   `-- Deep Learning
+|       |-- Computer Vision
+|       |-- Speech Processing
+|       `-- Generative AI
+|           |-- Image and Video Models
+|           `-- Large Language Models (LLMs)
+|-- Robotics
+|-- Planning and Search
+`-- Expert Systems
 ```
+
+- **Artificial Intelligence:** The broad field of building systems that perform tasks normally associated with human intelligence, such as perception, language, reasoning, learning, or decision-making. For example, a virtual assistant combines speech recognition, language processing, and decision-making to understand and answer a request.
+
+- **Machine Learning:** An approach to AI in which a system learns patterns from examples instead of having every rule explicitly programmed. For example, a spam filter learns which combinations of words, links, and sender behaviors commonly indicate spam.
+
+- **Supervised Learning:** The model learns from labeled examples containing both an input and the correct answer. For example, after training on emails labeled `spam` or `safe`, it learns to classify new emails into those categories.
+
+- **Unsupervised Learning:** The model receives data without predefined labels or correct answers and discovers patterns or structures within it. For example, consider an online store that provides the model with customer features such as purchases per year, average order value, product categories, return rate, and time since the last purchase:
+
+  ```text
+  Customer A: 45 purchases, $25 average, mostly household products
+  Customer B: 42 purchases, $30 average, mostly household products
+  Customer C:  3 purchases, $600 average, mostly electronics
+  ```
+
+  A clustering algorithm compares these feature values and places customers A and B together because their behavior is mathematically similar, while placing customer C in another group:
+
+  ```text
+  Unlabeled customer data
+            ↓
+  Compare selected features
+            ↓
+  Cluster 1                         Cluster 2
+  - 35-50 purchases/year           - 1-4 purchases/year
+  - $20-$35 average order          - $400-$700 average order
+  - Mostly household products      - Mostly electronics
+            ↓                                ↓
+  Human interpretation             Human interpretation
+            ↓                                ↓
+  "Frequent small-basket shoppers" "Occasional premium buyers"
+  ```
+
+  The algorithm discovers mathematical groups, but it does not inherently understand concepts such as "frequent" or "premium," or why a group matters to the business. Humans choose the features, inspect and name the clusters, decide whether they are useful, and determine what action to take. For example, the business might offer a loyalty subscription to the first group and premium product recommendations to the second.
+
+- **Reinforcement Learning:** An agent learns which actions to take by receiving rewards for desirable outcomes and penalties for undesirable ones. For example, a game-playing agent tries many moves and learns strategies that increase its probability of winning.
+
+- **Deep Learning:** A form of machine learning that uses neural networks with many layers to learn complex representations directly from large amounts of data. For example, instead of being given hand-written rules for identifying a cat, a network learns visual features from thousands of images.
+
+- **Computer Vision:** AI for extracting meaning from images and video, such as identifying objects, people, motion, or defects. For example, a driver-assistance system analyzes camera frames to locate pedestrians and traffic signs.
+
+- **Speech Processing:** AI for recognizing spoken language, understanding it, or producing natural-sounding speech. For example, a transcription service converts the sound waves in a meeting recording into written text and identifies different speakers.
+
+- **Generative AI:** Models that learn patterns in existing data and use them to create new content rather than only classify or analyze it. For example, a model can create an illustration from a description or draft code from a requirement.
+
+- **Image and Video Models:** Generative models specialized in creating or transforming visual content. For example, a text-to-image model can generate several original interface illustrations from the prompt "a minimal futuristic developer workspace."
+
+- **Large Language Models (LLMs):** Generative models trained on large collections of text and code to predict and produce sequences of tokens. For example, a coding assistant can explain an unfamiliar function, propose a patch, and generate tests from a developer's instructions.
+
+- **Robotics:** AI combined with sensors and machines so decisions produce actions in the physical world. For example, a warehouse robot detects shelves, plans a safe route, avoids people, and physically transports a package.
+
+- **Planning and Search:** Techniques that explore possible states or sequences of actions to find a path toward a goal. For example, a navigation system compares possible routes and selects one that minimizes travel time; a chess engine searches possible future moves.
+
+- **Expert Systems:** Programs that make decisions using explicit rules written by human specialists rather than learning all behavior from data. For example, a diagnostic system might apply the rule `IF temperature is high AND coolant pressure is low THEN warn of possible overheating`. Such systems are predictable and explainable but usually narrow and expensive to maintain.
 
 Today, when people say "AI," they often really mean **large language models (LLMs)** such as GPT, Claude, or Gemini. LLMs are behind many of the technologies currently receiving attention, including chatbots, coding assistants, copilots, and autonomous agents. This common shorthand is useful, but it is important to remember that LLMs are only one part of the broader AI field.
 
@@ -53,7 +106,7 @@ This will be covered through:
 
 ## Current limitations
 
-- **Hallucination, largely intrinsic:** Next-token prediction rewards plausible language, not verified truth. Therefore, a model can invent a nonexistent library method and provide convincing documentation for it.
+- **Hallucination, largely intrinsic:** Next-token prediction rewards plausible language, not verified truth. Therefore, a model can invent a nonexistent library method and provide convincing documentation for it.![img_2.png](img_2.png)
 
 - **Limited grounding, intrinsic to text-only training:** The model learns mainly from words describing reality rather than directly experiencing reality. It can learn that "car," "traffic," "walking," and "car wash" are related, but it has never owned a car, driven through traffic, or physically washed one. Its understanding comes from patterns in text, so it may fail to connect language to the practical constraints of a situation.
 
@@ -72,7 +125,7 @@ This will be covered through:
   ```text
   The car needs washing -> The car must be taken there -> Drive
   ```
-
+![img_1.png](img_1.png)
   Human concepts are grounded in physical experience, goals, and cause and effect. An LLM's concepts are primarily learned through relationships between tokens. This is why it can discuss a situation fluently while occasionally missing something practically obvious.
 
 - **Finite context, architectural and operational:** The model can only reason over information available within its context window, and it may not use every included detail reliably. Therefore, it can violate an architectural constraint documented in a file it did not receive or overlooked.
@@ -83,7 +136,7 @@ This will be covered through:
 
 - **Long-task drift, partly intrinsic and systemic:** Generated actions become context for later actions, early mistakes compound, and the model has no inherently persistent goal state. Therefore, an agent may begin a refactoring while preserving compatibility but eventually change public APIs.
 
-- **Unreliable confidence, largely intrinsic:** Token probability indicates how plausible the wording is, not whether the underlying claim is true. Therefore, a model may confidently claim that a regular expression handles every edge case even though it fails on Unicode input.
+- **Unreliable confidence, largely intrinsic:** Token probability indicates how plausible the wording is, not whether the underlying claim is true. Therefore, a model may confidently claim that a regular expression handles every edge case even though it fails on Unicode input.![img.png](img.png)
 
 - **Training-data errors and bias, data-dependent:** Models learn patterns from imperfect human text and code. Therefore, they may recommend an outdated or insecure authentication pattern simply because it appears frequently in public repositories.
 
