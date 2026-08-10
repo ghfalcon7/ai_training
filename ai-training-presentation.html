@@ -811,7 +811,7 @@ tests, lint rules or automation"]
   <script>
     /* === PRESENTATION CONTROLLER === */
     class SlidePresentation {
-      constructor(){this.slides=[...document.querySelectorAll('.slide')];this.stage=document.getElementById('deckStage');this.index=0;this.notesOpen=false;this.touchX=0;this.wheelLock=false;this.scaleStage();this.bind();this.show(0);}
+      constructor(){this.slides=[...document.querySelectorAll('.slide')];this.stage=document.getElementById('deckStage');let h=location.hash.match(/slide-(\d+)/);this.index=h?Math.max(0,parseInt(h[1],10)-1):0;this.notesOpen=false;this.touchX=0;this.wheelLock=false;this.scaleStage();this.bind();this.show(this.index);}
       scaleStage(){const fit=()=>{const k=Math.min(innerWidth/1920,innerHeight/1080);const x=(innerWidth-1920*k)/2;const y=(innerHeight-1080*k)/2;this.stage.style.transform=`translate(${x}px,${y}px) scale(${k})`;};fit();addEventListener('resize',fit);}
       bind(){document.addEventListener('keydown',e=>{if(e.target.isContentEditable)return;
         const activeSlide=this.slides[this.index];
