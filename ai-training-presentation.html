@@ -129,6 +129,52 @@
     .closing-copy h2 { font-size:103px;line-height:.98; }
     .closing-copy p { margin-top:44px;width:950px;font-size:29px; }
 
+    /* === RESPONSIBLE USE DECISION FLOWS === */
+    .policy-gate { display:grid;grid-template-columns:1fr 560px;gap:90px;align-items:center;height:760px; }
+    .policy-gate h2 { font-size:94px; }
+    .policy-link { padding:58px 52px;min-height:450px;display:flex;flex-direction:column;justify-content:space-between;background:var(--yellow); }
+    .policy-link .td-mark { font:800 112px/1 "Bodoni Moda";letter-spacing:-.05em; }
+    .policy-link a { color:var(--ink);font-size:19px;font-weight:600;word-break:break-word; }
+    .question-stack { display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:54px; }
+    .question-card { min-height:245px;padding:35px 38px;display:grid;grid-template-columns:70px 1fr;gap:24px;align-items:start; }
+    .question-card .number { width:60px;height:60px;border:3px solid;border-radius:50%;display:grid;place-items:center;font:700 26px "Bodoni Moda"; }
+    .question-card h3 { font-size:34px;line-height:1.1; }
+    .flow-map { display:flex;align-items:center;justify-content:center;gap:17px;height:540px; }
+    .flow-box { width:255px;min-height:175px;padding:27px 22px;border:3px solid;border-radius:30px;background:#fff;box-shadow:7px 7px 0 var(--shadow);display:grid;place-items:center;text-align:center;font-size:22px;font-weight:600; }
+    .flow-map .arrow { width:45px; }
+    .iceberg { display:grid;grid-template-columns:1fr 720px;gap:90px;align-items:center;height:720px; }
+    .iceberg-visual { position:relative;height:650px; }
+    .iceberg-line { position:absolute;left:0;right:0;top:205px;height:5px;background:var(--ink); }
+    .iceberg-tip { position:absolute;left:210px;top:45px;width:300px;height:160px;background:var(--sky);border:3px solid;border-radius:150px 150px 0 0;display:grid;place-items:center;font:700 35px "Bodoni Moda"; }
+    .iceberg-body { position:absolute;left:65px;top:205px;width:590px;height:390px;background:var(--lavender);border:3px solid;border-top:0;clip-path:polygon(0 0,100% 0,80% 100%,20% 100%);display:flex;align-items:center;justify-content:center;text-align:center;font-size:23px;line-height:1.75;font-weight:600;padding:70px; }
+    .data-ladder { display:grid;grid-template-columns:repeat(5,1fr);gap:20px;align-items:end;height:560px;margin-top:35px; }
+    .data-step { border:3px solid;border-radius:30px 30px 0 0;padding:27px 22px;text-align:center;display:flex;flex-direction:column;justify-content:space-between; }
+    .data-step h3 { font-size:31px; }
+    .data-step p { font-size:18px;line-height:1.35; }
+    .minimize-funnel { position:relative;height:610px;margin-top:20px; }
+    .funnel-inputs { display:flex;justify-content:center;gap:20px; }
+    .funnel-inputs span { border:3px solid;border-radius:999px;padding:17px 25px;background:#fff;font-weight:600;font-size:18px; }
+    .funnel-shape { width:930px;height:245px;margin:42px auto 0;background:var(--sky);border:3px solid;clip-path:polygon(0 0,100% 0,63% 100%,37% 100%);display:grid;place-items:center;font:700 39px "Bodoni Moda"; }
+    .funnel-output { width:480px;margin:28px auto 0;border:3px solid;border-radius:999px;padding:22px;text-align:center;background:var(--lime);font-size:23px;font-weight:600; }
+    .trigger-grid { display:grid;grid-template-columns:repeat(4,1fr);gap:28px;margin-top:58px; }
+    .trigger { min-height:390px;padding:38px 30px;display:flex;flex-direction:column;justify-content:space-between; }
+    .trigger .symbol { font:800 72px/1 "Bodoni Moda"; }
+    .trigger h3 { font-size:37px; }
+    .incident-path { display:flex;align-items:center;justify-content:center;gap:23px;height:560px; }
+    .incident-path .node { position:static;width:360px;height:180px;white-space:normal;display:grid;place-items:center;text-align:center;font-size:26px; }
+    .three-rights { display:grid;grid-template-columns:repeat(3,1fr);gap:34px;margin-top:64px; }
+    .rights-card { min-height:475px;padding:42px;display:flex;flex-direction:column;justify-content:space-between; }
+    .rights-card .number { font:800 78px/1 "Bodoni Moda"; }
+    .rights-card h3 { font-size:43px; }
+    .rights-card p { font-size:23px; }
+    .provenance-scan { display:grid;grid-template-columns:620px 1fr;gap:75px;align-items:center;height:710px; }
+    .unknown-stamp { height:470px;border:3px dashed;border-radius:50%;display:grid;place-items:center;text-align:center;background:var(--coral);font:800 72px/.95 "Bodoni Moda";transform:rotate(-5deg); }
+    .signal-list { display:grid;gap:18px; }
+    .signal-list div { border:3px solid;border-radius:999px;padding:22px 29px;background:#fff;font-size:22px;font-weight:600; }
+    .compliance-rings { position:relative;width:720px;height:720px;margin:10px auto 0; }
+    .compliance-rings .ring { position:absolute;border:3px solid;border-radius:50%;display:grid;place-items:start center;padding-top:34px;font-weight:600;font-size:21px; }
+    .compliance-rings .core { position:absolute;left:260px;top:260px;width:200px;height:200px;border:3px solid;border-radius:50%;background:var(--yellow);display:grid;place-items:center;text-align:center;font:700 38px/1 "Bodoni Moda";z-index:5; }
+
     /* === PRESENTER AND EDITOR UI === */
     .speaker-notes { display:none; }
     .counter { position:fixed;right:26px;bottom:22px;z-index:1002;color:#fff;font:600 13px "Space Grotesk";letter-spacing:.14em; }
@@ -143,6 +189,7 @@
     .edit-toggle { position:fixed;left:18px;top:18px;z-index:6001;border:2px solid #fff;border-radius:999px;background:#111;color:#fff;padding:10px 15px;opacity:0;pointer-events:none;transition:opacity .25s; }
     .edit-toggle.show,.edit-toggle.active { opacity:1;pointer-events:auto; }
     [contenteditable="true"] { outline:4px dashed var(--coral);outline-offset:5px; }
+    @media (max-width:600px) { .notes-panel { width:92vw;padding:26px 24px; }.notes-panel h2 { font-size:29px; }.notes-panel p,.notes-panel li { font-size:16px; } }
   </style>
 </head>
 <body>
@@ -326,10 +373,113 @@
       <span class="float-pill" style="right:130px;top:85px;background:var(--coral);--r:-7deg;transform:rotate(-7deg)">Capability</span><span class="float-pill" style="right:90px;bottom:100px;background:var(--lime);--r:9deg;transform:rotate(9deg)">Accountability</span><span class="float-pill" style="left:90px;bottom:70px;background:var(--lavender);--r:-6deg;transform:rotate(-6deg)">Evidence</span>
       <aside class="speaker-notes"><p>Close by restating the strategic posture: AI is not magic and not merely autocomplete. It is a powerful but uneven component inside an engineering system. We get durable value when we understand its mechanics, design context and controls around it, validate outcomes, and retain human accountability.</p></aside>
     </section>
+
+    <!-- === 19 COMPANY POLICY === -->
+    <section class="slide" data-title="Policy before prompting">
+      <div class="slide-head"><div class="pill">Company AI usage policy</div><div class="slide-num">19</div></div>
+      <div class="content"><div class="policy-gate"><div class="reveal"><h2>Policy comes<br>before prompting.</h2><p class="muted" style="margin-top:38px">Read and comply with the current internal rule.</p><div class="accent-line"></div></div><article class="card policy-link reveal"><div><div class="eyebrow">Required reading</div><div class="td-mark">TD 85</div></div><a href="https://sb-conflu.ads.local/spaces/XMS40/pages/682758023/Draft+of+new+TD+-+85+-+Using+GenAI+Assistants+in+Software+Development_MSU">Open Technical Definition 85</a></article></div></div>
+      <aside class="speaker-notes"><p>Make sure to read and comply with Technical Definition 85: <a href="https://sb-conflu.ads.local/spaces/XMS40/pages/682758023/Draft+of+new+TD+-+85+-+Using+GenAI+Assistants+in+Software+Development_MSU">Using GenAI Assistants in Software Development</a>.</p><p>Verify the document's current approval status and version internally. The linked page title currently identifies it as a draft. This slide does not summarize or replace company policy.</p></aside>
+    </section>
+
+    <!-- === 20 FOUR QUESTIONS === -->
+    <section class="slide" data-title="Four questions before use">
+      <div class="slide-head"><div class="pill">The pre-flight check</div><div class="slide-num">20</div></div>
+      <div class="content"><h2 class="reveal">Four questions. Every time.</h2><div class="question-stack">
+        <article class="card question-card reveal"><div class="number" style="background:var(--yellow)">1</div><h3>Is this exact tool, account, model, and feature approved?</h3></article>
+        <article class="card question-card reveal"><div class="number" style="background:var(--sky)">2</div><h3>May I send everything the tool will receive?</h3></article>
+        <article class="card question-card reveal"><div class="number" style="background:var(--lime)">3</div><h3>May I use and distribute its output?</h3></article>
+        <article class="card question-card reveal"><div class="number" style="background:var(--coral)">4</div><h3>Does it affect people or a regulated process?</h3></article>
+      </div></div>
+      <aside class="speaker-notes"><p>Before using an AI tool, answer four questions: Is this exact tool, account, model, and feature approved? Am I allowed to send all the data the tool will receive? Am I allowed to use and distribute the generated output? Does this use affect people or enter a regulated product or process?</p><p>This is general engineering guidance, not legal advice. Follow the current approved company policy. Detailed prompt injection, secrets management, tool permissions, generated-code security, secure automation, incident response, and governance are covered in later modules.</p></aside>
+    </section>
+
+    <!-- === 21 DATA FLOW === -->
+    <section class="slide" data-title="Approval follows the data flow">
+      <div class="slide-head"><div class="pill">Know what leaves</div><div class="slide-num">21</div></div>
+      <div class="content"><h2 class="reveal">A product name is not a data flow.</h2><div class="flow-map reveal"><div class="flow-box" style="background:var(--yellow)">Prompt + surrounding context</div><div class="arrow"></div><div class="flow-box">Model endpoint</div><div class="arrow"></div><div class="flow-box" style="background:var(--sky)">Search, connector, plug-in or MCP</div><div class="arrow"></div><div class="flow-box" style="background:var(--coral)">New recipients</div></div></div>
+      <aside class="speaker-notes"><p>The visible prompt may not be the complete request. Depending on the product and feature, a coding assistant may also send surrounding code and open files; repository data and instructions; chat history and uploaded files; retrieved documents and tool results; and identifiers, telemetry, and feedback.</p><p>Adding web search, another model, a connector, plug-in, or MCP server can add new recipients. Treat each feature as a separate data flow rather than assuming approval of the product name covers everything.</p></aside>
+    </section>
+
+    <!-- === 22 RETENTION ICEBERG === -->
+    <section class="slide" data-title="Not training does not mean not stored">
+      <div class="slide-head"><div class="pill">Retention reality</div><div class="slide-num">22</div></div>
+      <div class="content"><div class="iceberg"><div class="reveal"><h2>“Not used for training”<br>≠ “not stored.”</h2><p class="muted" style="margin-top:36px">Ask where data is processed, retained, logged, and copied.</p></div><div class="iceberg-visual reveal"><div class="iceberg-tip">Visible chat</div><div class="iceberg-line"></div><div class="iceberg-body">History · abuse monitoring · audit logs · telemetry · feedback · support · caches · connected services</div></div></div></div>
+      <aside class="speaker-notes"><p>“Not used for training” does not mean “not stored or processed.” Prompts and outputs may still appear in chat history, abuse-monitoring systems, audit logs, telemetry, feedback, support records, caches, or connected services.</p><p>Retention and processing can vary by product, plan, endpoint, region, feature, configuration, and contract.</p></aside>
+    </section>
+
+    <!-- === 23 DATA CLASSIFICATION === -->
+    <section class="slide" data-title="Classify before transmission">
+      <div class="slide-head"><div class="pill">Conservative baseline</div><div class="slide-num">23</div></div>
+      <div class="content"><h2 class="reveal">Classify before transmission.</h2><div class="data-ladder reveal">
+        <article class="data-step" style="height:260px;background:var(--mint)"><h3>Public</h3><p>Approved tool and use case only</p></article>
+        <article class="data-step" style="height:320px;background:var(--sky)"><h3>Internal</h3><p>Approved organizational account</p></article>
+        <article class="data-step" style="height:390px;background:var(--yellow)"><h3>Confidential</h3><p>Minimize; confirm deployment and contract</p></article>
+        <article class="data-step" style="height:470px;background:var(--coral)"><h3>Restricted / regulated</h3><p>Explicit owner approval required</p></article>
+        <article class="data-step" style="height:540px;background:var(--violet);color:#fff"><h3 style="color:#fff">Live secrets</h3><p>Never intentionally submit; report exposure</p></article>
+      </div></div>
+      <aside class="speaker-notes"><p>Apply the organization's existing data-classification rules before transmission. Source code may contain personal data, customer material, trade secrets, credentials, security architecture, contract-restricted information, or legally privileged content.</p><p>Subject to company policy, use this conservative baseline: Public data only in an approved tool and use case. Internal data only through the approved organizational account. Minimize confidential data and confirm that the approved deployment and contract cover it. Do not submit restricted or regulated data without explicit approval from the relevant owner. Never intentionally submit credentials or live secrets; report accidental exposure immediately.</p></aside>
+    </section>
+
+    <!-- === 24 MINIMIZE === -->
+    <section class="slide" data-title="Send the smallest useful fragment">
+      <div class="slide-head"><div class="pill">Before prompting</div><div class="slide-num">24</div></div>
+      <div class="content"><h2 class="reveal">Send the smallest useful fragment.</h2><div class="minimize-funnel reveal"><div class="funnel-inputs"><span>real names</span><span>whole repository</span><span>customer records</span><span>full logs</span><span>unrelated files</span></div><div class="funnel-shape">Minimize · replace · remove</div><div class="funnel-output">Synthetic minimal reproduction</div></div></div>
+      <aside class="speaker-notes"><p>Before prompting, provide only the smallest relevant fragment. Replace real names, identifiers, and records with synthetic values where possible. Remove unrelated files, secrets, customer data, and proprietary context. Prefer a minimal reproduction over an entire ticket, repository, log, or database export.</p><p>Redacted, pseudonymized, aggregated, or synthetic data is not automatically anonymous if a person can still be identified or the data can be linked back to real records.</p></aside>
+    </section>
+
+    <!-- === 25 PRIVACY TRIGGERS === -->
+    <section class="slide" data-title="Personal data changes the work">
+      <div class="slide-head"><div class="pill">Privacy triggers</div><div class="slide-num">25</div></div>
+      <div class="content"><h2 class="reveal">Personal data changes the work.</h2><div class="trigger-grid">
+        <article class="card trigger reveal"><div class="symbol">01</div><h3>Purpose &amp;<br>lawful basis</h3></article><article class="card trigger reveal" style="background:var(--sky)"><div class="symbol">02</div><h3>Terms, retention<br>&amp; security</h3></article><article class="card trigger reveal" style="background:var(--lime)"><div class="symbol">03</div><h3>Transparency<br>&amp; rights</h3></article><article class="card trigger reveal" style="background:var(--coral)"><div class="symbol">04</div><h3>High risk?<br>Escalate.</h3></article>
+      </div></div>
+      <aside class="speaker-notes"><p>If personal data is involved, the organization must have a defined purpose, lawful basis, appropriate processor terms, retention period, security controls, transparency, and a way to honor data-subject rights.</p><p>A Data Protection Impact Assessment may be required for likely high-risk uses such as large-scale monitoring, sensitive data, profiling, or consequential decisions. Escalate these uses to Privacy or Legal before implementation.</p></aside>
+    </section>
+
+    <!-- === 26 INCIDENT RESPONSE === -->
+    <section class="slide" data-title="Accidental disclosure is an incident">
+      <div class="slide-head"><div class="pill">If restricted data was sent</div><div class="slide-num">26</div></div>
+      <div class="content"><h2 class="reveal">Deletion is not proof of deletion.</h2><div class="incident-path reveal"><div class="node" style="background:var(--coral)">Stop further use</div><div class="arrow"></div><div class="node" style="background:var(--yellow)">Report through the normal incident process</div><div class="arrow"></div><div class="node" style="background:var(--sky)">Preserve facts for Security / Privacy</div></div></div>
+      <aside class="speaker-notes"><p>If restricted data is accidentally sent, stop further use and report it through the normal security/privacy incident process.</p><p>Deleting the conversation does not prove that logs, feedback copies, subprocessors, or provider records were deleted.</p></aside>
+    </section>
+
+    <!-- === 27 IP QUESTIONS === -->
+    <section class="slide" data-title="Separate the three IP questions">
+      <div class="slide-head"><div class="pill">Intellectual property</div><div class="slide-num">27</div></div>
+      <div class="content"><h2 class="reveal">Separate the three IP questions.</h2><div class="three-rights">
+        <article class="card rights-card reveal"><div class="number">01</div><div><h3>Input authority</h3><p>May we disclose and process it?</p></div></article>
+        <article class="card rights-card reveal" style="background:var(--lavender)"><div class="number">02</div><div><h3>Output ownership</h3><p>Is it protectable, and who owns rights?</p></div></article>
+        <article class="card rights-card reveal" style="background:var(--lime)"><div class="number">03</div><div><h3>Freedom to use</h3><p>Could use or distribution infringe?</p></div></article>
+      </div></div>
+      <aside class="speaker-notes"><p>Separate three questions often confused: Input authority: are we permitted to disclose and process the supplied code, data, document, or image? Output ownership: is the generated result protectable, and who owns any rights? Freedom to use: could using or distributing it infringe copyright, a license, a patent, a trademark, a trade secret, or a contract?</p><p>A vendor assigning output rights does not guarantee that the output is copyrightable or free of third-party rights.</p><p>Do not submit company, customer, open-source, or third-party material unless its ownership, license, confidentiality terms, and permitted recipients allow it. A promise not to train on the material does not create permission to disclose it. Trade-secret protection depends partly on reasonable measures to preserve secrecy. Sending confidential code to an unapproved service can breach contractual duties and weaken trade-secret protection.</p></aside>
+    </section>
+
+    <!-- === 28 UNKNOWN PROVENANCE === -->
+    <section class="slide" data-title="Generated code has unknown provenance">
+      <div class="slide-head"><div class="pill">Inspect before merge</div><div class="slide-num">28</div></div>
+      <div class="content"><div class="provenance-scan"><div class="unknown-stamp reveal">UNKNOWN<br>PROVENANCE</div><div><h2 class="reveal">Pause on a signal.</h2><div class="signal-list reveal" style="margin-top:40px"><div>License or copyright notice</div><div>Distinctive comments, names, strings, or test data</div><div>Long block resembling a known project</div><div>Public-code match or citation</div></div></div></div></div>
+      <aside class="speaker-notes"><p>Treat generated code as having unknown provenance. Investigate output containing a license or copyright notice; distinctive comments, names, strings, or test data; a long block closely resembling a known project; or a public-code match or citation reported by the tool.</p><p>AI does not remove an upstream open-source license. If generated output incorporates protected licensed code, obligations such as attribution, notices, source availability, or copyleft may still apply. “Permissive” does not mean “no obligations,” and there is no universal safe number of matching lines.</p></aside>
+    </section>
+
+    <!-- === 29 PROVENANCE RESPONSE === -->
+    <section class="slide" data-title="When provenance is suspicious">
+      <div class="slide-head"><div class="pill">Response sequence</div><div class="slide-num">29</div></div>
+      <div class="content"><h2 class="reveal">Suspicious provenance? Stop the merge.</h2><div class="flow-map reveal"><div class="flow-box" style="background:var(--coral)">Do not merge</div><div class="arrow"></div><div class="flow-box">Search distinctive fragments</div><div class="arrow"></div><div class="flow-box" style="background:var(--sky)">Inspect source, license, composition checks</div><div class="arrow"></div><div class="flow-box" style="background:var(--lime)">Comply, escalate, or reimplement</div></div></div>
+      <aside class="speaker-notes"><p>When provenance is suspicious: do not merge the output. Search distinctive fragments and inspect the original repository and license. Run the organization's normal composition and license checks. Satisfy the obligations, obtain Legal guidance, or independently implement from the requirements without using the suspect text.</p><p>Patent and trademark risks are separate. Independently generated code can still practice a patent, and generated product names or logos can still infringe trademarks. Escalate commercially significant or market-facing cases rather than relying on a model answer.</p></aside>
+    </section>
+
+    <!-- === 30 COMPLIANCE SOURCES === -->
+    <section class="slide" data-title="Compliance comes from four directions">
+      <div class="slide-head"><div class="pill">Recognize the trigger</div><div class="slide-num">30</div></div>
+      <div class="content"><h2 class="reveal">Compliance comes from four directions.</h2><div class="compliance-rings reveal">
+        <div class="ring" style="inset:0;background:var(--lavender)">Standards &amp; frameworks</div><div class="ring" style="inset:70px;background:var(--sky)">Company policy</div><div class="ring" style="inset:140px;background:var(--lime)">Contracts</div><div class="ring" style="inset:210px;background:var(--coral);padding-top:17px;font-size:19px">Laws &amp; regulations</div><div class="core">Your<br>use case</div>
+      </div></div>
+      <aside class="speaker-notes"><p>Different requirements come from different sources. Laws and regulations are binding when their scope applies. Contracts may impose stricter confidentiality, residency, security, IP, or audit requirements. Company policy governs internal use. Standards and frameworks such as NIST AI RMF or ISO/IEC 42001 are generally voluntary unless adopted by contract, regulation, or policy.</p><p>Return to the four-question pre-flight check whenever the tool, feature, data, output, affected people, product, or process changes.</p></aside>
+    </section>
   </main></div>
 
   <!-- === PRESENTER CHROME === -->
-  <div class="hint">← → navigate · N notes · E edit</div><div class="counter" id="counter">01 / 18</div>
+  <div class="hint">← → navigate · N notes · E edit</div><div class="counter" id="counter">01 / 30</div>
   <aside class="notes-panel" id="notesPanel" aria-hidden="true"><h2 id="notesTitle">Presenter notes</h2><div id="notesBody"></div></aside>
   <div class="edit-hotzone" aria-hidden="true"></div><button class="edit-toggle" id="editToggle" type="button">Edit</button>
 
