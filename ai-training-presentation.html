@@ -225,6 +225,35 @@
     .proof-word { border:3px solid;border-radius:50%;height:430px;display:grid;place-items:center;font:700 64px/1 "Bodoni Moda"; }
     .proof-mark { font:800 122px/1 "Bodoni Moda";transform:rotate(-7deg); }
 
+    /* === AI-ASSISTED DEVELOPMENT WORKFLOW === */
+    .workflow-evidence { display:grid;grid-template-columns:610px 1fr;gap:62px;align-items:center;height:750px; }
+    .workflow-evidence.reverse { grid-template-columns:1fr 680px; }
+    .workflow-evidence h2 { font-size:78px; }
+    .workflow-evidence .shot { max-height:690px; }
+    .quality-cloud { position:relative;height:680px;margin-top:10px; }
+    .quality-core { position:absolute;left:683px;top:205px;width:370px;height:260px;border:3px solid;border-radius:50%;background:var(--coral);display:grid;place-items:center;text-align:center;font:700 48px/1 "Bodoni Moda";z-index:3; }
+    .quality-tag { position:absolute;border:3px solid;border-radius:999px;padding:16px 24px;background:#fff;box-shadow:6px 6px 0 var(--shadow);font-size:18px;font-weight:600; }
+    .workflow-board { display:grid;grid-template-columns:1050px 1fr;gap:42px;height:755px;margin-top:8px; }
+    .workflow-map { position:relative;border:3px solid;border-radius:34px;background:rgba(255,255,255,.72);padding:34px 30px;overflow:hidden; }
+    .workflow-track { position:absolute;left:76px;right:76px;top:50%;height:5px;background:var(--ink);transform:translateY(-50%); }
+    .workflow-track::after { content:"";position:absolute;right:-2px;top:-9px;border-left:16px solid var(--ink);border-top:11px solid transparent;border-bottom:11px solid transparent; }
+    .phase-row { position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:20px;height:100%;align-items:center;z-index:2; }
+    .phase-node { min-height:150px;border:3px solid;border-radius:28px;background:#fff;padding:25px 18px;text-align:center;display:grid;place-items:center;font-weight:600;font-size:19px;transition:transform .25s var(--ease),background .25s,box-shadow .25s; }
+    .phase-node strong { display:block;font:800 43px/1 "Bodoni Moda";margin-bottom:12px; }
+    .phase-node.active { transform:translateY(-18px) scale(1.045);background:var(--yellow);box-shadow:10px 10px 0 rgba(26,26,26,.18); }
+    .workflow-detail { border:3px solid;border-radius:34px;background:var(--ink);color:#fff;padding:38px 34px;display:flex;flex-direction:column;justify-content:space-between; }
+    .workflow-detail h3 { color:var(--yellow);font-size:42px; }
+    .workflow-detail ol { margin:24px 0 0;padding-left:25px; }
+    .workflow-detail li { font-size:19px;line-height:1.35;margin-bottom:14px; }
+    .workflow-detail .loop-note { border:2px solid #fff6;border-radius:22px;padding:17px 19px;font-size:16px;line-height:1.35;color:#fff; }
+    .vim-hint { display:flex;align-items:center;gap:11px;font-size:15px;letter-spacing:.08em;text-transform:uppercase;color:#fff9; }
+    .keycap { min-width:36px;height:36px;border:2px solid #fff8;border-radius:8px;display:grid;place-items:center;color:#fff;font-weight:700; }
+    .workflow-finale { display:grid;grid-template-columns:1fr 650px;gap:80px;align-items:center;height:735px; }
+    .cycle { position:relative;width:620px;height:620px; }
+    .cycle-ring { position:absolute;inset:45px;border:5px solid var(--ink);border-radius:50%;border-left-color:var(--coral);border-bottom-color:var(--sky); }
+    .cycle-core { position:absolute;left:175px;top:175px;width:270px;height:270px;border:3px solid;border-radius:50%;background:var(--lime);display:grid;place-items:center;text-align:center;font:700 40px/1 "Bodoni Moda"; }
+    .cycle-label { position:absolute;border:3px solid;border-radius:999px;padding:17px 25px;background:#fff;font-size:18px;font-weight:600; }
+
     /* === PRESENTER AND EDITOR UI === */
     .speaker-notes { display:none; }
     .counter { position:fixed;right:26px;bottom:22px;z-index:1002;color:#fff;font:600 13px "Space Grotesk";letter-spacing:.14em; }
@@ -625,10 +654,58 @@
       <div class="content"><div class="statement"><div><h2 class="reveal">Do not replace evidence<br>with model confidence.</h2><div class="proof-lockup reveal"><div class="proof-word" style="background:var(--lavender)">Confidence</div><div class="proof-mark">≠</div><div class="proof-word" style="background:var(--yellow)">Evidence</div></div></div></div></div>
       <aside class="speaker-notes"><p>Do not replace evidence with model confidence. Fluent language, certainty, or a high-confidence claim is not proof. Keep the human decision grounded in appropriate review and evidence.</p></aside>
     </section>
+
+    <!-- === 44 WORKFLOW PREMISE === -->
+    <section class="slide" data-title="Prompt and review is not a workflow">
+      <div class="slide-head"><div class="pill">Module 2 · Workflow</div><div class="slide-num">44</div></div>
+      <div class="content"><div class="workflow-evidence"><div class="reveal"><h2>Prompt → review<br>is not enough.</h2><p class="muted" style="margin-top:34px">Without a proven workflow, AI can make experienced developers slower while costing more.</p><div class="accent-line"></div></div><img class="shot reveal" src="Agenda/Module 2 - AI Developer Productivity Fundamentals/img_1.png" alt="Headline reporting that AI coding assistants slowed experienced developers by 19 percent"></div></div>
+      <aside class="speaker-notes"><p>A developer should have a tried and proven workflow for using AI. Simply prompting and then reviewing is not enough. It can produce worse results, lower productivity, and higher cost. The referenced study reported experienced developers taking 19% longer on the measured tasks while using AI tools. Use this as a warning against assuming tool adoption automatically creates productivity.</p></aside>
+    </section>
+
+    <!-- === 45 VIBE CODING === -->
+    <section class="slide" data-title="Vibe coding is not software engineering">
+      <div class="slide-head"><div class="pill">Keep the constraints</div><div class="slide-num">45</div></div>
+      <div class="content"><div class="workflow-evidence reverse"><img class="shot reveal" src="Agenda/Module 2 - AI Developer Productivity Fundamentals/img.png" alt="Addy Osmani quote contrasting side-project vibe coding with enterprise maintenance"><div class="reveal"><h2>Vibe coding<br>≠ software engineering</h2><p class="muted" style="margin-top:34px">Beware advice that silently assumes a side project, a tiny audience, and no durable constraints.</p></div></div></div>
+      <aside class="speaker-notes"><p>Vibe coding is not software engineering. Beware of AI hype on the internet. Advice can come from people solving fundamentally different problems: a side project used by a dozen people and a team sustaining a ten-year-old enterprise system may share almost no constraints worth naming.</p></aside>
+    </section>
+
+    <!-- === 46 ENTERPRISE CONSTRAINTS === -->
+    <section class="slide" data-title="Enterprise quality is a system of constraints">
+      <div class="slide-head"><div class="pill">Enterprise reality</div><div class="slide-num">46</div></div>
+      <div class="content"><h2 class="reveal">Complex by nature. Disciplined by necessity.</h2><div class="quality-cloud reveal"><div class="quality-core">Enterprise<br>systems</div>
+        <span class="quality-tag" style="left:20px;top:35px;background:var(--sky)">Efficient</span><span class="quality-tag" style="left:265px;top:5px">Maintainable</span><span class="quality-tag" style="left:565px;top:30px;background:var(--mint)">Scalable</span><span class="quality-tag" style="right:470px;top:12px">Reliable</span><span class="quality-tag" style="right:230px;top:55px;background:var(--yellow)">Secure</span><span class="quality-tag" style="right:10px;top:18px">Performant</span>
+        <span class="quality-tag" style="left:5px;top:245px">Observable</span><span class="quality-tag" style="right:5px;top:235px;background:var(--lavender)">Recoverable</span><span class="quality-tag" style="left:35px;bottom:120px;background:var(--peach)">Compliant</span><span class="quality-tag" style="left:320px;bottom:55px">Testable</span><span class="quality-tag" style="left:600px;bottom:20px;background:var(--lime)">Auditable</span><span class="quality-tag" style="right:500px;bottom:30px">Extensible</span><span class="quality-tag" style="right:205px;bottom:65px;background:var(--sky)">Interoperable</span><span class="quality-tag" style="right:10px;bottom:135px">Data integrity</span>
+      </div></div>
+      <aside class="speaker-notes"><p>Enterprise systems are highly complex while required to be efficient, maintainable, scalable, reliable, secure, performant, observable, recoverable, compliant, testable, auditable, extensible, interoperable, and protective of data integrity. AI-generated code must satisfy the same engineering obligations as human-written code.</p></aside>
+    </section>
+
+    <!-- === 47 TECHNICAL DEBT EVIDENCE === -->
+    <section class="slide" data-title="AI impact depends on context">
+      <div class="slide-head"><div class="pill">Evidence · context matters</div><div class="slide-num">47</div></div>
+      <div class="content"><div class="workflow-evidence"><div class="reveal"><h2>More output can mean<br>more debt.</h2><p class="muted" style="margin-top:34px">The impact is non-uniform. Project scale, architecture, and governance change the outcome.</p></div><img class="shot reveal" src="Agenda/Module 2 - AI Developer Productivity Fundamentals/img_2.png" alt="Study abstract about GenAI-induced technical debt and context-dependent outcomes"></div></div>
+      <aside class="speaker-notes"><p>The cited empirical study presents GenAI's technical-debt impact as context-dependent rather than universally positive or negative. Its highlighted abstract reports small and medium projects showing statistically significant acceleration in code debt after intervention, while large projects showed decreased code debt but faster architectural-debt accumulation; those projects also increased design debt. The training implication is to tailor governance to project scale and context.</p></aside>
+    </section>
+
+    <!-- === 48 INTERACTIVE WORKFLOW === -->
+    <section class="slide workflow-slide" data-title="A navigable AI-assisted workflow">
+      <div class="slide-head"><div class="pill">Example workflow · interactive</div><div class="slide-num">48</div></div>
+      <div class="content"><h2 class="reveal" style="font-size:68px">Move through the engineering loop</h2><div class="workflow-board reveal">
+        <div class="workflow-map"><div class="workflow-track"></div><div class="phase-row" id="phaseRow"></div></div>
+        <aside class="workflow-detail"><div><div class="eyebrow" id="workflowPosition">Phase 1 of 8</div><h3 id="workflowTitle">Prepare context &amp; define task</h3><ol id="workflowSteps"></ol></div><div><div class="loop-note" id="workflowLoop"></div><div class="vim-hint" style="margin-top:20px"><span class="keycap">h</span><span class="keycap">j</span><span>previous</span><span class="keycap">k</span><span class="keycap">l</span><span>next</span></div></div></aside>
+      </div></div>
+      <aside class="speaker-notes"><p>This is an example workflow, not a universal prescription. Use H/L or J/K on this slide to inspect each phase. Start by preparing context and defining the task; inspect, clarify, and research before planning; plan reviewable milestones; implement incrementally; validate with increasingly broad checks; ask AI to conduct an adversarial review; perform the human final review; then finalize and convert learning into durable improvements.</p><p>Decision loops matter: important gaps trigger targeted questions; failed checks, adversarial findings, or rejected human review return the work to implementation. Approval leads to evidence, summary, documentation, and automation.</p></aside>
+    </section>
+
+    <!-- === 49 BUILD YOUR WORKFLOW === -->
+    <section class="slide" data-title="Build and improve your own workflow">
+      <div class="slide-head"><div class="pill">The durable practice</div><div class="slide-num">49</div></div>
+      <div class="content"><div class="workflow-finale"><div class="reveal"><h2 style="font-size:91px">Borrow the pattern.<br>Build your own.</h2><p class="muted" style="margin-top:40px;max-width:850px">Your workflow must evolve with your experience, your codebase, and the models and tools around you.</p></div><div class="cycle reveal"><div class="cycle-ring"></div><div class="cycle-core">Your<br>workflow</div><span class="cycle-label" style="left:5px;top:75px;background:var(--sky)">Try</span><span class="cycle-label" style="right:0;top:90px;background:var(--yellow)">Measure</span><span class="cycle-label" style="right:5px;bottom:85px;background:var(--lime)">Learn</span><span class="cycle-label" style="left:0;bottom:95px;background:var(--coral)">Improve</span></div></div></div>
+      <aside class="speaker-notes"><p>In this training I will show examples of workflows. At the end of the day, you need to develop a workflow that works for you. Keep improving it as you learn more and as tools and models evolve. Preserve the engineering controls that produce evidence, catch errors, and make the result maintainable.</p></aside>
+    </section>
   </main></div>
 
   <!-- === PRESENTER CHROME === -->
-  <div class="hint">← → navigate · N notes · E edit</div><div class="counter" id="counter">01 / 43</div>
+  <div class="hint">← → navigate · N notes · E edit</div><div class="counter" id="counter">01 / 49</div>
   <aside class="notes-panel" id="notesPanel" aria-hidden="true"><h2 id="notesTitle">Presenter notes</h2><div id="notesBody"></div></aside>
   <div class="edit-hotzone" aria-hidden="true"></div><button class="edit-toggle" id="editToggle" type="button">Edit</button>
 
@@ -637,13 +714,29 @@
     class SlidePresentation {
       constructor(){this.slides=[...document.querySelectorAll('.slide')];this.stage=document.getElementById('deckStage');this.index=0;this.notesOpen=false;this.touchX=0;this.wheelLock=false;this.scaleStage();this.bind();this.show(0);}
       scaleStage(){const fit=()=>{const k=Math.min(innerWidth/1920,innerHeight/1080);const x=(innerWidth-1920*k)/2;const y=(innerHeight-1080*k)/2;this.stage.style.transform=`translate(${x}px,${y}px) scale(${k})`;};fit();addEventListener('resize',fit);}
-      bind(){document.addEventListener('keydown',e=>{if(e.target.isContentEditable)return;if(['ArrowRight','ArrowDown',' ','PageDown'].includes(e.key)){e.preventDefault();this.show(this.index+1)}if(['ArrowLeft','ArrowUp','PageUp'].includes(e.key)){e.preventDefault();this.show(this.index-1)}if(e.key==='Home')this.show(0);if(e.key==='End')this.show(this.slides.length-1);if(e.key.toLowerCase()==='n')this.toggleNotes();});
+      bind(){document.addEventListener('keydown',e=>{if(e.target.isContentEditable)return;const active=this.slides[this.index];if(active.classList.contains('workflow-slide')&&['h','j','k','l'].includes(e.key.toLowerCase())){e.preventDefault();moveWorkflow(['h','j'].includes(e.key.toLowerCase())?-1:1);return;}if(['ArrowRight','ArrowDown',' ','PageDown'].includes(e.key)){e.preventDefault();this.show(this.index+1)}if(['ArrowLeft','ArrowUp','PageUp'].includes(e.key)){e.preventDefault();this.show(this.index-1)}if(e.key==='Home')this.show(0);if(e.key==='End')this.show(this.slides.length-1);if(e.key.toLowerCase()==='n')this.toggleNotes();});
         addEventListener('touchstart',e=>this.touchX=e.touches[0].clientX,{passive:true});addEventListener('touchend',e=>{const d=e.changedTouches[0].clientX-this.touchX;if(Math.abs(d)>50)this.show(this.index+(d<0?1:-1));},{passive:true});
         addEventListener('wheel',e=>{if(this.wheelLock||Math.abs(e.deltaY)<20)return;this.wheelLock=true;this.show(this.index+(e.deltaY>0?1:-1));setTimeout(()=>this.wheelLock=false,550);},{passive:true});}
       show(next){this.index=Math.max(0,Math.min(next,this.slides.length-1));this.slides.forEach((s,i)=>{const active=i===this.index;s.classList.toggle('active',active);s.classList.toggle('visible',active);s.querySelectorAll('video').forEach(video=>{if(active){video.play().catch(()=>{});}else{video.pause();video.currentTime=0;}})});document.getElementById('counter').textContent=`${String(this.index+1).padStart(2,'0')} / ${this.slides.length}`;this.renderNotes();location.hash=`slide-${this.index+1}`;}
       toggleNotes(){this.notesOpen=!this.notesOpen;const p=document.getElementById('notesPanel');p.classList.toggle('open',this.notesOpen);p.setAttribute('aria-hidden',String(!this.notesOpen));this.renderNotes();}
       renderNotes(){const slide=this.slides[this.index];document.getElementById('notesTitle').textContent=`${this.index+1}. ${slide.dataset.title}`;document.getElementById('notesBody').innerHTML=slide.querySelector('.speaker-notes')?.innerHTML||'<p>No notes.</p>';}
     }
+
+    /* === INTERACTIVE WORKFLOW DIAGRAM === */
+    const workflowPhases=[
+      {title:'Prepare context & define task',steps:['Ensure project guidelines and context are current','Define outcome, scope, constraints, and acceptance criteria','Provide relevant files, docs, examples, tools, skills, MCPs, and permissions'],loop:'Start here. Better inputs reduce avoidable ambiguity downstream.'},
+      {title:'Inspect, clarify & research',steps:['Inspect the existing implementation','Identify gaps, assumptions, risks, and missing context','Research unknowns using the repo, docs, and connected tools'],loop:'Important gaps remain? Yes → ask targeted questions. No → continue to planning.'},
+      {title:'Plan',steps:['Break work into reviewable milestones','Define implementation approach, tests, security, and compatibility','Challenge risks, edge cases, regressions, and simpler alternatives'],loop:'A plan is a review checkpoint, not ceremony.'},
+      {title:'Implement incrementally',steps:['Make the smallest coherent change','Follow project conventions','Avoid unrelated changes and unnecessary dependencies'],loop:'Failed validation or review returns here.'},
+      {title:'Validate',steps:['Format and lint','Build and type-check','Run unit, integration, and E2E tests','Run security, vulnerability, and dependency checks'],loop:'All checks pass? No → implement again. Yes → adversarial review.'},
+      {title:'Adversarial AI review',steps:['Try to find bugs, regressions, edge cases, and failure paths','Challenge assumptions, design, and architecture','Check security and unintended changes'],loop:'Issues found? Yes → implement again. No → human final review.'},
+      {title:'Human final review',steps:['Review the final diff against requirements and acceptance criteria','Check readability, maintainability, naming, and design patterns','Review dependencies: necessity, origin, maintenance, vulnerabilities, and licensing'],loop:'Approved? No → implement again. Yes → finalize and learn.'},
+      {title:'Finalize & learn',steps:['Verify the desired outcome with evidence','Summarize changes, checks, risks, and limitations','Update guidelines, docs, and context when reusable knowledge was learned','Turn recurring issues into tests, lint rules, or automation'],loop:'Done. Feed reusable learning into the next task.'}
+    ];
+    let workflowIndex=0;
+    function renderWorkflow(){const row=document.getElementById('phaseRow');if(!row)return;row.innerHTML=workflowPhases.map((phase,i)=>`<div class="phase-node${i===workflowIndex?' active':''}"><div><strong>${i+1}</strong>${phase.title}</div></div>`).join('');const phase=workflowPhases[workflowIndex];document.getElementById('workflowPosition').textContent=`Phase ${workflowIndex+1} of 8`;document.getElementById('workflowTitle').textContent=phase.title;document.getElementById('workflowSteps').innerHTML=phase.steps.map(step=>`<li>${step}</li>`).join('');document.getElementById('workflowLoop').textContent=phase.loop;}
+    function moveWorkflow(delta){workflowIndex=Math.max(0,Math.min(workflowPhases.length-1,workflowIndex+delta));renderWorkflow();}
+    renderWorkflow();
 
     /* === INLINE TEXT EDITOR === */
     class InlineEditor {
