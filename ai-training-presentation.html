@@ -207,6 +207,24 @@
     .demo-frame video { display:block;width:100%;height:auto;max-height:650px;border-radius:20px;background:#111; }
     .demo-badge { position:absolute;right:28px;top:28px;border:3px solid;border-radius:999px;padding:12px 20px;background:var(--lime);font-size:15px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;z-index:2; }
 
+    /* === ACCOUNTABILITY AND GOVERNANCE === */
+    .accountability-chain { display:flex;align-items:center;justify-content:center;gap:21px;height:610px; }
+    .accountability-chain .flow-box { width:300px;min-height:190px;font-size:25px; }
+    .accountability-chain .human-box { width:390px;min-height:250px;background:var(--yellow);font:700 43px/1.05 "Bodoni Moda"; }
+    .owner-orbit { position:relative;height:650px;margin-top:15px; }
+    .owner-core { position:absolute;left:690px;top:185px;width:340px;height:265px;border:3px solid;border-radius:50%;background:var(--coral);display:grid;place-items:center;text-align:center;font:700 48px/1 "Bodoni Moda";z-index:4; }
+    .owner-duty { position:absolute;width:320px;height:115px;border:3px solid;border-radius:999px;background:#fff;box-shadow:6px 6px 0 var(--shadow);display:grid;place-items:center;text-align:center;font-size:22px;font-weight:600; }
+    .oversight-scale { display:grid;grid-template-columns:1fr 180px 1fr;gap:38px;align-items:center;height:650px; }
+    .oversight-side { min-height:500px;padding:48px;display:flex;flex-direction:column;justify-content:space-between; }
+    .oversight-side h3 { font-size:53px; }
+    .oversight-side p { font-size:25px; }
+    .scale-pivot { position:relative;width:170px;height:300px; }
+    .scale-pivot::before { content:"";position:absolute;left:82px;top:20px;width:6px;height:190px;background:var(--ink);transform:rotate(18deg);transform-origin:bottom; }
+    .scale-pivot::after { content:"";position:absolute;left:28px;bottom:20px;border-left:58px solid transparent;border-right:58px solid transparent;border-bottom:110px solid var(--ink); }
+    .proof-lockup { display:grid;grid-template-columns:1fr 230px 1fr;gap:45px;align-items:center;height:650px;text-align:center; }
+    .proof-word { border:3px solid;border-radius:50%;height:430px;display:grid;place-items:center;font:700 64px/1 "Bodoni Moda"; }
+    .proof-mark { font:800 122px/1 "Bodoni Moda";transform:rotate(-7deg); }
+
     /* === PRESENTER AND EDITOR UI === */
     .speaker-notes { display:none; }
     .counter { position:fixed;right:26px;bottom:22px;z-index:1002;color:#fff;font:600 13px "Space Grotesk";letter-spacing:.14em; }
@@ -579,10 +597,38 @@
       <div class="content"><div class="automation-demo"><div class="reveal"><h2>Use AI once.<br>Automate the repetition.</h2><p class="muted" style="margin-top:38px">Turn a recurring Kubernetes port-forward prompt into a tiny shell function.</p><div class="accent-line"></div></div><div class="demo-frame reveal"><div class="demo-badge">17 sec demo</div><video controls muted loop playsinline preload="metadata" aria-label="Demo of a shell function replacing repeated AI requests for Kubernetes port forwarding"><source src="Agenda/Module 1 - Responsible AI for Software Engineering/fs-demo.mp4" type="video/mp4">Your browser does not support embedded video.</video></div></div></div>
       <aside class="speaker-notes"><p>Sometimes the right choice is not to use an AI tool at all. If you repeatedly ask an AI agent, “What is the command to port-forward this service port in Kubernetes to this local port?”, repeated inference is slower and more expensive than durable automation.</p><p>Use the agent once to create a small, reviewed shell function, then invoke that deterministic function directly. The demo shows this workflow. General rule: use AI for ambiguity and creation; once a repeated task becomes stable and well understood, encode it in the simplest conventional tool that works.</p></aside>
     </section>
+
+    <!-- === 40 HUMAN ACCOUNTABILITY === -->
+    <section class="slide" data-title="A human remains accountable">
+      <div class="slide-head"><div class="pill">Human accountability &amp; governance</div><div class="slide-num">40</div></div>
+      <div class="content"><h2 class="reveal">AI can perform the work.</h2><div class="accountability-chain reveal"><div class="flow-box">AI output</div><div class="arrow"></div><div class="flow-box">Engineering action</div><div class="arrow"></div><div class="flow-box human-box">A human<br>owns the decision.</div></div></div>
+      <aside class="speaker-notes"><p>AI can perform work, but a human remains accountable for using its output.</p><p>Accepting a suggestion, merging code, approving a release, or allowing an agent to act is a human engineering decision. “The AI produced it” is not a justification.</p></aside>
+    </section>
+
+    <!-- === 41 NAME AN OWNER === -->
+    <section class="slide" data-title="Name an owner">
+      <div class="slide-head"><div class="pill">Governance rule · 1</div><div class="slide-num">41</div></div>
+      <div class="content"><h2 class="reveal">Every consequential change needs an owner.</h2><div class="owner-orbit reveal"><div class="owner-core">Named.<br>Authorized.<br>Accountable.</div><div class="owner-duty" style="left:180px;top:80px;background:var(--sky)">Approve the change</div><div class="owner-duty" style="right:180px;top:80px;background:var(--lime)">Accept remaining risk</div><div class="owner-duty" style="left:180px;bottom:70px;background:var(--lavender)">Monitor the outcome</div><div class="owner-duty" style="right:180px;bottom:70px;background:var(--yellow)">Stop or roll back</div></div></div>
+      <aside class="speaker-notes"><p><strong>Name an owner.</strong> Every consequential change needs someone authorized to approve it, accept remaining risk, monitor it, and stop or roll it back.</p></aside>
+    </section>
+
+    <!-- === 42 MATCH OVERSIGHT TO IMPACT === -->
+    <section class="slide" data-title="Match oversight to impact">
+      <div class="slide-head"><div class="pill">Governance rule · 2</div><div class="slide-num">42</div></div>
+      <div class="content"><h2 class="reveal">Match oversight to impact.</h2><div class="oversight-scale reveal"><article class="card oversight-side" style="background:var(--lime)"><div class="pill">Normal review</div><h3>Low-risk.<br>Reversible.</h3><p>Keep the control proportional.</p></article><div class="scale-pivot" aria-hidden="true"></div><article class="card oversight-side" style="background:var(--coral)"><div class="pill">Stronger review</div><h3>Consequential.<br>Hard to reverse.</h3><p>Security-sensitive · regulated · destructive · customer-facing · often independently reviewed</p></article></div></div>
+      <aside class="speaker-notes"><p><strong>Match oversight to impact.</strong> Low-risk, reversible work can follow normal review. Security-sensitive, regulated, destructive, customer-facing, or hard-to-reverse work needs stronger and often independent review.</p></aside>
+    </section>
+
+    <!-- === 43 EVIDENCE OVER CONFIDENCE === -->
+    <section class="slide" data-title="Do not replace evidence with confidence">
+      <div class="slide-head"><div class="pill">The governance test</div><div class="slide-num">43</div></div>
+      <div class="content"><div class="statement"><div><h2 class="reveal">Do not replace evidence<br>with model confidence.</h2><div class="proof-lockup reveal"><div class="proof-word" style="background:var(--lavender)">Confidence</div><div class="proof-mark">≠</div><div class="proof-word" style="background:var(--yellow)">Evidence</div></div></div></div></div>
+      <aside class="speaker-notes"><p>Do not replace evidence with model confidence. Fluent language, certainty, or a high-confidence claim is not proof. Keep the human decision grounded in appropriate review and evidence.</p></aside>
+    </section>
   </main></div>
 
   <!-- === PRESENTER CHROME === -->
-  <div class="hint">← → navigate · N notes · E edit</div><div class="counter" id="counter">01 / 39</div>
+  <div class="hint">← → navigate · N notes · E edit</div><div class="counter" id="counter">01 / 43</div>
   <aside class="notes-panel" id="notesPanel" aria-hidden="true"><h2 id="notesTitle">Presenter notes</h2><div id="notesBody"></div></aside>
   <div class="edit-hotzone" aria-hidden="true"></div><button class="edit-toggle" id="editToggle" type="button">Edit</button>
 
