@@ -175,6 +175,38 @@
     .compliance-rings .ring { position:absolute;border:3px solid;border-radius:50%;display:grid;place-items:start center;padding-top:34px;font-weight:600;font-size:21px; }
     .compliance-rings .core { position:absolute;left:260px;top:260px;width:200px;height:200px;border:3px solid;border-radius:50%;background:var(--yellow);display:grid;place-items:center;text-align:center;font:700 38px/1 "Bodoni Moda";z-index:5; }
 
+    /* === TOOL SELECTION AND ROUTING === */
+    .route-split { display:grid;grid-template-columns:650px 1fr;gap:70px;align-items:center;height:720px; }
+    .route-board { position:relative;height:610px; }
+    .route-task { position:absolute;left:0;top:220px;width:250px;height:150px;border:3px solid;border-radius:50%;background:var(--yellow);display:grid;place-items:center;text-align:center;font:700 34px/1 "Bodoni Moda";z-index:3; }
+    .route-track { position:absolute;left:245px;top:292px;width:230px;height:5px;background:var(--ink); }
+    .route-track::after { content:"";position:absolute;right:-1px;top:-8px;border-left:14px solid var(--ink);border-top:10px solid transparent;border-bottom:10px solid transparent; }
+    .route-tools { position:absolute;right:0;top:25px;width:390px;display:grid;gap:20px; }
+    .route-tools div { border:3px solid;border-radius:999px;padding:19px 26px;background:#fff;font-size:20px;font-weight:600;transform:translateX(var(--shift,0)); }
+    .tool-shelf { display:grid;grid-template-columns:repeat(5,1fr);gap:22px;margin-top:58px; }
+    .tool-tile { min-height:190px;padding:28px 25px;display:flex;flex-direction:column;justify-content:space-between; }
+    .tool-tile .glyph { font:800 50px/1 "Bodoni Moda"; }
+    .tool-tile h3 { font-size:28px;line-height:1.08; }
+    .decision-arena { display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;height:720px; }
+    .scenario-card { padding:60px;min-height:480px;display:flex;flex-direction:column;justify-content:space-between;background:var(--yellow); }
+    .scenario-card h2 { font-size:68px; }
+    .choice-stack { display:grid;gap:20px; }
+    .choice { border:3px solid;border-radius:999px;padding:23px 32px;background:#fff;font-size:24px;font-weight:600;display:flex;justify-content:space-between;align-items:center; }
+    .choice strong { font:800 30px "Bodoni Moda"; }
+    .mismatch { display:grid;grid-template-columns:1fr 140px 1fr;gap:30px;align-items:center;height:670px; }
+    .mismatch-side { height:470px;padding:48px;display:flex;flex-direction:column;justify-content:space-between; }
+    .mismatch-side h3 { font-size:52px; }
+    .mismatch-side p { font-size:25px; }
+    .mismatch-mark { width:130px;height:130px;border:3px solid;border-radius:50%;display:grid;place-items:center;background:var(--coral);font:800 58px "Bodoni Moda";transform:rotate(-8deg); }
+    .scope-rings { position:relative;height:660px;margin-top:15px; }
+    .scope-ring { position:absolute;left:50%;transform:translateX(-50%);border:3px solid;border-radius:999px;display:flex;align-items:flex-start;justify-content:center;padding-top:27px;font-size:21px;font-weight:600; }
+    .scope-core { position:absolute;left:50%;top:235px;transform:translateX(-50%);width:330px;height:180px;border:3px solid;border-radius:50%;background:var(--yellow);display:grid;place-items:center;text-align:center;font:700 39px/1 "Bodoni Moda";z-index:5; }
+    .automation-demo { display:grid;grid-template-columns:560px 1fr;gap:60px;align-items:center;height:740px; }
+    .automation-demo h2 { font-size:77px; }
+    .demo-frame { position:relative;padding:18px;background:var(--ink);border:3px solid var(--outline);border-radius:36px;box-shadow:13px 13px 0 var(--shadow); }
+    .demo-frame video { display:block;width:100%;height:auto;max-height:650px;border-radius:20px;background:#111; }
+    .demo-badge { position:absolute;right:28px;top:28px;border:3px solid;border-radius:999px;padding:12px 20px;background:var(--lime);font-size:15px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;z-index:2; }
+
     /* === PRESENTER AND EDITOR UI === */
     .speaker-notes { display:none; }
     .counter { position:fixed;right:26px;bottom:22px;z-index:1002;color:#fff;font:600 13px "Space Grotesk";letter-spacing:.14em; }
@@ -476,10 +508,81 @@
       </div></div>
       <aside class="speaker-notes"><p>Different requirements come from different sources. Laws and regulations are binding when their scope applies. Contracts may impose stricter confidentiality, residency, security, IP, or audit requirements. Company policy governs internal use. Standards and frameworks such as NIST AI RMF or ISO/IEC 42001 are generally voluntary unless adopted by contract, regulation, or policy.</p><p>Return to the four-question pre-flight check whenever the tool, feature, data, output, affected people, product, or process changes.</p></aside>
     </section>
+
+    <!-- === 31 CHOOSE BY ACTION === -->
+    <section class="slide" data-title="Choose by action, not familiarity">
+      <div class="slide-head"><div class="pill">Choosing the right AI tool</div><div class="slide-num">31</div></div>
+      <div class="content"><div class="route-split"><div class="reveal"><h2>Choose by action.<br>Not familiarity.</h2><p class="muted" style="margin-top:38px">Start with what the work must touch.</p><div class="accent-line"></div></div><div class="route-board reveal"><div class="route-task">The<br>task</div><div class="route-track"></div><div class="route-tools"><div style="background:var(--sky);--shift:-20px">Conversation</div><div style="background:var(--lime);--shift:25px">Codebase</div><div style="background:var(--coral);--shift:-5px">Browser</div><div style="background:var(--lavender);--shift:35px">World</div><div style="background:var(--yellow);--shift:5px">Time / event</div></div></div></div></div>
+      <aside class="speaker-notes"><p>Many types of AI tools exist. The correct choice starts with the action and environment required by the task, not with the interface you use most often. Ask whether the task is primarily conversation, code completion, codebase modification, research, terminal execution, browser interaction, desktop interaction, media generation, automation, or physical action.</p></aside>
+    </section>
+
+    <!-- === 32 TOOL LANDSCAPE I === -->
+    <section class="slide" data-title="Tools for thinking, code, and research">
+      <div class="slide-head"><div class="pill">Tool landscape · 1 of 3</div><div class="slide-num">32</div></div>
+      <div class="content"><h2 class="reveal">Thinking. Code. Research.</h2><div class="tool-shelf">
+        <article class="card tool-tile reveal" style="background:var(--yellow)"><div class="glyph">01</div><h3>Chat<br>interface</h3></article><article class="card tool-tile reveal"><div class="glyph">02</div><h3>IDE code<br>completion</h3></article><article class="card tool-tile reveal" style="background:var(--lime)"><div class="glyph">03</div><h3>Coding<br>agent</h3></article><article class="card tool-tile reveal" style="background:var(--sky)"><div class="glyph">04</div><h3>Deep research<br>agent</h3></article><article class="card tool-tile reveal" style="background:var(--lavender)"><div class="glyph">05</div><h3>Terminal<br>AI chat</h3></article>
+      </div><p class="reveal" style="text-align:center;margin-top:55px;font-size:33px">Same model family. Very different reach.</p></div>
+      <aside class="speaker-notes"><p>The first group includes a simple chat interface, code completion in the IDE, a coding agent, a deep research agent, and terminal AI chat. Their boundaries matter: chat produces conversational output; completion operates at the cursor; a coding agent can inspect and change a codebase and run development tools; a deep research agent is equipped to search, browse, synthesize, and cite broadly; terminal AI chat can propose and execute shell-oriented work in its native environment.</p></aside>
+    </section>
+
+    <!-- === 33 TOOL LANDSCAPE II === -->
+    <section class="slide" data-title="Tools that act and create">
+      <div class="slide-head"><div class="pill">Tool landscape · 2 of 3</div><div class="slide-num">33</div></div>
+      <div class="content"><h2 class="reveal">Act. Automate. Create.</h2><div class="tool-shelf">
+        <article class="card tool-tile reveal" style="background:var(--coral)"><div class="glyph">06</div><h3>Computer-use<br>agent</h3></article><article class="card tool-tile reveal" style="background:var(--sky)"><div class="glyph">07</div><h3>Browser-use<br>agent</h3></article><article class="card tool-tile reveal"><div class="glyph">08</div><h3>Workflow<br>automation</h3></article><article class="card tool-tile reveal" style="background:var(--yellow)"><div class="glyph">09</div><h3>Voice<br>agent</h3></article><article class="card tool-tile reveal" style="background:var(--lime)"><div class="glyph">10+</div><h3>Image · video<br>audio</h3></article>
+      </div><p class="reveal" style="text-align:center;margin-top:55px;font-size:33px">Choose the native surface for the action.</p></div>
+      <aside class="speaker-notes"><p>The second group includes a computer-use agent, browser-use agent, workflow automation agent, voice agent, image generation, video generation, and audio generation. It also includes speech-to-text and text-to-speech, often abbreviated STT and TTS. A computer-use agent operates graphical applications; a browser-use agent navigates web interfaces; workflow automation connects repeatable steps; voice is useful when speaking is faster or hands-free interaction matters; generation tools are specialized by medium.</p></aside>
+    </section>
+
+    <!-- === 34 TOOL LANDSCAPE III === -->
+    <section class="slide" data-title="Tools for scale, timing, and the physical world">
+      <div class="slide-head"><div class="pill">Tool landscape · 3 of 3</div><div class="slide-num">34</div></div>
+      <div class="content"><h2 class="reveal">Scale. Timing. The world.</h2><div class="learning-grid" style="margin-top:58px">
+        <article class="card learning-card reveal" style="background:var(--lavender)"><div class="orb">A</div><h3 style="margin-top:28px">Multi-agent system</h3><p>Specialized roles coordinate on divisible work.</p><div class="example">PARALLEL / SPECIALIZED</div></article>
+        <article class="card learning-card reveal" style="background:var(--yellow)"><div class="orb">B</div><h3 style="margin-top:28px">Scheduled or event-driven</h3><p>Act proactively when time or a signal says go.</p><div class="example">CLOCK / EVENT</div></article>
+        <article class="card learning-card reveal" style="background:var(--coral)"><div class="orb">C</div><h3 style="margin-top:28px">Physical / robotics agent</h3><p>Sense, decide, and act beyond the screen.</p><div class="example">SENSORS / ACTUATORS</div></article>
+      </div></div>
+      <aside class="speaker-notes"><p>The final group includes multi-agent systems, scheduled or proactive agents, event-driven agents, and physical or robotics agents. Multi-agent systems coordinate multiple agents or roles. Scheduled/proactive agents act at a planned time or initiate useful work without a fresh user request. Event-driven agents react to signals such as a pull request, alert, message, or data change. Physical/robotics agents connect decisions to sensors and actuators in the real world.</p></aside>
+    </section>
+
+    <!-- === 35 AUDIENCE DECISION === -->
+    <section class="slide" data-title="Audience decision: production issue research">
+      <div class="slide-head"><div class="pill">Audience decision</div><div class="slide-num">35</div></div>
+      <div class="content"><div class="decision-arena"><article class="card scenario-card reveal"><div class="eyebrow">Your task</div><h2>Investigate a new production issue across docs, changelogs, forums, and JS-heavy sites.</h2><p>Which tool gets the lead?</p></article><div class="choice-stack reveal"><div class="choice"><span>A · Simple chat</span><strong>?</strong></div><div class="choice"><span>B · Coding agent</span><strong>?</strong></div><div class="choice" style="background:var(--sky)"><span>C · Deep research agent</span><strong>✓</strong></div><div class="choice"><span>D · IDE completion</span><strong>?</strong></div></div></div></div>
+      <aside class="speaker-notes"><p>Ask the audience to vote before revealing the highlighted answer. A common mistake is using a coding agent to do deep research. Most coding agents do not have research tools strong enough by default: many cannot access JavaScript-heavy websites out of the box and may not search deeply enough. Research also consumes and displaces codebase context unnecessarily. Lead with a deep research agent, then hand the evidence to a coding agent if code changes are required.</p></aside>
+    </section>
+
+    <!-- === 36 CHAT MISMATCH === -->
+    <section class="slide" data-title="Do not ask chat to impersonate the tool">
+      <div class="slide-head"><div class="pill">Common mismatch</div><div class="slide-num">36</div></div>
+      <div class="content"><h2 class="reveal">Do not ask chat to impersonate the tool.</h2><div class="mismatch reveal"><article class="card mismatch-side"><div class="pill">Indirect</div><h3>Chat → instructions → manual action</h3><p>Copy commands. Follow clicks. Recreate context.</p></article><div class="mismatch-mark">≠</div><article class="card mismatch-side" style="background:var(--lime)"><div class="pill">Native</div><h3>Agent → tool → verified result</h3><p>Act where the task lives.</p></article></div></div>
+      <aside class="speaker-notes"><p>Common mistakes include using a chat interface for coding, using a chat interface merely to obtain a terminal command, and following instructions to perform browser actions manually instead of using a browser agent. Chat is useful for discussion, but it should not impersonate a coding, terminal, or browser environment when an approved agent can act there directly and verify the result. Another mismatch is typing when a voice agent would be faster or more accessible.</p></aside>
+    </section>
+
+    <!-- === 37 TERMINAL EVIDENCE === -->
+    <section class="slide" data-title="Put terminal work in the terminal">
+      <div class="slide-head"><div class="pill">Common mismatch · evidence</div><div class="slide-num">37</div></div>
+      <div class="content"><div class="evidence wide-shot"><div class="evidence-copy reveal"><div class="pill" style="background:var(--lavender)">Terminal-native</div><h2>Put terminal work<br>in the terminal.</h2><p>Generate, inspect, revise, and execute without a copy-paste detour.</p></div><img class="shot reveal" src="Agenda/Module 1 - Responsible AI for Software Engineering/img_3.png" alt="Terminal AI proposes an lsof command and offers execute, revise, describe, copy, or quit actions"></div></div>
+      <aside class="speaker-notes"><p>The screenshot shows terminal AI chat proposing <code>lsof -ti:3000 | xargs kill -9</code> and offering execute, revise, describe, copy, or quit. The point is the workflow, not endorsement of this exact force-kill command in every situation. Compared with asking a general chat interface for a command and copying it manually, a terminal-native assistant can keep shell context, let the user inspect or revise the proposal, execute with explicit approval, and observe the result.</p></aside>
+    </section>
+
+    <!-- === 38 RIGHT-SIZE THE AGENT === -->
+    <section class="slide" data-title="Right-size scope and capability">
+      <div class="slide-head"><div class="pill">Final routing check</div><div class="slide-num">38</div></div>
+      <div class="content"><h2 class="reveal">Right-size the agent.</h2><div class="scope-rings reveal"><div class="scope-ring" style="top:0;width:1260px;height:620px;background:var(--lavender)">Necessary tools and skills</div><div class="scope-ring" style="top:80px;width:980px;height:460px;background:var(--sky)">Repository boundary</div><div class="scope-ring" style="top:160px;width:700px;height:300px;background:var(--lime)">Single or multi-agent?</div><div class="scope-core">Task shape<br>comes first</div></div></div>
+      <aside class="speaker-notes"><p>Two opposite mistakes are possible: using one agent for work that benefits from multiple specialized or parallel agents, and adding multiple agents where one coherent agent is simpler and safer. Choose based on whether the work is divisible, independent, and easy to reconcile.</p><p>Match repository scope too. A coding agent confined to a single repository is the wrong setup when the task spans multiple related repositories; where appropriate, give it a monorepo or multi-repository workspace containing the required context. Finally, do not use a coding agent without the necessary skills or tools for the job. Access to the right model is not enough: the harness needs relevant files, commands, browser/research capabilities, integrations, permissions, and verification tools.</p></aside>
+    </section>
+
+    <!-- === 39 AUTOMATE THE REPETITION === -->
+    <section class="slide" data-title="Sometimes the right AI tool is no AI tool">
+      <div class="slide-head"><div class="pill">The cheapest repeated prompt</div><div class="slide-num">39</div></div>
+      <div class="content"><div class="automation-demo"><div class="reveal"><h2>Use AI once.<br>Automate the repetition.</h2><p class="muted" style="margin-top:38px">Turn a recurring Kubernetes port-forward prompt into a tiny shell function.</p><div class="accent-line"></div></div><div class="demo-frame reveal"><div class="demo-badge">17 sec demo</div><video controls muted loop playsinline preload="metadata" aria-label="Demo of a shell function replacing repeated AI requests for Kubernetes port forwarding"><source src="Agenda/Module 1 - Responsible AI for Software Engineering/fs-demo.mp4" type="video/mp4">Your browser does not support embedded video.</video></div></div></div>
+      <aside class="speaker-notes"><p>Sometimes the right choice is not to use an AI tool at all. If you repeatedly ask an AI agent, “What is the command to port-forward this service port in Kubernetes to this local port?”, repeated inference is slower and more expensive than durable automation.</p><p>Use the agent once to create a small, reviewed shell function, then invoke that deterministic function directly. The demo shows this workflow. General rule: use AI for ambiguity and creation; once a repeated task becomes stable and well understood, encode it in the simplest conventional tool that works.</p></aside>
+    </section>
   </main></div>
 
   <!-- === PRESENTER CHROME === -->
-  <div class="hint">← → navigate · N notes · E edit</div><div class="counter" id="counter">01 / 30</div>
+  <div class="hint">← → navigate · N notes · E edit</div><div class="counter" id="counter">01 / 39</div>
   <aside class="notes-panel" id="notesPanel" aria-hidden="true"><h2 id="notesTitle">Presenter notes</h2><div id="notesBody"></div></aside>
   <div class="edit-hotzone" aria-hidden="true"></div><button class="edit-toggle" id="editToggle" type="button">Edit</button>
 
@@ -491,7 +594,7 @@
       bind(){document.addEventListener('keydown',e=>{if(e.target.isContentEditable)return;if(['ArrowRight','ArrowDown',' ','PageDown'].includes(e.key)){e.preventDefault();this.show(this.index+1)}if(['ArrowLeft','ArrowUp','PageUp'].includes(e.key)){e.preventDefault();this.show(this.index-1)}if(e.key==='Home')this.show(0);if(e.key==='End')this.show(this.slides.length-1);if(e.key.toLowerCase()==='n')this.toggleNotes();});
         addEventListener('touchstart',e=>this.touchX=e.touches[0].clientX,{passive:true});addEventListener('touchend',e=>{const d=e.changedTouches[0].clientX-this.touchX;if(Math.abs(d)>50)this.show(this.index+(d<0?1:-1));},{passive:true});
         addEventListener('wheel',e=>{if(this.wheelLock||Math.abs(e.deltaY)<20)return;this.wheelLock=true;this.show(this.index+(e.deltaY>0?1:-1));setTimeout(()=>this.wheelLock=false,550);},{passive:true});}
-      show(next){this.index=Math.max(0,Math.min(next,this.slides.length-1));this.slides.forEach((s,i)=>{s.classList.toggle('active',i===this.index);s.classList.toggle('visible',i===this.index)});document.getElementById('counter').textContent=`${String(this.index+1).padStart(2,'0')} / ${this.slides.length}`;this.renderNotes();location.hash=`slide-${this.index+1}`;}
+      show(next){this.index=Math.max(0,Math.min(next,this.slides.length-1));this.slides.forEach((s,i)=>{const active=i===this.index;s.classList.toggle('active',active);s.classList.toggle('visible',active);s.querySelectorAll('video').forEach(video=>{if(active){video.play().catch(()=>{});}else{video.pause();video.currentTime=0;}})});document.getElementById('counter').textContent=`${String(this.index+1).padStart(2,'0')} / ${this.slides.length}`;this.renderNotes();location.hash=`slide-${this.index+1}`;}
       toggleNotes(){this.notesOpen=!this.notesOpen;const p=document.getElementById('notesPanel');p.classList.toggle('open',this.notesOpen);p.setAttribute('aria-hidden',String(!this.notesOpen));this.renderNotes();}
       renderNotes(){const slide=this.slides[this.index];document.getElementById('notesTitle').textContent=`${this.index+1}. ${slide.dataset.title}`;document.getElementById('notesBody').innerHTML=slide.querySelector('.speaker-notes')?.innerHTML||'<p>No notes.</p>';}
     }
