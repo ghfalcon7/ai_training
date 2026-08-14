@@ -274,8 +274,19 @@
     .notes-panel h2 { color:var(--yellow);font-size:36px;margin-bottom:20px; }
     .notes-panel p,.notes-panel li { font-size:17px;line-height:1.55; }
     .notes-panel li { margin-bottom:12px; }
-    .notes-panel a { color:var(--sky); }
-    .edit-hotzone { position:fixed;left:0;top:0;width:80px;height:80px;z-index:6000; }
+     .notes-panel a { color:var(--sky); }
+     .image-lightbox { position:fixed;inset:0;z-index:7000;display:grid;place-items:center;padding:80px;overflow:auto;background:rgba(10,10,10,.92);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .25s ease,visibility .25s ease; }
+     .image-lightbox.open { opacity:1;visibility:visible;pointer-events:auto; }
+     .image-lightbox img { display:block;width:auto;height:auto;max-width:calc(100vw - 160px);max-height:calc(100vh - 160px);object-fit:contain;border:3px solid var(--white);border-radius:18px;box-shadow:0 24px 80px rgba(0,0,0,.45);cursor:zoom-in;touch-action:none;transform:translate3d(0,0,0) scale(1);transform-origin:center center;transition:transform .2s var(--ease); }
+     .image-lightbox img.is-pannable { cursor:grab; }
+     .image-lightbox img.is-panning { cursor:grabbing;transition:none; }
+     .image-lightbox button { position:absolute;right:28px;top:24px;border:2px solid var(--white);border-radius:999px;background:transparent;color:var(--white);padding:10px 17px;font:600 14px "Space Grotesk";letter-spacing:.1em;text-transform:uppercase;cursor:pointer; }
+     .image-lightbox button:hover { background:var(--white);color:var(--ink); }
+     .image-lightbox .image-zoom-controls { position:fixed;left:28px;top:24px;display:flex;gap:8px;align-items:center; }
+     .image-lightbox .image-zoom-controls button { position:static;padding:9px 14px;min-width:42px; }
+     .image-lightbox .image-zoom-level { color:var(--white);font:600 14px "Space Grotesk";letter-spacing:.08em;min-width:58px;text-align:center; }
+     .slide img { cursor:zoom-in; }
+     .edit-hotzone { position:fixed;left:0;top:0;width:80px;height:80px;z-index:6000; }
     .edit-toggle { position:fixed;left:18px;top:18px;z-index:6001;border:2px solid #fff;border-radius:999px;background:#111;color:#fff;padding:10px 15px;opacity:0;pointer-events:none;transition:opacity .25s; }
     .edit-toggle.show,.edit-toggle.active { opacity:1;pointer-events:auto; }
     [contenteditable="true"] { outline:4px dashed var(--coral);outline-offset:5px; }
@@ -392,7 +403,7 @@
     <!-- === 10 OUTDATED / HALLUCINATION === -->
     <section class="slide" data-title="Fluent first, correct later">
       <div class="slide-head"><div class="pill">Evidence 01</div><div class="slide-num">10</div></div>
-      <div class="content"><div class="evidence"><div class="evidence-copy reveal"><div class="pill" style="background:var(--coral)">Outdated knowledge</div><h2>Fluent first.<br>Correct later.</h2><p>A polished answer can still assume a future release already exists.</p></div><img class="shot reveal" src="Agenda/Module 1 - Responsible AI for Software Engineering/img_2.png" alt="An AI first writes Java 28 code, then acknowledges that Java 28 has not been released"></div></div>
+       <div class="content"><div class="evidence"><div class="evidence-copy reveal"><div class="pill" style="background:var(--coral)">Outdated knowledge</div><h2>Fluent first.<br>Correct later.</h2><p>A polished answer can still assume a future release already exists.</p></div><img class="shot reveal" src="Agenda/Module 1 - Responsible AI for Software Engineering/img_2.png" alt="An AI first writes Java 28 code, then acknowledges that Java 28 has not been released"></div></div>
       <aside class="speaker-notes"><p>The screenshot demonstrates both hallucination and outdated/incorrect knowledge. The assistant confidently gives a Java 28 example, then, when asked for the latest version, identifies Java 26 as current and admits Java 28 has not been released. Fluent syntax and confident phrasing did not establish factual correctness. Retrieval and current tools can mitigate knowledge cutoff problems, but claims still need evidence.</p></aside>
     </section>
 
@@ -406,7 +417,7 @@
     <!-- === 12 DIALOGUE AND SECURITY === -->
     <section class="slide" data-title="Question the first answer">
       <div class="slide-head"><div class="pill">Evidence 03</div><div class="slide-num">12</div></div>
-      <div class="content"><div class="evidence wide-shot"><div class="evidence-copy reveal"><div class="pill" style="background:var(--lime)">Human checkpoint</div><h2>Question the<br>first answer.</h2><p>A short challenge changes “grant broad access” into “use the dedicated identity.”</p></div><img class="shot reveal" src="Agenda/Module 1 - Responsible AI for Software Engineering/img.png" alt="Developer questions an AI security recommendation and gets a cleaner least-privilege solution"></div></div>
+       <div class="content"><div class="evidence wide-shot"><div class="evidence-copy reveal"><div class="pill" style="background:var(--lime)">Human checkpoint</div><h2>Question the<br>first answer.</h2><p>A short challenge changes “grant broad access” into “use the dedicated identity.”</p></div><img class="shot reveal" src="Agenda/Module 1 - Responsible AI for Software Engineering/img.png" alt="Developer questions an AI security recommendation and gets a cleaner least-privilege solution"></div></div>
       <aside class="speaker-notes"><p>This screenshot shows why interactive review matters. The initial suggestion adds default service accounts to a RoleBinding. The developer asks whether workloads should instead use the dedicated config-api-user service account. The model agrees this is cleaner and less broad, then recommends setting serviceAccountName in deployment configuration. Treat answers as proposals. Bring architecture, security intent, and domain context into the conversation, then validate the revised result.</p></aside>
     </section>
 
@@ -784,6 +795,7 @@ tests, lint rules or automation"]
   <!-- === PRESENTER CHROME === -->
   <div class="hint">← → navigate · N notes · E edit</div><div class="counter" id="counter">01 / 47</div>
   <aside class="notes-panel" id="notesPanel" aria-hidden="true"><h2 id="notesTitle">Presenter notes</h2><div id="notesBody"></div></aside>
+  <div class="image-lightbox" id="imageLightbox" aria-hidden="true"><div class="image-zoom-controls" aria-label="Image zoom controls"><button id="zoomOutImage" type="button" aria-label="Zoom out">−</button><span class="image-zoom-level" id="imageZoomLevel">100%</span><button id="zoomInImage" type="button" aria-label="Zoom in">+</button><button id="resetImageZoom" type="button" aria-label="Reset zoom">Reset</button></div><button id="closeImageLightbox" type="button" aria-label="Close enlarged image">Close</button><img id="lightboxImage" alt=""></div>
   <div class="edit-hotzone" aria-hidden="true"></div><button class="edit-toggle" id="editToggle" type="button">Edit</button>
 
   <script>
@@ -792,7 +804,8 @@ tests, lint rules or automation"]
       constructor(){this.slides=[...document.querySelectorAll('.slide')];this.stage=document.getElementById('deckStage');let h=location.hash.match(/slide-(\d+)/);this.index=h?Math.max(0,parseInt(h[1],10)-1):0;this.notesOpen=false;this.touchX=0;this.wheelLock=false;this.scaleStage();this.bind();this.show(this.index);}
       scaleStage(){const fit=()=>{const k=Math.min(innerWidth/1920,innerHeight/1080);const x=(innerWidth-1920*k)/2;const y=(innerHeight-1080*k)/2;this.stage.style.transform=`translate(${x}px,${y}px) scale(${k})`;};fit();addEventListener('resize',fit);}
       bind(){document.addEventListener('keydown',e=>{if(e.target.isContentEditable)return;
-        const activeSlide=this.slides[this.index];
+         if(document.getElementById('imageLightbox')?.classList.contains('open')){if(e.key==='Escape')window.closeImageLightbox?.();e.preventDefault();return;}
+         const activeSlide=this.slides[this.index];
         if(activeSlide.classList.contains('workflow-slide')&&['j','k','=','+','-','_'].includes(e.key.toLowerCase())){
             e.preventDefault();
             const container = activeSlide.querySelector('.mermaid-scroll-container');
@@ -814,7 +827,35 @@ tests, lint rules or automation"]
       show(next){this.index=Math.max(0,Math.min(next,this.slides.length-1));this.slides.forEach((s,i)=>{const active=i===this.index;s.classList.toggle('active',active);s.classList.toggle('visible',active);s.querySelectorAll('video').forEach(video=>{if(active){video.play().catch(()=>{});}else{video.pause();video.currentTime=0;}})});document.getElementById('counter').textContent=`${String(this.index+1).padStart(2,'0')} / ${this.slides.length}`;this.renderNotes();location.hash=`slide-${this.index+1}`;}
       toggleNotes(){this.notesOpen=!this.notesOpen;const p=document.getElementById('notesPanel');p.classList.toggle('open',this.notesOpen);p.setAttribute('aria-hidden',String(!this.notesOpen));this.renderNotes();}
       renderNotes(){const slide=this.slides[this.index];document.getElementById('notesTitle').textContent=`${this.index+1}. ${slide.dataset.title}`;document.getElementById('notesBody').innerHTML=slide.querySelector('.speaker-notes')?.innerHTML||'<p>No notes.</p>';}
-    }
+     }
+
+     /* === IMAGE LIGHTBOX === */
+     const imageLightbox=document.getElementById('imageLightbox');
+     const lightboxImage=document.getElementById('lightboxImage');
+      let imageZoom=1;
+      let imagePanX=0;
+      let imagePanY=0;
+      let imageDrag=null;
+      const clampImagePan=()=>{const availableWidth=imageLightbox.clientWidth-160;const availableHeight=imageLightbox.clientHeight-160;const maxX=Math.max(0,(lightboxImage.offsetWidth*imageZoom-availableWidth)/2);const maxY=Math.max(0,(lightboxImage.offsetHeight*imageZoom-availableHeight)/2);imagePanX=Math.max(-maxX,Math.min(maxX,imagePanX));imagePanY=Math.max(-maxY,Math.min(maxY,imagePanY));};
+      const updateImageZoom=()=>{clampImagePan();lightboxImage.style.transform=`translate3d(${imagePanX}px,${imagePanY}px,0) scale(${imageZoom})`;document.getElementById('imageZoomLevel').textContent=`${Math.round(imageZoom*100)}%`;lightboxImage.classList.toggle('is-pannable',imageZoom>1);};
+      const openImageLightbox=(image)=>{lightboxImage.src=image.currentSrc||image.src;lightboxImage.alt=image.alt;imageZoom=1;imagePanX=0;imagePanY=0;updateImageZoom();imageLightbox.scrollTop=0;imageLightbox.scrollLeft=0;imageLightbox.classList.add('open');imageLightbox.setAttribute('aria-hidden','false');document.getElementById('closeImageLightbox').focus();};
+      window.closeImageLightbox=()=>{imageLightbox.classList.remove('open');imageLightbox.setAttribute('aria-hidden','true');lightboxImage.removeAttribute('src');};
+      const changeImageZoom=(amount)=>{imageZoom=Math.min(3,Math.max(1,imageZoom+amount));if(imageZoom===1){imagePanX=0;imagePanY=0;}updateImageZoom();};
+     document.getElementById('zoomInImage').addEventListener('click',()=>changeImageZoom(.25));
+     document.getElementById('zoomOutImage').addEventListener('click',()=>changeImageZoom(-.25));
+      document.getElementById('resetImageZoom').addEventListener('click',()=>{imageZoom=1;updateImageZoom();});
+      imageLightbox.addEventListener('wheel',e=>{if(!imageLightbox.classList.contains('open'))return;e.preventDefault();changeImageZoom(e.deltaY<0?.1:-.1);},{passive:false});
+      lightboxImage.addEventListener('pointerdown',e=>{if(imageZoom<=1)return;e.preventDefault();imageDrag={x:e.clientX,y:e.clientY,panX:imagePanX,panY:imagePanY};lightboxImage.classList.add('is-panning');lightboxImage.setPointerCapture(e.pointerId);});
+      lightboxImage.addEventListener('pointermove',e=>{if(!imageDrag)return;e.preventDefault();imagePanX=imageDrag.panX+e.clientX-imageDrag.x;imagePanY=imageDrag.panY+e.clientY-imageDrag.y;updateImageZoom();});
+      const stopImageDrag=e=>{if(!imageDrag)return;imageDrag=null;lightboxImage.classList.remove('is-panning');if(e?.pointerId!==undefined&&lightboxImage.hasPointerCapture(e.pointerId))lightboxImage.releasePointerCapture(e.pointerId);};
+      lightboxImage.addEventListener('pointerup',stopImageDrag);
+      lightboxImage.addEventListener('pointercancel',stopImageDrag);
+      const prepareSlideImages=()=>document.querySelectorAll('.slide img').forEach(image=>{image.tabIndex=0;image.setAttribute('role','button');image.setAttribute('aria-label','Maximize image');});
+      prepareSlideImages();
+      document.addEventListener('click',e=>{const image=e.target.closest('.slide img');if(image)openImageLightbox(image);});
+      document.addEventListener('keydown',e=>{const image=e.target.closest?.('.slide img');if(image&&(e.key==='Enter'||e.key===' ')){e.preventDefault();openImageLightbox(image);}});
+      imageLightbox.addEventListener('click',e=>{if(e.target===imageLightbox)window.closeImageLightbox();});
+     document.getElementById('closeImageLightbox').addEventListener('click',window.closeImageLightbox);
 
 
 
