@@ -2,3 +2,7 @@
 .DS_Store
 .idea
 .frontend-slides/
+*.py
+test_sticky.html
+output.txt
+.playwright-cli
