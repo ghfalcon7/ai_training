@@ -16,3 +16,5 @@ in the harness section explain how a harness works
 
 language can affect performance
 context rot
+
+artificial analysis for model selection
