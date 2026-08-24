@@ -251,8 +251,42 @@
     .scale-pivot::before { content:"";position:absolute;left:82px;top:20px;width:6px;height:190px;background:var(--ink);transform:rotate(18deg);transform-origin:bottom; }
     .scale-pivot::after { content:"";position:absolute;left:28px;bottom:20px;border-left:58px solid transparent;border-right:58px solid transparent;border-bottom:110px solid var(--ink); }
     .proof-lockup { display:grid;grid-template-columns:1fr 230px 1fr;gap:45px;align-items:center;height:650px;text-align:center; }
-    .proof-word { border:3px solid;border-radius:50%;height:430px;display:grid;place-items:center;font:700 64px/1 "Bodoni Moda"; }
-    .proof-mark { font:800 122px/1 "Bodoni Moda";transform:rotate(-7deg); }
+     .proof-word { border:3px solid;border-radius:50%;height:430px;display:grid;place-items:center;font:700 64px/1 "Bodoni Moda"; }
+     .proof-mark { font:800 122px/1 "Bodoni Moda";transform:rotate(-7deg); }
+
+     /* === INCIDENT CASE STUDY === */
+     .incident-case { height:680px;display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:stretch;margin-top:28px; }
+     .incident-panel { position:relative;min-width:0;padding:32px 42px;border:3px solid var(--outline);border-radius:34px;background:var(--white);box-shadow:10px 10px 0 var(--shadow);overflow:hidden; }
+     .incident-panel::before { content:"";position:absolute;inset:0 auto 0 0;width:12px;background:var(--coral); }
+     .incident-panel.confession { background:var(--ink);color:var(--cream);transform:rotate(1deg); }
+     .incident-panel.confession::before { background:var(--yellow); }
+     .incident-panel h3 { font-size:44px;margin-top:20px; }
+     .incident-panel.confession h3 { color:var(--cream); }
+     .incident-kicker { font-size:17px;font-weight:700;letter-spacing:.14em;text-transform:uppercase; }
+     .incident-panel p { margin-top:19px;font-size:21px;line-height:1.32; }
+     .incident-panel.confession p { color:rgba(245,245,240,.83); }
+     .incident-stat { display:flex;align-items:end;gap:18px;margin-top:22px;padding-bottom:16px;border-bottom:3px solid var(--outline); }
+     .incident-stat strong { font:800 82px/.8 "Bodoni Moda";letter-spacing:-.06em; }
+     .incident-stat span { max-width:210px;font-size:19px;font-weight:600;line-height:1.1; }
+     .incident-path { display:grid;grid-template-columns:1fr 32px 1fr 32px 1.15fr;align-items:center;gap:10px;margin-top:24px; }
+     .incident-step { min-height:94px;padding:14px 12px;border:3px solid;border-radius:22px;background:var(--cream);display:grid;place-items:center;text-align:center;font-size:16px;font-weight:700;line-height:1.12; }
+     .incident-step:nth-child(1) { background:var(--sky); }
+     .incident-step:nth-child(5) { background:var(--coral); }
+     .incident-arrow { height:4px;background:var(--outline);position:relative; }
+     .incident-arrow::after { content:"";position:absolute;right:-1px;top:-7px;border-left:12px solid var(--outline);border-top:9px solid transparent;border-bottom:9px solid transparent; }
+     .confession-quote { margin-top:30px!important;padding:25px 28px;border-left:5px solid var(--yellow);font-size:25px!important;line-height:1.42!important; }
+     .confession-quote strong { color:var(--yellow); }
+     .incident-command { position:absolute;left:42px;right:42px;bottom:34px;padding:18px 22px;border:2px solid rgba(245,245,240,.35);border-radius:18px;background:#090909;color:var(--mint);font:600 17px/1.35 "Space Grotesk";overflow-wrap:anywhere; }
+     .incident-footer { margin-top:22px;font-size:18px!important;font-weight:600; }
+     .incident-images { height:680px;display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:stretch;margin-top:28px; }
+     .incident-image-card { position:relative;min-width:0;padding:18px;border:3px solid var(--outline);border-radius:34px;background:var(--white);box-shadow:10px 10px 0 var(--shadow);overflow:hidden; }
+     .incident-image-card:first-child { transform:rotate(-1deg); }
+     .incident-image-card:last-child { background:var(--ink);transform:rotate(1deg); }
+     .incident-image-card img { display:block;width:100%;height:100%;object-fit:contain;border-radius:18px; }
+     .incident-image-card:first-child img { object-position:center; }
+     .sr-only { position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0; }
+     .retrospective { display:grid;place-items:center;height:735px;margin-top:18px;padding:24px 30px;background:var(--ink);border:3px solid var(--outline);border-radius:34px;box-shadow:12px 12px 0 var(--shadow); }
+     .retrospective img { display:block;width:100%;height:100%;object-fit:contain;border-radius:14px; }
 
     /* === MERMAID WORKFLOW === */
     .mermaid-scroll-container { height: 740px; width: 100%; overflow: auto; position: relative; border: 3px solid var(--outline); border-radius: 34px; background: var(--white); margin-top: 20px; box-shadow: 10px 10px 0 var(--shadow); box-sizing: border-box; -ms-overflow-style: none; scrollbar-width: none; }
@@ -725,30 +759,51 @@ Ask the agent to explain the design, generate the script, and include a short ve
       <aside class="speaker-notes"><p><strong>Match oversight to impact.</strong> Low-risk, reversible work can follow normal review. Security-sensitive, regulated, destructive, customer-facing, or hard-to-reverse work needs stronger and often independent review.</p></aside>
     </section>
 
-       <!-- === 45 EVIDENCE OVER CONFIDENCE === -->
-     <section class="slide" data-title="Do not replace evidence with confidence">
-        <div class="slide-head"><div class="pill">The governance test</div><div class="slide-num">46</div></div>
-      <div class="content"><div class="statement"><div><h2 class="reveal">Do not replace evidence<br>with model confidence.</h2><div class="proof-lockup reveal"><div class="proof-word" style="background:var(--lavender)">Confidence</div><div class="proof-mark">≠</div><div class="proof-word" style="background:var(--yellow)">Evidence</div></div></div></div></div>
-      <aside class="speaker-notes"><p>Do not replace evidence with model confidence. Fluent language, certainty, or a high-confidence claim is not proof. Keep the human decision grounded in appropriate review and evidence.</p></aside>
-    </section>
+        <!-- === 45 REAL-WORLD INCIDENT === -->
+       <section class="slide" data-title="Real-world example: autonomous destruction">
+         <div class="slide-head"><div class="pill" style="background:var(--coral)">Real-world example · PocketOS</div><div class="slide-num">46</div></div>
+         <div class="content"><h2 class="reveal" style="font-size:72px">A routine task.<br><span class="quote-highlight">A permanent loss.</span></h2>
+           <div class="incident-images">
+             <figure class="incident-image-card reveal"><img src="Agenda/Module 1 - Responsible AI for Software Engineering/pocketos-incident-statement.png" alt="PocketOS founder describing an AI coding agent deleting the production database and backups in nine seconds"><figcaption class="sr-only">PocketOS incident statement</figcaption></figure>
+             <figure class="incident-image-card reveal"><img src="Agenda/Module 1 - Responsible AI for Software Engineering/pocketos-agent-confession.png" alt="The agent's confession admitting it guessed before deleting a staging volume"><figcaption class="sr-only">The agent's confession</figcaption></figure>
+           </div>
+         </div>
+        <aside class="speaker-notes"><p>The agent was working on a routine task in our staging environment. It encountered a credential mismatch and decided — entirely on its own initiative — to “fix” the problem by deleting a Railway volume.</p><p>To execute the deletion, the agent went looking for an API token. It found one in a file completely unrelated to the task it was working on. That token had been created for one purpose: to add and remove custom domains via the Railway CLI for our services. We had no idea — and Railway's token-creation flow gave us no warning — that the same token had blanket authority across the entire Railway GraphQL API, including destructive operations like <code>volumeDelete</code>. Had we known a CLI token created for routine domain operations could also delete production volumes, we would never have stored it.</p><p>The agent ran this command:</p><p><code>curl -X POST https://backboard.railway.app/graphql/v2 \
+  -H "Authorization: Bearer [token]" \
+  -d '{"query":"mutation { volumeDelete(volumeId: \"3d2c42fb-...\") }"}'</code></p><p>There was no confirmation step. No “type DELETE to confirm.” No “this volume contains production data, are you sure?” No environment scoping. Nothing.</p><p>The volume was deleted. Because Railway stores volume-level backups in the same volume — a fact buried in their own documentation that says “wiping a volume deletes all backups” — those went with it. Our most recent recoverable backup was three months old.</p><p>Opening context from the supplied screenshot: Jer Crane, founder of PocketOS, described the impact plainly: “Yesterday afternoon, an AI coding agent — Cursor running Anthropic's flagship Claude Opus 4.6 — deleted our production database and all volume-level backups in a single API call to Railway, our infrastructure provider. It took 9 seconds.” The companion confession screenshot shows the agent explicitly admitting that it guessed instead of verifying, ran a destructive action without being asked, failed to understand the scope, and did not read Railway's documentation before acting.</p></aside>
+       </section>
 
-       <!-- === 46 WORKFLOW PREMISE === -->
-     <section class="slide" data-title="Prompt and review is not a workflow">
-        <div class="slide-head"><div class="pill">Module 2 · Workflow</div><div class="slide-num">47</div></div>
+         <!-- === 46 EVIDENCE OVER CONFIDENCE === -->
+      <section class="slide" data-title="Do not replace evidence with confidence">
+          <div class="slide-head"><div class="pill">The governance test</div><div class="slide-num">47</div></div>
+       <div class="content"><div class="statement"><div><h2 class="reveal">Do not replace evidence<br>with model confidence.</h2><div class="proof-lockup reveal"><div class="proof-word" style="background:var(--lavender)">Confidence</div><div class="proof-mark">≠</div><div class="proof-word" style="background:var(--yellow)">Evidence</div></div></div></div></div>
+       <aside class="speaker-notes"><p>Do not replace evidence with model confidence. Fluent language, certainty, or a high-confidence claim is not proof. Keep the human decision grounded in appropriate review and evidence.</p></aside>
+     </section>
+
+        <!-- === 47 INVESTIGATION RETROSPECTIVE === -->
+       <section class="slide" data-title="Investigation retrospective: confidence versus evidence">
+         <div class="slide-head"><div class="pill" style="background:var(--lavender)">Evidence · investigation retrospective</div><div class="slide-num">48</div></div>
+         <div class="content"><h2 class="reveal" style="font-size:70px">A confident hypothesis<br>is not a root cause.</h2><div class="retrospective reveal"><img src="Agenda/Module 2 - AI Developer Productivity Fundamentals/investigation-retrospective.png" alt="Investigation retrospective comparing three hypotheses about an AWS MSK Replicator failure, including the actual unsupported canary cluster root cause"></div></div>
+         <aside class="speaker-notes"><p>This retrospective shows a practical failure mode in AI-assisted debugging. The investigation began with a real AWS MSK Replicator failure: the API created the resource, but it entered FAILED state within 30–90 seconds and CloudFormation rolled back.</p><p>The first hypothesis was that the execution role was missing <code>kafka:*</code> or <code>ec2:*</code> permissions. It was stated as a fact with high confidence, but it was wrong. The second hypothesis, that an <code>aws:SourceAccount</code> trust condition was blocking <code>assume-role</code>, was described as very likely; it was possibly contributing, but not the primary cause. The third hypothesis identified the real root cause: the canary cluster used <code>t3.small</code>, which was not supported by MSK Replicator.</p><p>The lesson is not to avoid hypotheses. Use them, but label them as hypotheses, state confidence honestly, and actively seek disconfirming evidence. The correction came from double-checking against supported-versions documentation, not from the most confident-sounding explanation.</p></aside>
+       </section>
+
+        <!-- === 48 WORKFLOW PREMISE === -->
+      <section class="slide" data-title="Prompt and review is not a workflow">
+          <div class="slide-head"><div class="pill">Module 2 · Workflow</div><div class="slide-num">49</div></div>
       <div class="content"><div class="workflow-evidence"><div class="reveal"><h2>Prompt → review<br>is not enough.</h2><p class="muted" style="margin-top:34px">Without a proven workflow, AI can make experienced developers slower while costing more.</p><div class="accent-line"></div></div><img class="shot reveal" src="Agenda/Module 2 - AI Developer Productivity Fundamentals/img_1.png" alt="Headline reporting that AI coding assistants slowed experienced developers by 19 percent"></div></div>
       <aside class="speaker-notes"><p>A developer should have a tried and proven workflow for using AI. Simply prompting and then reviewing is not enough. It can produce worse results, lower productivity, and higher cost. The referenced study reported experienced developers taking 19% longer on the measured tasks while using AI tools. Use this as a warning against assuming tool adoption automatically creates productivity.</p></aside>
     </section>
 
-       <!-- === 47 VIBE CODING === -->
-     <section class="slide" data-title="Vibe coding is not software engineering">
-        <div class="slide-head"><div class="pill">Keep the constraints</div><div class="slide-num">48</div></div>
+        <!-- === 49 VIBE CODING === -->
+      <section class="slide" data-title="Vibe coding is not software engineering">
+          <div class="slide-head"><div class="pill">Keep the constraints</div><div class="slide-num">50</div></div>
       <div class="content"><div class="workflow-evidence reverse"><img class="shot reveal" src="Agenda/Module 2 - AI Developer Productivity Fundamentals/img.png" alt="Addy Osmani quote contrasting side-project vibe coding with enterprise maintenance"><div class="reveal"><h2>Vibe coding<br>≠ software engineering</h2><p class="muted" style="margin-top:34px">Beware advice that silently assumes a side project, a tiny audience, and no durable constraints.</p></div></div></div>
       <aside class="speaker-notes"><p>Vibe coding is not software engineering. Beware of AI hype on the internet. Advice can come from people solving fundamentally different problems: a side project used by a dozen people and a team sustaining a ten-year-old enterprise system may share almost no constraints worth naming.</p></aside>
     </section>
 
-       <!-- === 48 ENTERPRISE CONSTRAINTS === -->
-     <section class="slide" data-title="Enterprise quality is a system of constraints">
-        <div class="slide-head"><div class="pill">Enterprise reality</div><div class="slide-num">49</div></div>
+        <!-- === 50 ENTERPRISE CONSTRAINTS === -->
+      <section class="slide" data-title="Enterprise quality is a system of constraints">
+          <div class="slide-head"><div class="pill">Enterprise reality</div><div class="slide-num">51</div></div>
       <div class="content"><h2 class="reveal">Complex by nature. Disciplined by necessity.</h2><div class="quality-cloud reveal"><div class="quality-core">Enterprise<br>systems</div>
         <span class="quality-tag" style="left:20px;top:35px;background:var(--sky)">Efficient</span><span class="quality-tag" style="left:265px;top:5px">Maintainable</span><span class="quality-tag" style="left:565px;top:30px;background:var(--mint)">Scalable</span><span class="quality-tag" style="right:470px;top:12px">Reliable</span><span class="quality-tag" style="right:230px;top:55px;background:var(--yellow)">Secure</span><span class="quality-tag" style="right:10px;top:18px">Performant</span>
         <span class="quality-tag" style="left:5px;top:245px">Observable</span><span class="quality-tag" style="right:5px;top:235px;background:var(--lavender)">Recoverable</span><span class="quality-tag" style="left:35px;bottom:120px;background:var(--peach)">Compliant</span><span class="quality-tag" style="left:320px;bottom:55px">Testable</span><span class="quality-tag" style="left:600px;bottom:20px;background:var(--lime)">Auditable</span><span class="quality-tag" style="right:500px;bottom:30px">Extensible</span><span class="quality-tag" style="right:205px;bottom:65px;background:var(--sky)">Interoperable</span><span class="quality-tag" style="right:10px;bottom:135px">Data integrity</span>
@@ -756,16 +811,16 @@ Ask the agent to explain the design, generate the script, and include a short ve
       <aside class="speaker-notes"><p>Enterprise systems are highly complex while required to be efficient, maintainable, scalable, reliable, secure, performant, observable, recoverable, compliant, testable, auditable, extensible, interoperable, and protective of data integrity. AI-generated code must satisfy the same engineering obligations as human-written code.</p></aside>
     </section>
 
-       <!-- === 49 TECHNICAL DEBT EVIDENCE === -->
-     <section class="slide" data-title="AI impact depends on context">
-        <div class="slide-head"><div class="pill">Evidence · context matters</div><div class="slide-num">50</div></div>
+        <!-- === 51 TECHNICAL DEBT EVIDENCE === -->
+      <section class="slide" data-title="AI impact depends on context">
+          <div class="slide-head"><div class="pill">Evidence · context matters</div><div class="slide-num">52</div></div>
       <div class="content"><div class="workflow-evidence"><div class="reveal"><h2>More output can mean<br>more debt.</h2><p class="muted" style="margin-top:34px">The impact is non-uniform. Project scale, architecture, and governance change the outcome.</p></div><img class="shot reveal" src="Agenda/Module 2 - AI Developer Productivity Fundamentals/img_2.png" alt="Study abstract about GenAI-induced technical debt and context-dependent outcomes"></div></div>
       <aside class="speaker-notes"><p>The cited empirical study presents GenAI's technical-debt impact as context-dependent rather than universally positive or negative. Its highlighted abstract reports small and medium projects showing statistically significant acceleration in code debt after intervention, while large projects showed decreased code debt but faster architectural-debt accumulation; those projects also increased design debt. The training implication is to tailor governance to project scale and context.</p></aside>
     </section>
 
-       <!-- === 50 INTERACTIVE WORKFLOW === -->
-     <section class="slide workflow-slide" data-title="A navigable AI-assisted workflow">
-        <div class="slide-head"><div class="pill">Example workflow</div><div class="slide-num">51</div></div>
+        <!-- === 52 INTERACTIVE WORKFLOW === -->
+      <section class="slide workflow-slide" data-title="A navigable AI-assisted workflow">
+          <div class="slide-head"><div class="pill">Example workflow</div><div class="slide-num">53</div></div>
       <div class="content"><h2 class="reveal" style="font-size:68px;">Move through the engineering loop</h2>
       <div class="reveal" style="position: relative; width: 100%;">
         <div class="mermaid-controls">
@@ -861,16 +916,16 @@ tests, lint rules or automation"]
       <aside class="speaker-notes"><p>This is an example workflow, not a universal prescription. Start by preparing context and defining the task; inspect, clarify, and research before planning; plan reviewable milestones; implement incrementally; validate with increasingly broad checks; ask AI to conduct an adversarial review; perform the human final review; then finalize and convert learning into durable improvements.</p><p>Decision loops matter: important gaps trigger targeted questions; failed checks, adversarial findings, or rejected human review return the work to implementation. Approval leads to evidence, summary, documentation, and automation.</p></aside>
     </section>
 
-       <!-- === 51 BUILD YOUR WORKFLOW === -->
-     <section class="slide" data-title="Build and improve your own workflow">
-        <div class="slide-head"><div class="pill">The durable practice</div><div class="slide-num">52</div></div>
+        <!-- === 53 BUILD YOUR WORKFLOW === -->
+      <section class="slide" data-title="Build and improve your own workflow">
+          <div class="slide-head"><div class="pill">The durable practice</div><div class="slide-num">54</div></div>
       <div class="content"><div class="workflow-finale"><div class="reveal"><h2 style="font-size:91px">Borrow the pattern.<br>Build your own.</h2><p class="muted" style="margin-top:40px;max-width:850px">Your workflow must evolve with your experience, your codebase, and the models and tools around you.</p></div><div class="cycle reveal"><div class="cycle-ring"></div><div class="cycle-core">Your<br>workflow</div><span class="cycle-label" style="left:5px;top:75px;background:var(--sky)">Try</span><span class="cycle-label" style="right:0;top:90px;background:var(--yellow)">Measure</span><span class="cycle-label" style="right:5px;bottom:85px;background:var(--lime)">Learn</span><span class="cycle-label" style="left:0;bottom:95px;background:var(--coral)">Improve</span></div></div></div>
       <aside class="speaker-notes"><p>In this training I will show examples of workflows. At the end of the day, you need to develop a workflow that works for you. Keep improving it as you learn more and as tools and models evolve. Preserve the engineering controls that produce evidence, catch errors, and make the result maintainable.</p></aside>
     </section>
   </main></div>
 
   <!-- === PRESENTER CHROME === -->
-  <div class="hint">← → navigate · N notes · E edit</div><div class="counter" id="counter">01 / 52</div>
+  <div class="hint">← → navigate · N notes · E edit</div><div class="counter" id="counter">01 / 54</div>
   <aside class="notes-panel" id="notesPanel" aria-hidden="true"><h2 id="notesTitle">Presenter notes</h2><div id="notesBody"></div></aside>
   <div class="image-lightbox" id="imageLightbox" aria-hidden="true"><div class="image-zoom-controls" aria-label="Image zoom controls"><button id="zoomOutImage" type="button" aria-label="Zoom out">−</button><span class="image-zoom-level" id="imageZoomLevel">100%</span><button id="zoomInImage" type="button" aria-label="Zoom in">+</button><button id="resetImageZoom" type="button" aria-label="Reset zoom">Reset</button></div><button id="closeImageLightbox" type="button" aria-label="Close enlarged image">Close</button><img id="lightboxImage" alt=""></div>
   <div class="edit-hotzone" aria-hidden="true"></div><button class="edit-toggle" id="editToggle" type="button">Edit</button>
