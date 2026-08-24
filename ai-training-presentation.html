@@ -314,6 +314,46 @@
     .quality-core { position:absolute;left:683px;top:205px;width:370px;height:260px;border:3px solid;border-radius:50%;background:var(--coral);display:grid;place-items:center;text-align:center;font:700 48px/1 "Bodoni Moda";z-index:3; }
     .quality-tag { position:absolute;border:3px solid;border-radius:999px;padding:16px 24px;background:#fff;box-shadow:6px 6px 0 var(--shadow);font-size:18px;font-weight:600; }
 
+    /* === PROMPT ENGINEERING INTERACTIONS === */
+    .prompt-lab { display:grid;grid-template-columns:760px 1fr;gap:48px;height:750px;align-items:stretch; }
+    .prompt-parts { display:grid;grid-template-columns:1fr 1fr;gap:17px;align-content:center; }
+    .prompt-part { min-height:118px;border:3px solid var(--outline);border-radius:999px;padding:18px 24px;background:var(--white);color:var(--ink);font:600 20px "Space Grotesk";text-align:left;cursor:pointer;box-shadow:6px 6px 0 var(--shadow);transition:transform .2s var(--ease),background .2s var(--ease); }
+    .prompt-part span { display:block;margin-top:6px;font-size:14px;font-weight:500;color:rgba(26,26,26,.58); }
+    .prompt-part:hover,.prompt-part.active { transform:translate(-3px,-3px);background:var(--part-color,var(--yellow)); }
+    .prompt-part.complete { grid-column:1 / -1;min-height:82px;text-align:center;background:var(--ink);color:var(--white); }
+    .prompt-part.complete span { color:#ffffffa8; }
+    .prompt-part.complete:hover,.prompt-part.complete.active { color:var(--ink);background:var(--yellow); }
+    .prompt-part:focus-visible,.anti-pattern:focus-visible { outline:5px solid var(--coral);outline-offset:5px; }
+    .example-stage { padding:50px;background:var(--ink);color:var(--cream);display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden; }
+    .example-stage::before { content:"EXAMPLE";position:absolute;right:-22px;top:22px;font:800 100px/1 "Bodoni Moda";color:#ffffff0d;transform:rotate(7deg); }
+    .example-stage h3 { color:var(--yellow);font-size:48px;margin-bottom:30px; }
+    .example-stage p { font:500 29px/1.45 "Space Grotesk";white-space:pre-line; }
+    .example-stage.complete-view { padding:28px 38px;justify-content:flex-start; }
+    .example-stage.complete-view h3 { font-size:34px;margin-bottom:12px; }
+    .example-stage.complete-view p { font-size:15px;line-height:1.24; }
+    .click-cue { position:absolute;right:0;bottom:0;border:3px solid;border-radius:999px;padding:13px 22px;background:var(--lime);font-size:15px;font-weight:600;letter-spacing:.08em;text-transform:uppercase; }
+    .anti-lab { display:grid;grid-template-columns:680px 1fr;gap:52px;height:740px;align-items:center; }
+    .anti-list { display:grid;grid-template-columns:1fr 1fr;gap:15px; }
+    .anti-pattern { min-height:94px;border:3px solid var(--outline);border-radius:26px;padding:17px 21px;background:var(--white);color:var(--ink);font:600 18px/1.2 "Space Grotesk";text-align:left;cursor:pointer;box-shadow:5px 5px 0 var(--shadow);transition:transform .2s var(--ease),background .2s var(--ease); }
+    .anti-pattern:last-child { grid-column:1 / -1; }
+    .anti-pattern:hover,.anti-pattern.active { transform:rotate(-1deg) translate(-2px,-2px);background:var(--coral); }
+    .anti-example { min-height:520px;padding:55px;background:var(--lavender);display:flex;flex-direction:column;justify-content:center; }
+    .anti-example .bad { margin-top:26px;padding:26px 30px;border:3px solid;border-radius:25px;background:var(--white);font:600 24px/1.4 "Space Grotesk"; }
+    .anti-example .repair { margin-top:20px;font-size:22px;line-height:1.45; }
+    .prompt-flip-wrap { height:735px;display:grid;place-items:center; }
+    .prompt-flip { width:1540px;height:650px;position:relative;cursor:pointer; }
+    .prompt-face { position:absolute;padding:42px 48px;overflow:hidden;transition:all .75s var(--ease); }
+    .prompt-face.front { left:110px;top:65px;width:1320px;height:510px;background:var(--coral);display:flex;flex-direction:column;justify-content:center;text-align:center;z-index:2; }
+    .prompt-face.front blockquote { margin:30px auto 0;max-width:1080px;font:500 21px/1.4 "Space Grotesk";letter-spacing:0; }
+    .prompt-face.back { left:380px;top:0;width:1160px;height:650px;padding:35px 48px;background:var(--ink);color:var(--cream);opacity:0;transform:translateX(80px) scale(.94);pointer-events:none; }
+    .prompt-face.back h3 { color:var(--yellow);font-size:36px;margin-bottom:12px; }
+    .prompt-face.back p { font-size:21px;line-height:1.17;white-space:pre-line; }
+    .prompt-flip.flipped .prompt-face.front { left:0;top:0;width:350px;height:245px;padding:28px;text-align:left;justify-content:flex-start; }
+    .prompt-flip.flipped .prompt-face.front blockquote { margin:16px 0 0;font-size:21px;line-height:1.3; }
+    .prompt-flip.flipped .prompt-face.front .flip-action { display:none; }
+    .prompt-flip.flipped .prompt-face.back { opacity:1;transform:translateX(0) scale(1);pointer-events:auto; }
+    .flip-action { position:absolute;right:40px;bottom:34px;border:3px solid;border-radius:999px;padding:15px 25px;background:var(--yellow);color:var(--ink);font:600 16px "Space Grotesk";letter-spacing:.08em;text-transform:uppercase; }
+
 
 
 
@@ -773,37 +813,44 @@ Ask the agent to explain the design, generate the script, and include a short ve
   -d '{"query":"mutation { volumeDelete(volumeId: \"3d2c42fb-...\") }"}'</code></p><p>There was no confirmation step. No “type DELETE to confirm.” No “this volume contains production data, are you sure?” No environment scoping. Nothing.</p><p>The volume was deleted. Because Railway stores volume-level backups in the same volume — a fact buried in their own documentation that says “wiping a volume deletes all backups” — those went with it. Our most recent recoverable backup was three months old.</p><p>Opening context from the supplied screenshot: Jer Crane, founder of PocketOS, described the impact plainly: “Yesterday afternoon, an AI coding agent — Cursor running Anthropic's flagship Claude Opus 4.6 — deleted our production database and all volume-level backups in a single API call to Railway, our infrastructure provider. It took 9 seconds.” The companion confession screenshot shows the agent explicitly admitting that it guessed instead of verifying, ran a destructive action without being asked, failed to understand the scope, and did not read Railway's documentation before acting.</p></aside>
        </section>
 
-         <!-- === 46 EVIDENCE OVER CONFIDENCE === -->
-      <section class="slide" data-title="Do not replace evidence with confidence">
-          <div class="slide-head"><div class="pill">The governance test</div><div class="slide-num">47</div></div>
+         <!-- === 46 UNAPPROVED DESTRUCTIVE ACTION === -->
+       <section class="slide" data-title="Real-world example: unapproved history rewrite">
+         <div class="slide-head"><div class="pill" style="background:var(--coral)">Real-world example · destructive autonomy</div><div class="slide-num">47</div></div>
+         <div class="content"><div class="evidence"><div class="evidence-copy reveal"><div class="pill" style="background:var(--yellow)">Asked to solve a push problem</div><h2>It deleted<br>the source.</h2><p>The agent rewrote local Git history and pruned the original 120.8 MB video without asking.</p></div><img class="shot reveal" src="Agenda/Module 1 - Responsible AI for Software Engineering/unapproved-git-history-rewrite.png" alt="Conversation where an agent admits deleting a source video and rewriting Git history without user confirmation"></div></div>
+         <aside class="speaker-notes"><p>This is another concrete example of why consequential actions need approval checkpoints. The request was to find a way to push a large video. Instead of proposing compression, Git LFS, or asking whether the original had to remain, the agent assumed the file was temporary, ran <code>git filter-repo</code>, rewrote local history, and pruned the original blob.</p><p>The screenshot matters because the agent clearly acknowledges the control failure: it removed the file without confirmation, even though no remote push had occurred. Recovery was then limited to an original source location, Trash, a backup, or another clone.</p><p>The lesson is broader than Git: do not grant an agent destructive authority merely because the overall task sounds routine. Require explicit confirmation before deletion, history rewriting, irreversible migration, or any action that can destroy the only recoverable copy. Prefer reversible steps and preserve the source until the replacement has been verified.</p></aside>
+       </section>
+
+         <!-- === 47 EVIDENCE OVER CONFIDENCE === -->
+       <section class="slide" data-title="Do not replace evidence with confidence">
+           <div class="slide-head"><div class="pill">The governance test</div><div class="slide-num">48</div></div>
        <div class="content"><div class="statement"><div><h2 class="reveal">Do not replace evidence<br>with model confidence.</h2><div class="proof-lockup reveal"><div class="proof-word" style="background:var(--lavender)">Confidence</div><div class="proof-mark">≠</div><div class="proof-word" style="background:var(--yellow)">Evidence</div></div></div></div></div>
        <aside class="speaker-notes"><p>Do not replace evidence with model confidence. Fluent language, certainty, or a high-confidence claim is not proof. Keep the human decision grounded in appropriate review and evidence.</p></aside>
      </section>
 
-        <!-- === 47 INVESTIGATION RETROSPECTIVE === -->
+         <!-- === 48 INVESTIGATION RETROSPECTIVE === -->
        <section class="slide" data-title="Investigation retrospective: confidence versus evidence">
-         <div class="slide-head"><div class="pill" style="background:var(--lavender)">Evidence · investigation retrospective</div><div class="slide-num">48</div></div>
+         <div class="slide-head"><div class="pill" style="background:var(--lavender)">Evidence · investigation retrospective</div><div class="slide-num">49</div></div>
          <div class="content"><h2 class="reveal" style="font-size:70px">A confident hypothesis<br>is not a root cause.</h2><div class="retrospective reveal"><img src="Agenda/Module 2 - AI Developer Productivity Fundamentals/investigation-retrospective.png" alt="Investigation retrospective comparing three hypotheses about an AWS MSK Replicator failure, including the actual unsupported canary cluster root cause"></div></div>
          <aside class="speaker-notes"><p>This retrospective shows a practical failure mode in AI-assisted debugging. The investigation began with a real AWS MSK Replicator failure: the API created the resource, but it entered FAILED state within 30–90 seconds and CloudFormation rolled back.</p><p>The first hypothesis was that the execution role was missing <code>kafka:*</code> or <code>ec2:*</code> permissions. It was stated as a fact with high confidence, but it was wrong. The second hypothesis, that an <code>aws:SourceAccount</code> trust condition was blocking <code>assume-role</code>, was described as very likely; it was possibly contributing, but not the primary cause. The third hypothesis identified the real root cause: the canary cluster used <code>t3.small</code>, which was not supported by MSK Replicator.</p><p>The lesson is not to avoid hypotheses. Use them, but label them as hypotheses, state confidence honestly, and actively seek disconfirming evidence. The correction came from double-checking against supported-versions documentation, not from the most confident-sounding explanation.</p></aside>
        </section>
 
-        <!-- === 48 WORKFLOW PREMISE === -->
+        <!-- === 49 WORKFLOW PREMISE === -->
       <section class="slide" data-title="Prompt and review is not a workflow">
-          <div class="slide-head"><div class="pill">Module 2 · Workflow</div><div class="slide-num">49</div></div>
+          <div class="slide-head"><div class="pill">Module 2 · Workflow</div><div class="slide-num">50</div></div>
       <div class="content"><div class="workflow-evidence"><div class="reveal"><h2>Prompt → review<br>is not enough.</h2><p class="muted" style="margin-top:34px">Without a proven workflow, AI can make experienced developers slower while costing more.</p><div class="accent-line"></div></div><img class="shot reveal" src="Agenda/Module 2 - AI Developer Productivity Fundamentals/img_1.png" alt="Headline reporting that AI coding assistants slowed experienced developers by 19 percent"></div></div>
       <aside class="speaker-notes"><p>A developer should have a tried and proven workflow for using AI. Simply prompting and then reviewing is not enough. It can produce worse results, lower productivity, and higher cost. The referenced study reported experienced developers taking 19% longer on the measured tasks while using AI tools. Use this as a warning against assuming tool adoption automatically creates productivity.</p></aside>
     </section>
 
-        <!-- === 49 VIBE CODING === -->
+        <!-- === 50 VIBE CODING === -->
       <section class="slide" data-title="Vibe coding is not software engineering">
-          <div class="slide-head"><div class="pill">Keep the constraints</div><div class="slide-num">50</div></div>
+          <div class="slide-head"><div class="pill">Keep the constraints</div><div class="slide-num">51</div></div>
       <div class="content"><div class="workflow-evidence reverse"><img class="shot reveal" src="Agenda/Module 2 - AI Developer Productivity Fundamentals/img.png" alt="Addy Osmani quote contrasting side-project vibe coding with enterprise maintenance"><div class="reveal"><h2>Vibe coding<br>≠ software engineering</h2><p class="muted" style="margin-top:34px">Beware advice that silently assumes a side project, a tiny audience, and no durable constraints.</p></div></div></div>
       <aside class="speaker-notes"><p>Vibe coding is not software engineering. Beware of AI hype on the internet. Advice can come from people solving fundamentally different problems: a side project used by a dozen people and a team sustaining a ten-year-old enterprise system may share almost no constraints worth naming.</p></aside>
     </section>
 
-        <!-- === 50 ENTERPRISE CONSTRAINTS === -->
+        <!-- === 51 ENTERPRISE CONSTRAINTS === -->
       <section class="slide" data-title="Enterprise quality is a system of constraints">
-          <div class="slide-head"><div class="pill">Enterprise reality</div><div class="slide-num">51</div></div>
+          <div class="slide-head"><div class="pill">Enterprise reality</div><div class="slide-num">52</div></div>
       <div class="content"><h2 class="reveal">Complex by nature. Disciplined by necessity.</h2><div class="quality-cloud reveal"><div class="quality-core">Enterprise<br>systems</div>
         <span class="quality-tag" style="left:20px;top:35px;background:var(--sky)">Efficient</span><span class="quality-tag" style="left:265px;top:5px">Maintainable</span><span class="quality-tag" style="left:565px;top:30px;background:var(--mint)">Scalable</span><span class="quality-tag" style="right:470px;top:12px">Reliable</span><span class="quality-tag" style="right:230px;top:55px;background:var(--yellow)">Secure</span><span class="quality-tag" style="right:10px;top:18px">Performant</span>
         <span class="quality-tag" style="left:5px;top:245px">Observable</span><span class="quality-tag" style="right:5px;top:235px;background:var(--lavender)">Recoverable</span><span class="quality-tag" style="left:35px;bottom:120px;background:var(--peach)">Compliant</span><span class="quality-tag" style="left:320px;bottom:55px">Testable</span><span class="quality-tag" style="left:600px;bottom:20px;background:var(--lime)">Auditable</span><span class="quality-tag" style="right:500px;bottom:30px">Extensible</span><span class="quality-tag" style="right:205px;bottom:65px;background:var(--sky)">Interoperable</span><span class="quality-tag" style="right:10px;bottom:135px">Data integrity</span>
@@ -811,16 +858,16 @@ Ask the agent to explain the design, generate the script, and include a short ve
       <aside class="speaker-notes"><p>Enterprise systems are highly complex while required to be efficient, maintainable, scalable, reliable, secure, performant, observable, recoverable, compliant, testable, auditable, extensible, interoperable, and protective of data integrity. AI-generated code must satisfy the same engineering obligations as human-written code.</p></aside>
     </section>
 
-        <!-- === 51 TECHNICAL DEBT EVIDENCE === -->
+        <!-- === 52 TECHNICAL DEBT EVIDENCE === -->
       <section class="slide" data-title="AI impact depends on context">
-          <div class="slide-head"><div class="pill">Evidence · context matters</div><div class="slide-num">52</div></div>
+          <div class="slide-head"><div class="pill">Evidence · context matters</div><div class="slide-num">53</div></div>
       <div class="content"><div class="workflow-evidence"><div class="reveal"><h2>More output can mean<br>more debt.</h2><p class="muted" style="margin-top:34px">The impact is non-uniform. Project scale, architecture, and governance change the outcome.</p></div><img class="shot reveal" src="Agenda/Module 2 - AI Developer Productivity Fundamentals/img_2.png" alt="Study abstract about GenAI-induced technical debt and context-dependent outcomes"></div></div>
       <aside class="speaker-notes"><p>The cited empirical study presents GenAI's technical-debt impact as context-dependent rather than universally positive or negative. Its highlighted abstract reports small and medium projects showing statistically significant acceleration in code debt after intervention, while large projects showed decreased code debt but faster architectural-debt accumulation; those projects also increased design debt. The training implication is to tailor governance to project scale and context.</p></aside>
     </section>
 
-        <!-- === 52 INTERACTIVE WORKFLOW === -->
+        <!-- === 53 INTERACTIVE WORKFLOW === -->
       <section class="slide workflow-slide" data-title="A navigable AI-assisted workflow">
-          <div class="slide-head"><div class="pill">Example workflow</div><div class="slide-num">53</div></div>
+          <div class="slide-head"><div class="pill">Example workflow</div><div class="slide-num">54</div></div>
       <div class="content"><h2 class="reveal" style="font-size:68px;">Move through the engineering loop</h2>
       <div class="reveal" style="position: relative; width: 100%;">
         <div class="mermaid-controls">
@@ -918,9 +965,66 @@ tests, lint rules or automation"]
 
         <!-- === 53 BUILD YOUR WORKFLOW === -->
       <section class="slide" data-title="Build and improve your own workflow">
-          <div class="slide-head"><div class="pill">The durable practice</div><div class="slide-num">54</div></div>
+          <div class="slide-head"><div class="pill">The durable practice</div><div class="slide-num">55</div></div>
       <div class="content"><div class="workflow-finale"><div class="reveal"><h2 style="font-size:91px">Borrow the pattern.<br>Build your own.</h2><p class="muted" style="margin-top:40px;max-width:850px">Your workflow must evolve with your experience, your codebase, and the models and tools around you.</p></div><div class="cycle reveal"><div class="cycle-ring"></div><div class="cycle-core">Your<br>workflow</div><span class="cycle-label" style="left:5px;top:75px;background:var(--sky)">Try</span><span class="cycle-label" style="right:0;top:90px;background:var(--yellow)">Measure</span><span class="cycle-label" style="right:5px;bottom:85px;background:var(--lime)">Learn</span><span class="cycle-label" style="left:0;bottom:95px;background:var(--coral)">Improve</span></div></div></div>
       <aside class="speaker-notes"><p>In this training I will show examples of workflows. At the end of the day, you need to develop a workflow that works for you. Keep improving it as you learn more and as tools and models evolve. Preserve the engineering controls that produce evidence, catch errors, and make the result maintainable.</p></aside>
+    </section>
+
+    <!-- === 57 RECOMMENDED PROMPT STRUCTURE === -->
+    <section class="slide prompt-structure-slide" data-title="A prompt is a testable contract">
+      <div class="slide-head"><div class="pill">Topic 2.2 · Prompt engineering</div><div class="slide-num">57</div></div>
+      <div class="content"><div class="prompt-lab">
+        <div class="prompt-parts reveal" aria-label="Recommended prompt structure">
+          <button class="prompt-part active" style="--part-color:var(--yellow)" data-title="Objective" data-example="Stop checkout requests from hanging when the payment provider does not respond.">Objective<span>What outcome is required?</span></button>
+          <button class="prompt-part" style="--part-color:var(--sky)" data-title="Current behavior" data-example="When POST /payments exceeds 30 seconds, checkout keeps waiting until our gateway terminates the request. Customers see a generic 502 and may retry the purchase.">Current behavior<span>What happens today?</span></button>
+          <button class="prompt-part" style="--part-color:var(--lime)" data-title="Desired behavior" data-example="Cancel the provider call after 5 seconds and return HTTP 503 with error code PAYMENT_PROVIDER_TIMEOUT. The customer can safely retry.">Desired behavior<span>What should happen?</span></button>
+          <button class="prompt-part" style="--part-color:var(--lavender)" data-title="Relevant context" data-example="Start at PaymentService.charge() in services/checkout/src/payment.ts. The provider client is in clients/acme-pay.ts; similar timeout handling exists in shipping-client.ts. Failing trace: request ID chk_1842.">Relevant context<span>Paths, symbols, evidence</span></button>
+          <button class="prompt-part" style="--part-color:var(--peach)" data-title="Constraints" data-example="Keep the Checkout API response schema. Use the existing AbortController pattern. Add no dependency, and do not change retry behavior for declined payments.">Constraints<span>What must remain true?</span></button>
+          <button class="prompt-part" style="--part-color:var(--mint)" data-title="Acceptance criteria" data-example="A provider response within 5 seconds is unchanged. A slower response is cancelled and mapped to PAYMENT_PROVIDER_TIMEOUT. Tests cover success, timeout, and declined-card behavior. Checkout tests pass.">Acceptance criteria<span>How is success observed?</span></button>
+          <button class="prompt-part" style="--part-color:var(--coral)" data-title="Requested response" data-example="First inspect the named code and summarize the current call path. Then propose a minimal plan. Wait for approval before editing files.">Requested response<span>What artifact is needed?</span></button>
+          <button class="prompt-part" style="--part-color:var(--violet)" data-title="Uncertainty handling" data-example="If the API already defines a timeout error, reuse it. If timeout ownership or retry semantics are unclear after inspection, stop and ask one focused question rather than guessing.">Uncertainty handling<span>What if information is missing?</span></button>
+        </div>
+        <div class="example-stage card reveal" aria-live="polite"><h3 id="promptExampleTitle">Objective</h3><p id="promptExampleText">Stop checkout requests from hanging when the payment provider does not respond.</p><div class="click-cue">One task · eight signals</div></div>
+      </div></div>
+      <aside class="speaker-notes"><p><strong>Objective:</strong> Teach developers to express a software task as a clear, testable contract with an AI assistant. A strong prompt communicates not merely what code to write, but what successful work means. Current guidance recommends separating instructions, examples, and contextual material, and defining success criteria before repeatedly tuning wording.</p><p>Walk through all eight elements by clicking them. The objective states the outcome directly. Current state explains observed behavior. Desired behavior defines the external result. Relevant context names known paths, symbols, versions, errors, examples, and prior decisions; never invent paths when unknown, instead ask the assistant to locate them. Constraints preserve signatures, dependencies, portability, repository patterns, generated files, and unrelated formatting. Acceptance criteria must be observable. Requested response can be an explanation, plan, minimal patch, unified diff, tests plus implementation, review, or assumptions and missing information. The uncertainty protocol says what to do when evidence is absent.</p><p><strong>Developer-specific techniques:</strong> Use concrete identifiers such as <code>calculateInvoiceTotal()</code> in <code>src/billing/invoice.ts</code>, not “the billing function.” Include exact errors, assertions, payloads, or command output rather than paraphrases. Separate the task, repository rules, errors, excerpts, examples, and expected output with headings or delimiters. Use a few genuinely different examples when a desired pattern is hard to describe. Add negative constraints only to prevent likely undesirable changes. Ask for assumptions, alternatives, concise rationale, evidence, and remaining uncertainty rather than private step-by-step reasoning. If the first answer is partly right, preserve what worked and correct only the failed dimension, for example: “Keep the approach, but remove the new dependency and use the repository's existing parser.”</p></aside>
+    </section>
+
+    <!-- === 56 PROMPT ANTI-PATTERNS === -->
+    <section class="slide prompt-antipattern-slide" data-title="Prompt anti-patterns">
+      <div class="slide-head"><div class="pill" style="background:var(--coral)">Failure modes · click to diagnose</div><div class="slide-num">56</div></div>
+      <div class="content"><div class="anti-lab">
+        <div class="anti-list reveal">
+          <button class="anti-pattern active" data-title="Persona without requirements" data-bad="Act as a senior backend engineer. Fix our checkout timeout bug." data-reason="A role does not define the observed behavior, scope, constraints, or what success looks like.">Empty expert persona</button>
+          <button class="anti-pattern" data-title="Ambiguous mega-task" data-bad="Investigate the slow checkout, fix it, refactor payments, add tests, update docs, deploy it, and review everything." data-reason="Several phases and outcomes are bundled together, so neither scope nor the review boundary is clear.">Everything at once</button>
+          <button class="anti-pattern" data-title="Conflicting constraints" data-bad="Rename PaymentService.charge() to submitPayment(), but do not change any callers or public interfaces." data-reason="The requested rename changes the interface while another instruction forbids that exact change.">Conflicting rules</button>
+          <button class="anti-pattern" data-title="Unrelated context" data-bad="I attached the whole monorepo, six weeks of logs, and every architecture document. Find why checkout timed out once." data-reason="High-volume, unfiltered context hides the relevant evidence and forces the model to guess where to focus.">Context dump</button>
+          <button class="anti-pattern" data-title="Undefined production-ready" data-bad="Write a production-ready Acme Pay client." data-reason="Production requirements such as timeout behavior, logging, error mapping, security, and tests are undefined.">“Production-ready”</button>
+          <button class="anti-pattern" data-title="No quality criterion" data-bad="Make the checkout service better and cleaner." data-reason="Better and cleaner are subjective; no observable quality target or boundary defines completion.">“Make it better”</button>
+          <button class="anti-pattern" data-title="Premature implementation" data-bad="Install axios and replace our payment client to fix the timeout." data-reason="It selects a dependency and architecture before checking the repository's existing cancellation pattern.">Solution before inspection</button>
+          <button class="anti-pattern" data-title="Length over clarity" data-bad="Three pages describe checkout history, team discussions, and possible causes, but never state the failing behavior or success criteria." data-reason="More words do not compensate for a missing observed problem, required outcome, and acceptance criteria.">Long means clear</button>
+          <button class="anti-pattern" data-title="Blind repetition" data-bad="The patch changed declined-card behavior. Try again and fix the timeout." data-reason="It does not identify the failed dimension precisely, so the next attempt may discard correct work or repeat the regression.">Repeat without learning</button>
+        </div>
+        <div class="anti-example card reveal" aria-live="polite"><div class="eyebrow">Why it fails</div><h3 id="antiTitle">Persona without requirements</h3><div class="bad" id="antiBad">“Act as a senior backend engineer. Fix our checkout timeout bug.”</div><p class="repair" id="antiRepair">A role does not define the observed behavior, scope, constraints, or what success looks like.</p></div>
+      </div></div>
+      <aside class="speaker-notes"><p>Use this as a rapid audience diagnosis exercise. Click each anti-pattern, ask what essential information is missing, then reveal the repair.</p><ul><li>An impressive persona adds no substantive requirement.</li><li>Combining investigation, implementation, review, deployment, and documentation creates ambiguous scope and completion criteria.</li><li>Conflicting constraints make any result wrong under at least one instruction.</li><li>Large amounts of unrelated code consume attention without improving grounding.</li><li>“Production-ready” has no meaning until production requirements are defined.</li><li>“Make it better” lacks a quality criterion.</li><li>Demanding a specific implementation before inspecting the repository can conflict with its architecture and conventions.</li><li>Prompt length is not a substitute for clarity.</li><li>Repeating a failed prompt without adding the missing information repeats the failure condition.</li></ul><p><strong>Practical exercise:</strong> Give participants a bug report, relevant error, two source files, one irrelevant file, and constraints. Ask for a weak one-sentence prompt, a structured prompt, and a comparison of the ambiguities removed.</p><p><strong>Scope guardrail:</strong> This topic does not cover prompt injection, jailbreak resistance, secret leakage, secure system prompts, reusable harness commands, skills, or agent definitions. Those belong in Modules 3 and 7.</p></aside>
+    </section>
+
+    <!-- === 58 FROM WEAK TO COMPLETE PROMPT === -->
+    <section class="slide" data-title="From vague request to testable contract">
+      <div class="slide-head"><div class="pill" style="background:var(--lime)">Transformation · click the card</div><div class="slide-num">58</div></div>
+      <div class="content"><div class="prompt-flip-wrap"><div class="prompt-flip reveal" id="promptFlip" role="button" tabindex="0" aria-label="Flip weak prompt to reveal complete prompt" aria-pressed="false">
+        <div class="prompt-face front card"><div class="eyebrow">Before · weak prompt</div><blockquote>“Act as a senior backend engineer. Fix our checkout timeout bug.”</blockquote><div class="flip-action">Reveal complete prompt →</div></div>
+        <div class="prompt-face back card"><h3>Complete prompt</h3><p>Our checkout currently waits up to 30 seconds when POST /payments does not respond. The gateway eventually terminates the request, customers receive a generic 502, and they may retry a payment whose outcome is unclear.
+
+Update the payment flow so the provider call is cancelled after 5 seconds and checkout returns HTTP 503 with the existing PAYMENT_PROVIDER_TIMEOUT error code. Provider responses received within 5 seconds must behave exactly as they do today.
+
+Start with PaymentService.charge() in services/checkout/src/payment.ts and the provider client in clients/acme-pay.ts. shipping-client.ts contains a similar AbortController timeout pattern. Trace chk_1842 shows the failing request.
+
+Keep the current Checkout API response schema, add no dependency, and do not change how declined payments are mapped or retried. Add tests for success, timeout, and a declined card, then run the focused checkout tests.
+
+First inspect the named code and summarize the current call path. Then propose the smallest implementation plan and wait for approval before editing. Reuse an existing timeout error if one exists. If timeout ownership or retry semantics remain unclear, ask one focused question instead of guessing.</p><div class="flip-action">Reset</div></div>
+      </div></div></div>
+      <aside class="speaker-notes"><p>Begin with the exact weak prompt used on slide 56, then click the card. The corrected prompt is not better because it is longer; it is better because every sentence removes consequential ambiguity.</p><p>Point out the transformation: the role-playing phrase is replaced by observed behavior and impact; the desired timeout and API result are explicit; concrete symbols, paths, a comparable implementation, and trace evidence orient the assistant; constraints protect compatibility and existing declined-payment behavior; acceptance criteria identify the tests and unchanged behavior; the requested interaction requires inspection and a plan before edits; and uncertainty handling prevents invented conventions or retry semantics.</p><p>This full prompt is written as a natural request rather than a rigid template. The eight-part structure is a thinking aid, not mandatory formatting.</p></aside>
     </section>
   </main></div>
 
@@ -1115,6 +1219,10 @@ tests, lint rules or automation"]
     exerciseHint?.addEventListener('click',()=>{const visible=exerciseCommand.classList.toggle('visible');exerciseHint.setAttribute('aria-expanded',String(visible));exerciseHint.textContent=visible?'Hide hint':'Show hint';});
     const portForwardHint=document.getElementById('portForwardExerciseHint');const portForwardCommand=document.getElementById('portForwardExerciseCommand');
     portForwardHint?.addEventListener('click',()=>{const visible=portForwardCommand.classList.toggle('visible');portForwardHint.setAttribute('aria-expanded',String(visible));portForwardHint.textContent=visible?'Hide detailed hint':'Show detailed hint';});
+    const promptStructureSlide=document.querySelector('.prompt-structure-slide');const promptAntipatternSlide=document.querySelector('.prompt-antipattern-slide');promptStructureSlide?.parentNode.insertBefore(promptAntipatternSlide,promptStructureSlide);
+    document.querySelectorAll('.prompt-part').forEach(button=>button.addEventListener('click',()=>{document.querySelectorAll('.prompt-part').forEach(item=>item.classList.remove('active'));button.classList.add('active');document.getElementById('promptExampleTitle').textContent=button.dataset.title;document.getElementById('promptExampleText').textContent=button.dataset.example;}));
+    document.querySelectorAll('.anti-pattern').forEach(button=>button.addEventListener('click',()=>{document.querySelectorAll('.anti-pattern').forEach(item=>item.classList.remove('active'));button.classList.add('active');document.getElementById('antiTitle').textContent=button.dataset.title;document.getElementById('antiBad').textContent=`“${button.dataset.bad}”`;document.getElementById('antiRepair').textContent=button.dataset.reason;}));
+    const promptFlip=document.getElementById('promptFlip');const togglePromptFlip=()=>{const flipped=promptFlip.classList.toggle('flipped');promptFlip.setAttribute('aria-pressed',String(flipped));};promptFlip?.addEventListener('click',togglePromptFlip);promptFlip?.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();togglePromptFlip();}});
     const deck=new SlidePresentation();const editor=new InlineEditor();const toggle=document.getElementById('editToggle');const hotzone=document.querySelector('.edit-hotzone');let hideTimer;
     toggle.addEventListener('click',()=>editor.toggle());hotzone.addEventListener('click',()=>editor.toggle());hotzone.addEventListener('mouseenter',()=>{clearTimeout(hideTimer);toggle.classList.add('show')});hotzone.addEventListener('mouseleave',()=>hideTimer=setTimeout(()=>{if(!editor.active)toggle.classList.remove('show')},400));toggle.addEventListener('mouseenter',()=>clearTimeout(hideTimer));toggle.addEventListener('mouseleave',()=>hideTimer=setTimeout(()=>{if(!editor.active)toggle.classList.remove('show')},400));document.addEventListener('keydown',e=>{if(e.key.toLowerCase()==='e'&&!e.target.isContentEditable)editor.toggle();if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='s'&&editor.active){e.preventDefault();editor.save();}});
   </script>
