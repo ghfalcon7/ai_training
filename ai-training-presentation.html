@@ -406,9 +406,12 @@
     .investigation-result { margin-top:16px;border:3px solid;border-radius:24px;padding:18px 22px;background:var(--ink);color:var(--cream);font-size:18px;font-weight:600;line-height:1.3; }
     .investigation-result strong { color:var(--yellow); }
     .investigation-controls { display:flex;align-items:center;gap:18px; }
-    .investigation-next { min-width:245px;border:3px solid;border-radius:999px;padding:17px 27px;background:var(--yellow);color:var(--ink);font:700 17px "Space Grotesk";letter-spacing:.08em;text-transform:uppercase;cursor:pointer;box-shadow:6px 6px 0 var(--shadow); }
-    .investigation-next:hover { transform:translate(-2px,-2px); }
-    .investigation-next:focus-visible { outline:5px solid var(--coral);outline-offset:4px; }
+    .investigation-next,.investigation-previous { min-width:210px;border:3px solid;border-radius:999px;padding:17px 25px;color:var(--ink);font:700 16px "Space Grotesk";letter-spacing:.08em;text-transform:uppercase;cursor:pointer;box-shadow:6px 6px 0 var(--shadow); }
+    .investigation-next { background:var(--yellow); }
+    .investigation-previous { background:var(--white); }
+    .investigation-next:hover,.investigation-previous:hover { transform:translate(-2px,-2px); }
+    .investigation-next:focus-visible,.investigation-previous:focus-visible { outline:5px solid var(--coral);outline-offset:4px; }
+    .investigation-previous:disabled { opacity:.38;cursor:not-allowed;transform:none;box-shadow:3px 3px 0 var(--shadow); }
     .investigation-progress { flex:1;height:15px;border:3px solid;border-radius:999px;overflow:hidden;background:var(--white); }
     .investigation-progress span { display:block;height:100%;width:var(--progress);background:var(--lime);transition:width .55s var(--ease); }
     .active-context { position:relative;border:3px solid;border-radius:42px;background:var(--ink);color:var(--cream);overflow:hidden;box-shadow:11px 11px 0 var(--shadow); }
@@ -1147,7 +1150,7 @@ First inspect the named code and summarize the current call path. Then propose t
             </div>
             <div class="investigation-result" id="investigationResult"><strong>Working hypothesis:</strong> probe failure, OOM, eviction, process exit, or rollout are all still possible.</div>
           </div>
-          <div class="investigation-controls"><button class="investigation-next" id="investigationNext" type="button">Disclose stage 1</button><div class="investigation-progress" aria-label="Investigation progress"><span id="investigationProgress" style="--progress:0%"></span></div></div>
+          <div class="investigation-controls"><button class="investigation-previous" id="investigationPrevious" type="button" disabled>Previous</button><button class="investigation-next" id="investigationNext" type="button">Disclose stage 1</button><div class="investigation-progress" aria-label="Investigation progress"><span id="investigationProgress" style="--progress:0%"></span></div></div>
         </div>
         <div class="active-context" id="activeContext" style="--fill:7%;--stage-color:var(--yellow)">
           <div class="context-tank-head"><h3>Active Context</h3><span id="contextCount">Symptom only</span></div>
@@ -1387,6 +1390,20 @@ First inspect the named code and summarize the current call path. Then propose t
     ];
     let investigationIndex=-1;
     const investigationNext=document.getElementById('investigationNext');
+    const investigationPrevious=document.getElementById('investigationPrevious');
+    const renderInvestigationStart=()=>{
+      investigationIndex=-1;
+      const card=document.getElementById('investigationCard');const activeContext=document.getElementById('activeContext');
+      card.style.setProperty('--stage-color','var(--yellow)');activeContext.style.setProperty('--stage-color','var(--yellow)');activeContext.style.setProperty('--fill','7%');
+      document.getElementById('investigationStage').textContent='Starting point';document.getElementById('investigationNumber').textContent='0';
+      document.getElementById('investigationQuestion').textContent='What is the smallest context needed to explain the restart?';
+      document.getElementById('investigationContext').innerHTML='<div class="eyebrow">Context to retrieve</div><p>Nothing beyond the reported symptom yet.</p>';
+      document.getElementById('investigationWhy').innerHTML='<div class="eyebrow">Why now?</div><p>Begin with the incident, not the entire operational knowledge base.</p>';
+      document.getElementById('investigationResult').innerHTML='<strong>Working hypothesis:</strong> probe failure, OOM, eviction, process exit, or rollout are all still possible.';
+      document.getElementById('contextTank').innerHTML='<div class="tank-summary">Raw evidence enters only when a hypothesis requires it.</div><div class="tank-item current">Incident: production CCM pod restarted</div>';
+      document.getElementById('contextCount').textContent='Symptom only';document.getElementById('investigationProgress').style.setProperty('--progress','0%');
+      investigationPrevious.disabled=true;investigationNext.textContent='Disclose stage 1';
+    };
     const renderInvestigation=()=>{
       const stage=investigationStages[investigationIndex];
       const card=document.getElementById('investigationCard');
@@ -1403,9 +1420,11 @@ First inspect the named code and summarize the current call path. Then propose t
       document.getElementById('contextCount').textContent=`${investigationIndex+1} / ${investigationStages.length} layers`;
       activeContext.style.setProperty('--fill',`${12+(investigationIndex+1)*8}%`);
       document.getElementById('investigationProgress').style.setProperty('--progress',`${((investigationIndex+1)/investigationStages.length)*100}%`);
-      investigationNext.textContent=investigationIndex===investigationStages.length-1?'Restart investigation':`Disclose stage ${investigationIndex+2}`;
+      investigationPrevious.disabled=false;investigationNext.disabled=investigationIndex===investigationStages.length-1;
+      investigationNext.textContent=investigationIndex===investigationStages.length-1?'Investigation complete':`Disclose stage ${investigationIndex+2}`;
     };
-    investigationNext?.addEventListener('click',()=>{investigationIndex=investigationIndex===investigationStages.length-1?-1:investigationIndex+1;if(investigationIndex===-1){location.reload();return;}renderInvestigation();});
+    investigationNext?.addEventListener('click',()=>{if(investigationIndex<investigationStages.length-1){investigationIndex++;renderInvestigation();}});
+    investigationPrevious?.addEventListener('click',()=>{if(investigationIndex<=0){renderInvestigationStart();}else{investigationIndex--;renderInvestigation();}});
     const deck=new SlidePresentation();const editor=new InlineEditor();const toggle=document.getElementById('editToggle');const hotzone=document.querySelector('.edit-hotzone');let hideTimer;
     toggle.addEventListener('click',()=>editor.toggle());hotzone.addEventListener('click',()=>editor.toggle());hotzone.addEventListener('mouseenter',()=>{clearTimeout(hideTimer);toggle.classList.add('show')});hotzone.addEventListener('mouseleave',()=>hideTimer=setTimeout(()=>{if(!editor.active)toggle.classList.remove('show')},400));toggle.addEventListener('mouseenter',()=>clearTimeout(hideTimer));toggle.addEventListener('mouseleave',()=>hideTimer=setTimeout(()=>{if(!editor.active)toggle.classList.remove('show')},400));document.addEventListener('keydown',e=>{if(e.key.toLowerCase()==='e'&&!e.target.isContentEditable)editor.toggle();if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='s'&&editor.active){e.preventDefault();editor.save();}});
   </script>
