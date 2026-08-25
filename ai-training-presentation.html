@@ -381,51 +381,6 @@
     .quality-lens h3 { font-size:28px;letter-spacing:-.02em; }
     .quality-lens p { margin-top:7px;font-size:16px;line-height:1.25; }
     .quality-lens:last-child { grid-column:1 / -1;min-height:120px;grid-template-columns:58px 1fr; }
-    .disclosure-hero { display:grid;grid-template-columns:670px 1fr;gap:70px;align-items:center;height:735px; }
-    .disclosure-hero h2 { font-size:85px;line-height:.96; }
-    .disclosure-hero p { margin-top:32px;font-size:25px; }
-    .disclosure-stack { position:relative;height:650px; }
-    .disclosure-layer { position:absolute;left:50%;width:720px;height:150px;margin-left:-360px;border:3px solid;border-radius:40px;padding:30px 38px;background:var(--white);box-shadow:9px 9px 0 var(--shadow);display:flex;align-items:center;justify-content:space-between;transform:translateY(var(--y)) scale(var(--scale));z-index:var(--z); }
-    .disclosure-layer strong { font:700 38px "Bodoni Moda"; }
-    .disclosure-layer span { max-width:330px;text-align:right;font-size:18px;font-weight:600; }
-    .dimension-strip { display:grid;grid-template-columns:repeat(3,1fr);gap:24px;height:735px;align-items:center; }
-    .dimension-card { min-height:510px;padding:40px 38px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden; }
-    .dimension-card .number { font:800 104px/.8 "Bodoni Moda";opacity:.22; }
-    .dimension-card h3 { font-size:54px; }
-    .dimension-card p { font-size:23px;line-height:1.4; }
-    .stage-map { display:grid;grid-template-columns:repeat(3,1fr);gap:18px;height:735px;align-content:center; }
-    .stage-step { min-height:185px;padding:25px 26px;border:3px solid;border-radius:28px;background:var(--white);box-shadow:6px 6px 0 var(--shadow);position:relative; }
-    .stage-step .stage-id { position:absolute;right:18px;top:13px;font:800 48px/1 "Bodoni Moda";opacity:.2; }
-    .stage-step h3 { font-size:28px;margin-bottom:12px; }
-    .stage-step p { font-size:16px;line-height:1.32; }
-    .evidence-path { display:grid;grid-template-columns:530px 1fr;gap:70px;align-items:center;height:735px; }
-    .evidence-path h2 { font-size:75px; }
-    .path-chain { display:flex;flex-direction:column;gap:12px; }
-    .path-node { min-height:77px;border:3px solid;border-radius:999px;padding:17px 29px;background:var(--white);font-size:19px;font-weight:600;display:flex;align-items:center;justify-content:space-between; }
-    .path-node::after { content:"↓";font:700 27px "Bodoni Moda"; }
-    .path-node:last-child::after { content:"✓"; }
-    .evidence-verdict { margin-top:28px;padding:25px 30px;border:3px solid;border-radius:28px;background:var(--lime);font-size:22px;font-weight:600;line-height:1.35; }
-    .timeline-case { height:735px;display:grid;grid-template-rows:auto 1fr;gap:34px; }
-    .timeline-head { display:flex;align-items:end;justify-content:space-between; }
-    .timeline-head h2 { font-size:68px; }
-    .incident-timeline { position:relative;height:430px;border:3px solid;border-radius:38px;background:var(--ink);color:var(--cream);padding:70px 55px; }
-    .incident-timeline::before { content:"";position:absolute;left:90px;right:90px;top:215px;height:7px;background:var(--cream);border-radius:99px; }
-    .timeline-event { position:absolute;width:330px; }
-    .timeline-event::after { content:"";position:absolute;width:24px;height:24px;border:4px solid var(--ink);border-radius:50%;background:var(--event-color); }
-    .timeline-event strong { display:block;color:var(--event-color);font:700 33px "Bodoni Moda"; }
-    .timeline-event span { display:block;margin-top:9px;font-size:18px;line-height:1.3; }
-    .traffic-proof { display:grid;grid-template-columns:1fr 500px;gap:60px;align-items:center;height:735px; }
-    .traffic-chain { display:flex;align-items:center;gap:12px;margin-top:44px; }
-    .traffic-chain div { flex:1;min-height:110px;border:3px solid;border-radius:25px;background:var(--white);padding:20px 16px;display:grid;place-items:center;text-align:center;font-size:17px;font-weight:600; }
-    .traffic-math { min-height:590px;padding:45px;background:var(--ink);color:var(--cream);display:flex;flex-direction:column;justify-content:space-between; }
-    .traffic-math h3 { color:var(--yellow);font-size:43px; }
-    .traffic-math .equation { font:700 51px/1.25 "Bodoni Moda"; }
-    .traffic-math .result { border:3px solid var(--outline);border-radius:999px;padding:20px;background:var(--coral);color:var(--ink);font-size:24px;font-weight:700;text-align:center; }
-    .correction-loop { display:grid;grid-template-columns:570px 1fr;gap:65px;align-items:center;height:735px; }
-    .correction-loop h2 { font-size:77px; }
-    .correction-list { display:grid;gap:16px; }
-    .correction-item { display:grid;grid-template-columns:1fr 55px 1fr;gap:16px;align-items:center;border:3px solid;border-radius:28px;padding:20px 23px;background:var(--white);font-size:16px;font-weight:600; }
-    .correction-item .arrow-fix { width:48px;height:48px;border:3px solid;border-radius:50%;display:grid;place-items:center;background:var(--yellow);font-size:24px; }
     .context-architecture { display:grid;grid-template-columns:520px 1fr;gap:55px;align-items:center;height:735px; }
     .context-architecture h2 { font-size:70px; }
     .architecture-tree { display:grid;grid-template-columns:1fr 1fr;gap:15px;position:relative; }
@@ -434,6 +389,39 @@
     .architecture-node.root,.architecture-node.live { grid-column:1 / -1; }
     .architecture-node.root { background:var(--yellow); }
     .architecture-node.live { background:var(--sky); }
+    .progressive-investigation { display:grid;grid-template-columns:1fr 530px;gap:42px;height:735px; }
+    .investigation-console { display:grid;grid-template-rows:auto 1fr auto;gap:20px;min-width:0; }
+    .incident-title { display:flex;align-items:center;gap:18px;border:3px solid;border-radius:999px;padding:15px 24px;background:var(--coral);font-size:20px;font-weight:700; }
+    .incident-title::before { content:"!";width:38px;height:38px;border:3px solid;border-radius:50%;display:grid;place-items:center;background:var(--cream);font:800 24px "Bodoni Moda";flex:none; }
+    .investigation-card { position:relative;padding:32px 36px;border:3px solid;border-radius:35px;background:var(--white);box-shadow:9px 9px 0 var(--shadow);overflow:hidden; }
+    .investigation-stage-label { display:flex;align-items:center;justify-content:space-between;margin-bottom:22px; }
+    .investigation-stage-label span { font-size:15px;font-weight:700;letter-spacing:.13em;text-transform:uppercase; }
+    .investigation-stage-label strong { font:800 53px/1 "Bodoni Moda";color:var(--stage-color); }
+    .investigation-question { font:700 39px/1.05 "Bodoni Moda";min-height:82px; }
+    .investigation-flow { display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px; }
+    .investigation-block { min-height:150px;border:3px solid;border-radius:24px;padding:19px 21px;background:var(--cream); }
+    .investigation-block .eyebrow { font-size:13px;margin-bottom:9px; }
+    .investigation-block p { font-size:17px;line-height:1.3; }
+    .investigation-block.context-block { background:var(--stage-color);animation:contextArrives .55s var(--ease); }
+    .investigation-result { margin-top:16px;border:3px solid;border-radius:24px;padding:18px 22px;background:var(--ink);color:var(--cream);font-size:18px;font-weight:600;line-height:1.3; }
+    .investigation-result strong { color:var(--yellow); }
+    .investigation-controls { display:flex;align-items:center;gap:18px; }
+    .investigation-next { min-width:245px;border:3px solid;border-radius:999px;padding:17px 27px;background:var(--yellow);color:var(--ink);font:700 17px "Space Grotesk";letter-spacing:.08em;text-transform:uppercase;cursor:pointer;box-shadow:6px 6px 0 var(--shadow); }
+    .investigation-next:hover { transform:translate(-2px,-2px); }
+    .investigation-next:focus-visible { outline:5px solid var(--coral);outline-offset:4px; }
+    .investigation-progress { flex:1;height:15px;border:3px solid;border-radius:999px;overflow:hidden;background:var(--white); }
+    .investigation-progress span { display:block;height:100%;width:var(--progress);background:var(--lime);transition:width .55s var(--ease); }
+    .active-context { position:relative;border:3px solid;border-radius:42px;background:var(--ink);color:var(--cream);overflow:hidden;box-shadow:11px 11px 0 var(--shadow); }
+    .context-tank-head { position:absolute;left:30px;right:30px;top:26px;display:flex;align-items:center;justify-content:space-between;z-index:3; }
+    .context-tank-head h3 { color:var(--cream);font-size:34px; }
+    .context-tank-head span { color:var(--mint);font-size:15px;font-weight:700;letter-spacing:.1em;text-transform:uppercase; }
+    .context-tank { position:absolute;left:28px;right:28px;top:91px;bottom:28px;border:3px solid var(--cream);border-radius:30px;padding:20px;display:flex;flex-direction:column;justify-content:flex-end;gap:10px;overflow:hidden; }
+    .context-tank::before { content:"";position:absolute;inset:auto 0 0;height:var(--fill);background:linear-gradient(180deg,rgba(139,180,247,.38),rgba(168,230,207,.62));transition:height .65s var(--ease); }
+    .tank-item { position:relative;z-index:2;border:2px solid var(--cream);border-radius:18px;padding:11px 14px;background:var(--ink);font-size:14px;font-weight:600;line-height:1.2;animation:tankDrop .55s var(--ease); }
+    .tank-item.current { background:var(--stage-color);color:var(--ink);border-color:var(--ink); }
+    .tank-summary { position:relative;z-index:2;color:var(--cream);font-size:13px;opacity:.68;text-align:center; }
+    @keyframes contextArrives { from { opacity:0;transform:translateX(35px); } to { opacity:1;transform:translateX(0); } }
+    @keyframes tankDrop { from { opacity:0;transform:translateY(-45px) scale(.92); } to { opacity:1;transform:translateY(0) scale(1); } }
 
 
 
@@ -1144,109 +1132,34 @@ First inspect the named code and summarize the current call path. Then propose t
       <aside class="speaker-notes"><p>Before adding information to the context, evaluate it against seven quality criteria:</p><ul><li><strong>Relevance:</strong> Does this information affect the current decision? Context that is generally interesting but immaterial to the immediate task competes with useful evidence.</li><li><strong>Authority:</strong> Is it a canonical source, current source code, or direct runtime evidence? Prefer the sources closest to reality over recollections, generated summaries, duplicated documentation, or speculation.</li><li><strong>Freshness:</strong> Could it describe an older version of the system? Check dates, branches, deployed versions, dependency versions, and whether documentation still matches the code.</li><li><strong>Sufficiency:</strong> Does the assistant have enough information to avoid inventing missing details? Include the constraints, behavior, evidence, and success conditions needed to act, or instruct the assistant to inspect or ask rather than guess.</li><li><strong>Specificity:</strong> Does the context identify concrete files, symbols, commands, or behavior? Precise anchors help the assistant locate and verify the relevant implementation.</li><li><strong>Consistency:</strong> Does it conflict with another instruction or document? Resolve conflicts or state the applicable precedence; do not leave the model to choose silently between incompatible sources.</li><li><strong>Economy:</strong> Can the same information be communicated with fewer, clearer tokens? Remove repetition and low-value output without deleting details required for correct decisions.</li></ul><p>These criteria are a pre-flight check, not a demand for perfect documentation. The practical question is whether each context item increases the probability of a correct, grounded next action enough to justify the attention and tokens it consumes.</p></aside>
     </section>
 
-    <!-- === 61 PROGRESSIVE DISCLOSURE === -->
-    <section class="slide" data-title="Progressive context disclosure">
-      <div class="slide-head"><div class="pill" style="background:var(--yellow)">Progressive disclosure · case study</div><div class="slide-num">61</div></div>
-      <div class="content"><div class="disclosure-hero">
-        <div class="reveal"><div class="eyebrow">Production investigation · 27 March 2026</div><h2>Open context<br>one hypothesis<br>at a time.</h2><p class="muted">Start broad enough to orient. Go deeper only when evidence demands it.</p></div>
-        <div class="disclosure-stack reveal" aria-label="Progressive context layers">
-          <div class="disclosure-layer" style="--y:30px;--scale:.82;--z:1;background:var(--lavender)"><strong>Repository map</strong><span>Where can reliable context be found?</span></div>
-          <div class="disclosure-layer" style="--y:165px;--scale:.9;--z:2;background:var(--sky)"><strong>Targeted subsystem</strong><span>Which platform and service evidence matters?</span></div>
-          <div class="disclosure-layer" style="--y:305px;--scale:.97;--z:3;background:var(--yellow)"><strong>Live evidence</strong><span>What was true during the incident?</span></div>
-          <div class="disclosure-layer" style="--y:450px;--scale:1;--z:4;background:var(--lime)"><strong>Distilled memory</strong><span>What conclusion is worth preserving?</span></div>
+    <!-- === 61 INTERACTIVE PROGRESSIVE DISCLOSURE === -->
+    <section class="slide" data-title="Investigate with progressive context disclosure">
+      <div class="slide-head"><div class="pill" style="background:var(--yellow)">Click to investigate · progressive disclosure</div><div class="slide-num">61</div></div>
+      <div class="content"><div class="progressive-investigation">
+        <div class="investigation-console">
+          <div class="incident-title">A production customers-contracts-manager pod restarted</div>
+          <div class="investigation-card" id="investigationCard" style="--stage-color:var(--yellow)">
+            <div class="investigation-stage-label"><span id="investigationStage">Starting point</span><strong id="investigationNumber">0</strong></div>
+            <div class="investigation-question" id="investigationQuestion">What is the smallest context needed to explain the restart?</div>
+            <div class="investigation-flow">
+              <div class="investigation-block context-block" id="investigationContext"><div class="eyebrow">Context to retrieve</div><p>Nothing beyond the reported symptom yet.</p></div>
+              <div class="investigation-block" id="investigationWhy"><div class="eyebrow">Why now?</div><p>Begin with the incident, not the entire operational knowledge base.</p></div>
+            </div>
+            <div class="investigation-result" id="investigationResult"><strong>Working hypothesis:</strong> probe failure, OOM, eviction, process exit, or rollout are all still possible.</div>
+          </div>
+          <div class="investigation-controls"><button class="investigation-next" id="investigationNext" type="button">Disclose stage 1</button><div class="investigation-progress" aria-label="Investigation progress"><span id="investigationProgress" style="--progress:0%"></span></div></div>
+        </div>
+        <div class="active-context" id="activeContext" style="--fill:7%;--stage-color:var(--yellow)">
+          <div class="context-tank-head"><h3>Active Context</h3><span id="contextCount">Symptom only</span></div>
+          <div class="context-tank" id="contextTank"><div class="tank-summary">Raw evidence enters only when a hypothesis requires it.</div><div class="tank-item current">Incident: production CCM pod restarted</div></div>
         </div>
       </div></div>
-      <aside class="speaker-notes"><p>The case is the March 27, 2026 investigation of a production <strong>customers-contracts-manager</strong> pod restart. Session: <code>ses_2cfa0b7dcffeTO4L6UCT08P7T6</code>. Session title: <strong>“Performance issues with Kafka consumer updates”</strong>. The outcome became <a href="https://sb-jira.ads.local/browse/PSBUGS-11378">PSBUGS-11378</a>, and the preserved root-cause analysis is <code>memory/incidents/2026-03-27-ccm-pod-restart.md</code>.</p><p>This is an excellent example because the investigation did not load the entire operational knowledge base or every service description up front. It progressively disclosed only the context required by each new hypothesis. The complete hierarchy was eventually traversed, but only one evidence-driven layer at a time.</p><p>The operating pattern was: <strong>start broad → form a hypothesis → load the smallest relevant context → query live evidence → challenge unsupported claims → disclose deeper source context → correlate across layers → preserve the result.</strong></p></aside>
+      <aside class="speaker-notes"><p><strong>How to present:</strong> Begin with only the incident title. Click <em>Disclose stage 1</em>, then advance one stage at a time. At every stage, narrate four things in order: the question or working hypothesis, the minimum context retrieved, why it became relevant now, and the resulting refinement. The Active Context tank retains compact conclusions while older raw evidence is compressed.</p><ol><li><strong>Runtime symptom:</strong> Question: Why did the pod restart? Disclose live Kubernetes pod status, StatefulSet configuration, probes, events, and exit status. Kubernetes is authoritative because the symptom is a restart and can distinguish failed probe, OOM kill, eviction, application exit, or rollout. Finding: repeated liveness-probe timeouts preceded restart; exit code 137 remained ambiguous.</li><li><strong>Resource hypothesis:</strong> Question: Was this OOM or node-pressure eviction? Disclose container requests/limits, ConfigMap, secret keys, environment variables, and container command. Exit 137 has multiple possible mechanisms, so process and resource configuration test memory hypotheses and expose explicit JVM settings. Finding: 2000Mi container limit, no explicit <code>-Xmx</code>/<code>-Xms</code>, and no OOMKilling event; OOM becomes less likely but effective heap remains unknown.</li><li><strong>Historical metrics:</strong> Question: Did memory or CPU support the hypothesis? Disclose CloudWatch Container Insights for both affected pods during the incident window. Configuration shows capacity, not consumption, and transient state from the restarted container is gone. Finding: memory peaked around 570Mi, 28.5% of the limit; memory exhaustion is rejected.</li><li><strong>JVM specifics:</strong> Question: What was the actual heap ceiling? Disclose runtime flags from <code>java -XX:+PrintFlagsFinal</code> and JVM/Actuator inspection. Absence of <code>-Xmx</code> does not establish the effective heap; the running JVM verifies container-aware ergonomics. Finding: <code>MaxHeapSize = 524288000</code> bytes, confirming an approximately 500Mi heap without evidence of heap exhaustion.</li><li><strong>Database behavior:</strong> Question: Was RDS overloaded, slow, or blocked? Disclose <code>context/RDS.md</code>, targeted PostgreSQL logs, and RDS Performance Insights. Requests lasted 135–223 seconds, making database latency, volume, and locking plausible; repository context first identifies the correct instance and PI resource. Finding: expensive SQL and a large lock spike exist, requiring causal timing analysis.</li><li><strong>Competing cause:</strong> Question: Did the <code>shopping_cart</code> lock storm cause the restart? Disclose per-minute PI waits, top SQL, event timing, and service ownership. The shared database spike could precede, follow, or merely coincide with CCM degradation. Finding: CCM failed from about 16:05 UTC; lock contention began around 16:18 and belonged to another service, so it was concurrent load, not the initiating cause.</li><li><strong>Application behavior:</strong> Question: Which code produced expensive SQL and latency? Disclose narrow GitLab reads of <code>RegularConsumerServiceImpl</code>, repository interfaces, and custom repository implementations on <code>hotfix-1.82.0</code>. Runtime identifiers narrow the source search; source is opened only then. Finding: the endpoint repeatedly executes repository queries per consumer, amplifying each request into many SQL executions.</li><li><strong>Traffic source:</strong> Question: Did PI's 100 SQL calls/s mean 100 API calls/s? Disclose targeted OpenSearch searches by endpoint, pod, user, IP, correlation ID, and incident window. Database executions are not HTTP requests; logs establish arrival rate and workload origin. Finding: 7,286 requests across two pods, about 5–6 requests/s, 97.4% from <code>rueckdeuapi</code>, with 135–223 second requests. Little's Law gives approximately <code>5.7 × 150 ≈ 855</code> in flight: effective Tomcat capacity was exceeded, starving liveness and causing restart.</li><li><strong>Organizational action:</strong> Question: Which team receives the defect? Disclose <code>memory/PSBUGS.md</code> service ownership, Product Area ID, and assignee mapping. Routing was irrelevant during diagnosis and becomes useful only after identifying an actionable service defect. Finding: create <a href="https://sb-jira.ads.local/browse/PSBUGS-11378">PSBUGS-11378</a> and preserve the RCA at <code>memory/incidents/2026-03-27-ccm-pod-restart.md</code>.</li></ol><p><strong>Core lesson:</strong> Progressive disclosure is not cumulative dumping. It is hypothesis-driven retrieval plus compression: fetch the smallest authoritative context, derive a conclusion, collapse raw evidence into a reusable summary, and then retrieve the next layer.</p></aside>
     </section>
 
-    <!-- === 62 THREE DIMENSIONS === -->
-    <section class="slide" data-title="Three dimensions of progressive disclosure">
-      <div class="slide-head"><div class="pill" style="background:var(--lavender)">The control model</div><div class="slide-num">62</div></div>
-      <div class="content"><div class="dimension-strip">
-        <div class="dimension-card card reveal" style="background:var(--yellow)"><div class="number">01</div><div><h3>Breadth</h3><p>Platform → environment → namespace → workload → pod → endpoint → customer → method</p></div></div>
-        <div class="dimension-card card reveal" style="background:var(--sky)"><div class="number">02</div><div><h3>Depth</h3><p>Open the next layer only when evidence from the current layer requires it.</p></div></div>
-        <div class="dimension-card card reveal" style="background:var(--coral)"><div class="number">03</div><div><h3>Time</h3><p>Constrain volatile evidence to the incident window: mostly 16:00–16:22 UTC.</p></div></div>
-      </div></div>
-      <aside class="speaker-notes"><p>Progressive disclosure operated in three dimensions.</p><ul><li><strong>Breadth:</strong> Platform-wide knowledge narrowed to one environment, namespace, workload, pod, endpoint, customer, and method.</li><li><strong>Depth:</strong> Each technical layer was opened only when evidence from the previous layer required it. Kubernetes led to metrics; metrics led to runtime JVM inspection; database dimensions led to service source code; database execution rates led to endpoint logs.</li><li><strong>Time:</strong> Live queries were constrained to the incident window, mostly 16:00–16:22 UTC, rather than retrieving broad histories.</li></ul><p>This controls both noise and reasoning risk. The point is not merely fewer tokens. It is to keep each question tied to the smallest authoritative evidence set capable of answering it.</p></aside>
-    </section>
-
-    <!-- === 63 NINE STAGES === -->
-    <section class="slide" data-title="Nine evidence-driven disclosures">
-      <div class="slide-head"><div class="pill" style="background:var(--sky)">Question → smallest useful context</div><div class="slide-num">63</div></div>
-      <div class="content"><div class="stage-map">
-        <div class="stage-step" style="background:var(--yellow)"><span class="stage-id">1</span><h3>Runtime symptom</h3><p>Why restart? Pod, StatefulSet, probes, events, exit status.</p></div>
-        <div class="stage-step"><span class="stage-id">2</span><h3>Resource hypothesis</h3><p>OOM or eviction? Requests, limits, ConfigMap, secrets, command.</p></div>
-        <div class="stage-step"><span class="stage-id">3</span><h3>Historical metrics</h3><p>Memory or CPU? Container Insights for two affected pods.</p></div>
-        <div class="stage-step"><span class="stage-id">4</span><h3>JVM specifics</h3><p>Heap ceiling? Live flags, then actuator/JVM inspection.</p></div>
-        <div class="stage-step"><span class="stage-id">5</span><h3>Database behavior</h3><p>RDS blocked? RDS guide, logs, Performance Insights.</p></div>
-        <div class="stage-step"><span class="stage-id">6</span><h3>Competing cause</h3><p>Lock storm? Per-minute waits, SQL, user-supplied ownership.</p></div>
-        <div class="stage-step"><span class="stage-id">7</span><h3>Application behavior</h3><p>Which code? Narrow GitLab reads on <code>hotfix-1.82.0</code>.</p></div>
-        <div class="stage-step"><span class="stage-id">8</span><h3>Traffic source</h3><p>SQL calls ≠ HTTP calls. Targeted OpenSearch dimensions.</p></div>
-        <div class="stage-step" style="background:var(--lime)"><span class="stage-id">9</span><h3>Organizational action</h3><p>Where does the bug go? Open <code>memory/PSBUGS.md</code> last.</p></div>
-      </div></div>
-      <aside class="speaker-notes"><ol><li><strong>Runtime symptom:</strong> To answer why the pod restarted, disclose the live Kubernetes pod, StatefulSet, probes, events, and exit status.</li><li><strong>Resource hypothesis:</strong> To test OOM or node-pressure eviction, disclose deployment resource requests/limits, ConfigMap, secret keys, and container command.</li><li><strong>Historical metrics:</strong> To determine whether memory or CPU supported that hypothesis, query CloudWatch Container Insights for the two affected pods.</li><li><strong>JVM specifics:</strong> To establish the actual heap ceiling, inspect runtime JVM flags using <code>java -XX:+PrintFlagsFinal</code>, followed later by actuator/JVM inspection.</li><li><strong>Database behavior:</strong> To test RDS overload or blocking, open <code>context/RDS.md</code>, then issue targeted RDS-log and Performance Insights queries.</li><li><strong>Competing cause:</strong> To test whether the <code>shopping_cart</code> lock storm caused the restart, inspect per-minute PI wait events and SQL, then add service ownership supplied by the user.</li><li><strong>Application behavior:</strong> To identify code producing expensive SQL, narrowly read <code>RegularConsumerServiceImpl</code>, repository interfaces, and custom repository implementations from GitLab on <code>hotfix-1.82.0</code>.</li><li><strong>Traffic source:</strong> To test whether PI's 100 SQL calls/s meant 100 API calls/s, query OpenSearch by endpoint, pod, user, IP, correlation ID, and incident time window.</li><li><strong>Organizational action:</strong> Only after completing the technical RCA, open <code>memory/PSBUGS.md</code> to route the resulting bug.</li></ol></aside>
-    </section>
-
-    <!-- === 64 MEMORY HYPOTHESIS === -->
-    <section class="slide" data-title="Progressively disproving the OOM hypothesis">
-      <div class="slide-head"><div class="pill" style="background:var(--yellow)">Hypothesis 1 · OOM regression?</div><div class="slide-num">64</div></div>
-      <div class="content"><div class="evidence-path">
-        <div class="reveal"><h2>Do not jump<br>from symptom<br>to source code.</h2><div class="evidence-verdict">Verdict: not OOM. Evidence points to liveness-probe failure under thread starvation.</div></div>
-        <div class="path-chain reveal">
-          <div class="path-node">Kubernetes resources <span>limit: 2000Mi</span></div>
-          <div class="path-node">ConfigMap + secret keys <span>no <code>-Xmx</code>/<code>-Xms</code></span></div>
-          <div class="path-node">Container Java command <span>runtime configuration</span></div>
-          <div class="path-node">CloudWatch pod memory <span>peak ≈ 570Mi · 28.5%</span></div>
-          <div class="path-node">Live JVM flags <span>MaxHeapSize = 524,288,000 B</span></div>
-          <div class="path-node">Kubernetes events <span>no OOMKilling</span></div>
-        </div>
-      </div></div>
-      <aside class="speaker-notes"><p>The session began with a pod-restart symptom and several plausible explanations: regression of the recently fixed PSBUGS-11365 OOM issue; Kubernetes killing the pod because memory requests were too low; JVM heap exhaustion; RDS overload; a shared-instance <code>shopping_cart</code> lock storm; an API client generating enough work to saturate the application; or a service-level query pattern amplifying that traffic.</p><p>The memory investigation progressively moved through: <strong>Kubernetes resources → ConfigMap and secret keys → container Java command → CloudWatch pod memory → actual JVM MaxHeapSize.</strong></p><p>This established: the container limit was 2000Mi; no <code>-Xmx</code> or <code>-Xms</code> was configured; the live JVM reported <code>MaxHeapSize = 524288000</code> bytes; pod memory peaked around 570Mi, only 28.5% of the limit; and there was no OOMKilling event.</p><p>The initial suspicion was therefore replaced, rather than merely supplemented: the restart was consistent with liveness-probe failure caused by thread starvation, not memory exhaustion.</p></aside>
-    </section>
-
-    <!-- === 65 COMPETING DATABASE CAUSE === -->
-    <section class="slide" data-title="Correlation defeats a compelling coincidence">
-      <div class="slide-head"><div class="pill" style="background:var(--coral)">Hypothesis 2 · shared RDS lock storm?</div><div class="slide-num">65</div></div>
-      <div class="content"><div class="timeline-case">
-        <div class="timeline-head"><div><div class="eyebrow">RDS logs → PI waits → PI SQL → ownership</div><h2>A severe spike.<br>But too late.</h2></div><div class="pill">Lock:tuple peak ≈ 24 AAS</div></div>
-        <div class="incident-timeline reveal">
-          <div class="timeline-event" style="left:85px;top:75px;--event-color:var(--yellow)"><strong>16:05 UTC</strong><span>CCM saturation and probe failures begin.</span><span style="margin-top:55px">Initiating failure</span></div>
-          <div class="timeline-event" style="left:690px;top:270px;--event-color:var(--coral)"><strong>≈16:18 UTC</strong><span><code>shopping_cart</code> lock contention begins.</span></div>
-          <div class="timeline-event" style="right:70px;top:70px;--event-color:var(--sky)"><strong>Ownership check</strong><span>User confirms a separate service owns <code>shopping_cart</code>.</span><span style="margin-top:48px">Coincident load</span></div>
-        </div>
-      </div></div>
-      <aside class="speaker-notes"><p>The database path progressively moved through <strong>RDS slow logs → Performance Insights wait events → PI SQL dimensions → service source code</strong>.</p><p>The investigation found a real and dramatic <code>shopping_cart</code> <code>Lock:tuple</code> spike peaking around 24 average active sessions. It was therefore a credible competing explanation, not noise to dismiss casually.</p><p>Time correlation disproved it as the initiating cause. CCM saturation and probe failures began around 16:05 UTC, while the lock spike began around 16:18 UTC. Once the user confirmed that <code>shopping_cart</code> belonged to a separate service, the event was classified as coincident shared-instance load rather than the cause of CCM's restart.</p><p>This shows why progressive disclosure includes human context. The user supplied ownership information only when ownership became decision-relevant. Naming alone was not treated as sufficient evidence.</p></aside>
-    </section>
-
-    <!-- === 66 TRAFFIC PROOF === -->
-    <section class="slide" data-title="From SQL executions to thread starvation">
-      <div class="slide-head"><div class="pill" style="background:var(--lime)">Hypothesis 3 · traffic × query amplification</div><div class="slide-num">66</div></div>
-      <div class="content"><div class="traffic-proof">
-        <div class="reveal"><div class="eyebrow">PI calls/s was not API requests/s</div><h2 style="font-size:72px">Correlate across<br>layers before<br>naming the cause.</h2><div class="traffic-chain"><div>PI SQL<br>calls/s</div><span>→</span><div>Endpoint<br>logs</div><span>→</span><div>Pod + user<br>counts</div><span>→</span><div>IP +<br>correlation IDs</div></div><p class="muted" style="margin-top:32px;font-size:22px">7,286 requests · ≈5–6 req/s · 97.4% <code>rueckdeuapi</code> · 135–223s each</p></div>
-        <div class="traffic-math card reveal"><div><h3>Little's Law</h3><p style="margin-top:18px;font-size:20px">Concurrency ≈ arrival rate × latency</p></div><div class="equation">5.7 requests/s<br>× 150 seconds<br>≈ 855 in flight</div><div class="result">Capacity exceeded → liveness starved → pod restarted</div></div>
-      </div></div>
-      <aside class="speaker-notes"><p>The traffic path progressively moved through <strong>PI SQL calls/second → endpoint request logs → per-pod counts → authenticated-user distribution → source IP and correlation IDs</strong>.</p><p>This distinguished database statement executions from HTTP requests. The evidence showed 7,286 endpoint requests across both pods during the incident window, roughly 5 to 6 HTTP requests per second, and <code>rueckdeuapi</code> representing 97.4% of authenticated traffic. Individual requests took 135 to 223 seconds. Source inspection then showed that the endpoint generated repeated repository queries per consumer, so service behavior amplified each HTTP request into many database executions.</p><p>Applying Little's Law using approximately 5.7 requests per second and 150 seconds average latency gives about 855 in-flight requests. This exceeded effective Tomcat processing capacity, starved the liveness endpoint, and led Kubernetes to restart the pod.</p><p>The exact effective Tomcat capacity was not directly established as a configured value. Pool size was inferred from defaults and thread names, and that limitation was retained. The strong conclusion is that sustained concurrency exceeded effective processing capacity, not an unsupported exact thread-limit claim.</p></aside>
-    </section>
-
-    <!-- === 67 CORRECTION IS A FEATURE === -->
-    <section class="slide" data-title="Progressive disclosure supports correction">
-      <div class="slide-head"><div class="pill" style="background:var(--peach)">Not just token minimization</div><div class="slide-num">67</div></div>
-      <div class="content"><div class="correction-loop">
-        <div class="reveal"><h2>Deeper context<br>must be allowed<br>to change the story.</h2><p class="muted" style="margin-top:34px;font-size:25px">A hypothesis is a routing decision, not a conclusion.</p></div>
-        <div class="correction-list reveal">
-          <div class="correction-item"><span>500Mi heap inferred from JVM ergonomics</span><span class="arrow-fix">→</span><span>Verified inside the running pod</span></div>
-          <div class="correction-item"><span>Tomcat capacity inferred from defaults and names</span><span class="arrow-fix">→</span><span>Kept as inference; limitations acknowledged</span></div>
-          <div class="correction-item"><span>Source IP called an external client</span><span class="arrow-fix">→</span><span>Revised: ownership could not be verified</span></div>
-          <div class="correction-item"><span><code>shopping_cart</code> dismissed by naming</span><span class="arrow-fix">→</span><span>Checked against timing and ownership</span></div>
-          <div class="correction-item"><span>PI “100 calls/s” read as possible API rate</span><span class="arrow-fix">→</span><span>Corrected to SQL statement executions</span></div>
-        </div>
-      </div></div>
-      <aside class="speaker-notes"><p>This session demonstrates that progressive disclosure is not merely about minimizing tokens. It creates explicit opportunities to correct early claims as stronger evidence becomes available.</p><ul><li>The 500Mi heap was initially inferred from JVM ergonomics, then verified in the running pod.</li><li>The Tomcat pool size was inferred from defaults and thread names, with limitations acknowledged rather than converted into false certainty.</li><li>The source IP was initially characterized too confidently as an external client, then revised because ownership could not be verified.</li><li>The <code>shopping_cart</code> contention was initially treated as unrelated partly from naming, then checked against timing and ownership.</li><li>“100 calls/second” in Performance Insights was corrected from a possible API-rate interpretation to database statement executions.</li></ul><p>The strong operational pattern is: start broad, form a hypothesis, load the smallest relevant context, query live evidence, challenge unsupported claims, disclose deeper source context, correlate across layers, and preserve the corrected result.</p></aside>
-    </section>
-
-    <!-- === 68 REPOSITORY CONTEXT ARCHITECTURE === -->
+    <!-- === 62 REPOSITORY CONTEXT ARCHITECTURE === -->
     <section class="slide" data-title="The repository routes context instead of dumping it">
-      <div class="slide-head"><div class="pill" style="background:var(--sky)">Architecture demonstrated by the incident</div><div class="slide-num">68</div></div>
+      <div class="slide-head"><div class="pill" style="background:var(--sky)">Architecture demonstrated by the incident</div><div class="slide-num">62</div></div>
       <div class="content"><div class="context-architecture">
         <div class="reveal"><h2>Index.<br>Route.<br>Verify live.<br>Distill.</h2><p class="muted" style="margin-top:30px;font-size:23px">The initial prompt does not need the whole knowledge base.</p></div>
         <div class="architecture-tree reveal">
@@ -1460,6 +1373,39 @@ First inspect the named code and summarize the current call path. Then propose t
     document.querySelectorAll('.prompt-part').forEach(button=>button.addEventListener('click',()=>{document.querySelectorAll('.prompt-part').forEach(item=>item.classList.remove('active'));button.classList.add('active');document.getElementById('promptExampleTitle').textContent=button.dataset.title;document.getElementById('promptExampleText').textContent=button.dataset.example;}));
     document.querySelectorAll('.anti-pattern').forEach(button=>button.addEventListener('click',()=>{document.querySelectorAll('.anti-pattern').forEach(item=>item.classList.remove('active'));button.classList.add('active');document.getElementById('antiTitle').textContent=button.dataset.title;document.getElementById('antiBad').textContent=`“${button.dataset.bad}”`;document.getElementById('antiRepair').textContent=button.dataset.reason;}));
     const promptFlip=document.getElementById('promptFlip');const togglePromptFlip=()=>{const flipped=promptFlip.classList.toggle('flipped');promptFlip.setAttribute('aria-pressed',String(flipped));};promptFlip?.addEventListener('click',togglePromptFlip);promptFlip?.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();togglePromptFlip();}});
+    /* === PROGRESSIVE CONTEXT INVESTIGATION === */
+    const investigationStages=[
+      {name:'Runtime symptom',color:'var(--yellow)',question:'Why did the pod restart?',context:'Live pod status, StatefulSet, probes, events, and exit status.',why:'Kubernetes can distinguish probe failure, OOM kill, eviction, process exit, and rollout.',result:'<strong>Refine:</strong> repeated liveness timeouts preceded restart; exit 137 is still ambiguous.',summary:'Kubernetes: liveness timed out; exit 137 ambiguous'},
+      {name:'Resource hypothesis',color:'var(--peach)',question:'Was this an OOM or node-pressure eviction?',context:'Requests and limits, ConfigMap, secret keys, environment, and container command.',why:'Exit 137 has multiple causes. Resource and process configuration test memory-related explanations.',result:'<strong>Reject partly:</strong> 2000Mi limit, no explicit -Xmx/-Xms, and no OOMKilling event.',summary:'OOM less likely; no OOM event or explicit heap flags'},
+      {name:'Historical metrics',color:'var(--sky)',question:'Did memory or CPU support that hypothesis?',context:'CloudWatch Container Insights for both affected pods in the incident window.',why:'Configuration shows capacity, not actual use; the restarted container’s transient state is gone.',result:'<strong>Reject:</strong> memory peaked near 570Mi, only 28.5% of the container limit.',summary:'Memory peaked at 570Mi (28.5%): OOM ruled out'},
+      {name:'JVM specifics',color:'var(--lavender)',question:'What was the actual heap ceiling?',context:'java -XX:+PrintFlagsFinal plus live JVM and Actuator inspection.',why:'No -Xmx does not prove the effective heap; inspect container-aware JVM ergonomics directly.',result:'<strong>Verify:</strong> MaxHeapSize = 524,288,000 bytes; no evidence of heap exhaustion.',summary:'Live JVM: ~500Mi heap; exhaustion unsupported'},
+      {name:'Database behavior',color:'var(--coral)',question:'Was RDS overloaded, slow, or blocked?',context:'context/RDS.md, targeted PostgreSQL logs, and Performance Insights.',why:'Requests took 135–223s; latency, query volume, and locks are plausible. First route to the correct RDS.',result:'<strong>Refine:</strong> expensive SQL and a major lock spike require causal timing analysis.',summary:'RDS: expensive SQL + lock spike found'},
+      {name:'Competing cause',color:'var(--peach)',question:'Did the shopping_cart lock storm cause the restart?',context:'Per-minute waits, top SQL, event timing, and service ownership.',why:'A shared-instance spike may precede, follow, or merely coincide with CCM degradation.',result:'<strong>Reject:</strong> CCM failed ≈16:05; the other service’s lock storm began ≈16:18.',summary:'Database lock storm was later and owned elsewhere'},
+      {name:'Application behavior',color:'var(--lime)',question:'Which code produced the expensive SQL and latency?',context:'Targeted GitLab reads on hotfix-1.82.0: service, interfaces, custom repositories.',why:'Runtime method and SQL identifiers now make a narrow source-code search possible.',result:'<strong>Validate:</strong> repeated repository queries per consumer amplify every endpoint request.',summary:'Code path amplifies each request into repeated SQL'},
+      {name:'Traffic source',color:'var(--sky)',question:'Did 100 SQL calls/s mean 100 API calls/s?',context:'OpenSearch by endpoint, pod, user, IP, correlation ID, and incident time.',why:'Database executions do not map one-to-one to HTTP requests; logs reveal arrival rate and origin.',result:'<strong>Root cause:</strong> 5–6 req/s × 135–223s produced ≈855 in flight, starving liveness.',summary:'Traffic × latency ≈855 in flight → liveness starvation'},
+      {name:'Organizational action',color:'var(--mint)',question:'Which team should receive the resulting defect?',context:'memory/PSBUGS.md ownership, Product Area ID, and assignee mapping.',why:'Routing context becomes relevant only after the technical defect is established.',result:'<strong>Preserve:</strong> PSBUGS-11378 created; durable RCA written to incident memory.',summary:'PSBUGS-11378 routed; RCA distilled to memory'}
+    ];
+    let investigationIndex=-1;
+    const investigationNext=document.getElementById('investigationNext');
+    const renderInvestigation=()=>{
+      const stage=investigationStages[investigationIndex];
+      const card=document.getElementById('investigationCard');
+      const activeContext=document.getElementById('activeContext');
+      card.style.setProperty('--stage-color',stage.color);activeContext.style.setProperty('--stage-color',stage.color);
+      document.getElementById('investigationStage').textContent=stage.name;
+      document.getElementById('investigationNumber').textContent=String(investigationIndex+1);
+      document.getElementById('investigationQuestion').textContent=stage.question;
+      document.getElementById('investigationContext').innerHTML=`<div class="eyebrow">Context disclosed</div><p>${stage.context}</p>`;
+      document.getElementById('investigationWhy').innerHTML=`<div class="eyebrow">Why now?</div><p>${stage.why}</p>`;
+      document.getElementById('investigationResult').innerHTML=stage.result;
+      const completed=investigationStages.slice(0,investigationIndex+1);const visible=completed.slice(-4);const compressed=completed.length-visible.length;
+      document.getElementById('contextTank').innerHTML=`${compressed?`<div class="tank-summary">${compressed} earlier conclusion${compressed===1?'':'s'} compressed</div>`:''}${visible.map((item,index)=>`<div class="tank-item ${index===visible.length-1?'current':''}">${item.summary}</div>`).join('')}`;
+      document.getElementById('contextCount').textContent=`${investigationIndex+1} / ${investigationStages.length} layers`;
+      activeContext.style.setProperty('--fill',`${12+(investigationIndex+1)*8}%`);
+      document.getElementById('investigationProgress').style.setProperty('--progress',`${((investigationIndex+1)/investigationStages.length)*100}%`);
+      investigationNext.textContent=investigationIndex===investigationStages.length-1?'Restart investigation':`Disclose stage ${investigationIndex+2}`;
+    };
+    investigationNext?.addEventListener('click',()=>{investigationIndex=investigationIndex===investigationStages.length-1?-1:investigationIndex+1;if(investigationIndex===-1){location.reload();return;}renderInvestigation();});
     const deck=new SlidePresentation();const editor=new InlineEditor();const toggle=document.getElementById('editToggle');const hotzone=document.querySelector('.edit-hotzone');let hideTimer;
     toggle.addEventListener('click',()=>editor.toggle());hotzone.addEventListener('click',()=>editor.toggle());hotzone.addEventListener('mouseenter',()=>{clearTimeout(hideTimer);toggle.classList.add('show')});hotzone.addEventListener('mouseleave',()=>hideTimer=setTimeout(()=>{if(!editor.active)toggle.classList.remove('show')},400));toggle.addEventListener('mouseenter',()=>clearTimeout(hideTimer));toggle.addEventListener('mouseleave',()=>hideTimer=setTimeout(()=>{if(!editor.active)toggle.classList.remove('show')},400));document.addEventListener('keydown',e=>{if(e.key.toLowerCase()==='e'&&!e.target.isContentEditable)editor.toggle();if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='s'&&editor.active){e.preventDefault();editor.save();}});
   </script>
