@@ -397,14 +397,16 @@
     .investigation-stage-label { display:flex;align-items:center;justify-content:space-between;margin-bottom:22px; }
     .investigation-stage-label span { font-size:15px;font-weight:700;letter-spacing:.13em;text-transform:uppercase; }
     .investigation-stage-label strong { font:800 53px/1 "Bodoni Moda";color:var(--stage-color); }
-    .investigation-question { font:700 39px/1.05 "Bodoni Moda";min-height:82px; }
-    .investigation-flow { display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px; }
-    .investigation-block { min-height:150px;border:3px solid;border-radius:24px;padding:19px 21px;background:var(--cream); }
-    .investigation-block .eyebrow { font-size:13px;margin-bottom:9px; }
-    .investigation-block p { font-size:17px;line-height:1.3; }
-    .investigation-block.context-block { background:var(--stage-color);animation:contextArrives .55s var(--ease); }
-    .investigation-result { margin-top:16px;border:3px solid;border-radius:24px;padding:15px 20px;background:var(--ink);color:var(--cream);font-size:16px;font-weight:600;line-height:1.3;display:grid;grid-template-columns:1fr 1fr;gap:22px; }
-    .investigation-result strong { display:block;color:var(--yellow);font-size:12px;letter-spacing:.11em;text-transform:uppercase;margin-bottom:5px; }
+    .investigation-question { font:700 37px/1.05 "Bodoni Moda";min-height:76px; }
+    .reasoning-chain { display:grid;grid-template-columns:1fr 34px 1fr 34px 1fr 34px 1fr;align-items:stretch;margin-top:22px; }
+    .reasoning-node { min-width:0;min-height:245px;border:3px solid;border-radius:25px;padding:22px 20px;background:var(--cream);display:flex;flex-direction:column; }
+    .reasoning-node .eyebrow { font-size:12px;margin-bottom:14px; }
+    .reasoning-node p { font-size:16px;line-height:1.3; }
+    .reasoning-node.context-node { background:var(--stage-color);animation:contextArrives .55s var(--ease); }
+    .reasoning-node.evidence-node { background:var(--ink);color:var(--cream); }
+    .reasoning-node.evidence-node .eyebrow { color:var(--yellow); }
+    .reasoning-node.next-node { background:var(--white); }
+    .reasoning-arrow { display:grid;place-items:center;font:800 30px "Bodoni Moda"; }
     .investigation-controls { display:flex;align-items:center;gap:18px; }
     .investigation-next,.investigation-previous { min-width:210px;border:3px solid;border-radius:999px;padding:17px 25px;color:var(--ink);font:700 16px "Space Grotesk";letter-spacing:.08em;text-transform:uppercase;cursor:pointer;box-shadow:6px 6px 0 var(--shadow); }
     .investigation-next { background:var(--yellow); }
@@ -1144,11 +1146,12 @@ First inspect the named code and summarize the current call path. Then propose t
           <div class="investigation-card" id="investigationCard" style="--stage-color:var(--yellow)">
             <div class="investigation-stage-label"><span id="investigationStage">Starting point</span><strong id="investigationNumber">0</strong></div>
             <div class="investigation-question" id="investigationQuestion">What is the smallest context needed to explain the restart?</div>
-            <div class="investigation-flow">
-              <div class="investigation-block context-block" id="investigationContext"><div class="eyebrow">Context to retrieve</div><p>Nothing beyond the reported symptom yet.</p></div>
-              <div class="investigation-block" id="investigationWhy"><div class="eyebrow">Why now?</div><p>Begin with the incident, not the entire operational knowledge base.</p></div>
+            <div class="reasoning-chain" aria-label="Investigation reasoning chain">
+              <div class="reasoning-node" id="investigationHypothesis"><div class="eyebrow">Hypothesis</div><p>Probe failure, OOM, eviction, process exit, or rollout.</p></div><div class="reasoning-arrow">→</div>
+              <div class="reasoning-node context-node" id="investigationContext"><div class="eyebrow">Disclose</div><p>Only the reported symptom.</p></div><div class="reasoning-arrow">→</div>
+              <div class="reasoning-node evidence-node" id="investigationEvidence"><div class="eyebrow">Evidence</div><p>Cause remains unclassified.</p></div><div class="reasoning-arrow">→</div>
+              <div class="reasoning-node next-node" id="investigationNextStep"><div class="eyebrow">Next</div><p>Classify the restart before opening application internals.</p></div>
             </div>
-            <div class="investigation-result" id="investigationResult"><div><strong>Current uncertainty</strong>Probe failure, OOM, eviction, process exit, or rollout are all possible.</div><div><strong>First move</strong>Classify the restart before examining application internals.</div></div>
           </div>
           <div class="investigation-controls"><button class="investigation-previous" id="investigationPrevious" type="button" disabled>Previous</button><button class="investigation-next" id="investigationNext" type="button">Disclose stage 1</button><div class="investigation-progress" aria-label="Investigation progress"><span id="investigationProgress" style="--progress:0%"></span></div></div>
         </div>
@@ -1378,7 +1381,7 @@ First inspect the named code and summarize the current call path. Then propose t
     const promptFlip=document.getElementById('promptFlip');const togglePromptFlip=()=>{const flipped=promptFlip.classList.toggle('flipped');promptFlip.setAttribute('aria-pressed',String(flipped));};promptFlip?.addEventListener('click',togglePromptFlip);promptFlip?.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();togglePromptFlip();}});
     /* === PROGRESSIVE CONTEXT INVESTIGATION === */
     const investigationStages=[
-      {name:'Classify the restart',color:'var(--yellow)',question:'Crash, rollout, eviction, OOM, or failed probe?',context:'Pod status, previous container state, StatefulSet, probes, and events.',why:'Kubernetes is authoritative for who terminated the container and why.',evidence:'Repeated liveness timeouts; exit 137; no direct OOMKilled reason.',next:'Mechanism found: Kubernetes killed it after probe failures. Test memory as the underlying cause.',summary:'Probe failures → Kubernetes kill; exit 137 ambiguous'},
+      {name:'Classify the restart',color:'var(--yellow)',question:'Crash, rollout, eviction, OOM, or failed probe?',hypothesis:'The restart may be a crash, rollout, eviction, OOM kill, or failed health probe.',context:'Pod state, StatefulSet, probes, events. Kubernetes is authoritative for termination.',why:'Kubernetes is authoritative for who terminated the container and why.',evidence:'Repeated liveness timeouts; exit 137; no direct OOMKilled reason.',next:'Kubernetes killed it after probe failures. Test memory as the underlying cause.',summary:'Probe failures → Kubernetes kill; exit 137 ambiguous'},
       {name:'Test memory configuration',color:'var(--peach)',question:'OOM, or vulnerable to node-pressure eviction?',context:'Requests/limits, ConfigMap, secrets, environment, and container command.',why:'The spec exposes memory boundaries, QoS implications, and explicit JVM settings.',evidence:'Limit 2000Mi; request 570Mi; no -Xmx, -Xms, or JAVA_OPTS.',next:'Configuration cannot prove exhaustion. Retrieve historical consumption at restart time.',summary:'2000Mi limit; 570Mi request; no heap flags'},
       {name:'Compare actual memory',color:'var(--sky)',question:'Did the container actually approach 2 GiB?',context:'CloudWatch memory metrics for both CCM pods during the incident window.',why:'The old container is gone; current kubectl top cannot reconstruct its pre-restart peak.',evidence:'Affected pod peaked near 570Mi: 28.5% of limit. No OOM event.',next:'Reject container OOM. Verify whether the JVM chose a small heap that could still create pressure.',summary:'570Mi peak (28.5%): container OOM rejected'},
       {name:'Verify JVM behavior',color:'var(--lavender)',question:'Did a small ergonomic heap cause severe pressure?',context:'PrintFlagsFinal, process command line, and available Actuator endpoints.',why:'A guessed 25% ergonomic heap depends on JVM and container-support settings; measure it.',evidence:'UseContainerSupport enabled; MaxHeapSize exactly 524,288,000 B; no explicit flags.',next:'Small heap verified, exhaustion not proven. 135–223s request logs shift attention to blocking and RDS.',summary:'~500Mi JVM heap verified; exhaustion unproven'},
@@ -1398,9 +1401,10 @@ First inspect the named code and summarize the current call path. Then propose t
       card.style.setProperty('--stage-color','var(--yellow)');activeContext.style.setProperty('--stage-color','var(--yellow)');activeContext.style.setProperty('--fill','7%');
       document.getElementById('investigationStage').textContent='Starting point';document.getElementById('investigationNumber').textContent='0';
       document.getElementById('investigationQuestion').textContent='What is the smallest context needed to explain the restart?';
-      document.getElementById('investigationContext').innerHTML='<div class="eyebrow">Context to retrieve</div><p>Nothing beyond the reported symptom yet.</p>';
-      document.getElementById('investigationWhy').innerHTML='<div class="eyebrow">Why now?</div><p>Begin with the incident, not the entire operational knowledge base.</p>';
-      document.getElementById('investigationResult').innerHTML='<div><strong>Current uncertainty</strong>Probe failure, OOM, eviction, process exit, or rollout are all possible.</div><div><strong>First move</strong>Classify the restart before examining application internals.</div>';
+      document.getElementById('investigationHypothesis').innerHTML='<div class="eyebrow">Hypothesis</div><p>Probe failure, OOM, eviction, process exit, or rollout.</p>';
+      document.getElementById('investigationContext').innerHTML='<div class="eyebrow">Disclose</div><p>Only the reported symptom.</p>';
+      document.getElementById('investigationEvidence').innerHTML='<div class="eyebrow">Evidence</div><p>Cause remains unclassified.</p>';
+      document.getElementById('investigationNextStep').innerHTML='<div class="eyebrow">Next</div><p>Classify the restart before opening application internals.</p>';
       document.getElementById('contextTank').innerHTML='<div class="tank-summary">Raw evidence enters only when a hypothesis requires it.</div><div class="tank-item current">Incident: production CCM pod restarted</div>';
       document.getElementById('contextCount').textContent='Symptom only';document.getElementById('investigationProgress').style.setProperty('--progress','0%');
       investigationPrevious.disabled=true;investigationNext.textContent='Disclose stage 1';
@@ -1413,9 +1417,10 @@ First inspect the named code and summarize the current call path. Then propose t
       document.getElementById('investigationStage').textContent=stage.name;
       document.getElementById('investigationNumber').textContent=String(investigationIndex+1);
       document.getElementById('investigationQuestion').textContent=stage.question;
-      document.getElementById('investigationContext').innerHTML=`<div class="eyebrow">Context disclosed</div><p>${stage.context}</p>`;
-      document.getElementById('investigationWhy').innerHTML=`<div class="eyebrow">Why now?</div><p>${stage.why}</p>`;
-      document.getElementById('investigationResult').innerHTML=`<div><strong>Evidence obtained</strong>${stage.evidence}</div><div><strong>Therefore, next...</strong>${stage.next}</div>`;
+      document.getElementById('investigationHypothesis').innerHTML=`<div class="eyebrow">Hypothesis</div><p>${stage.hypothesis||stage.question}</p>`;
+      document.getElementById('investigationContext').innerHTML=`<div class="eyebrow">Disclose</div><p>${stage.context}<br><br><strong>Why:</strong> ${stage.why}</p>`;
+      document.getElementById('investigationEvidence').innerHTML=`<div class="eyebrow">Evidence</div><p>${stage.evidence}</p>`;
+      document.getElementById('investigationNextStep').innerHTML=`<div class="eyebrow">Next</div><p>${stage.next}</p>`;
       const completed=investigationStages.slice(0,investigationIndex+1);const visible=completed.slice(-4);const compressed=completed.length-visible.length;
       document.getElementById('contextTank').innerHTML=`${compressed?`<div class="tank-summary">${compressed} earlier conclusion${compressed===1?'':'s'} compressed</div>`:''}${visible.map((item,index)=>`<div class="tank-item ${index===visible.length-1?'current':''}">${item.summary}</div>`).join('')}`;
       document.getElementById('contextCount').textContent=`${investigationIndex+1} / ${investigationStages.length} layers`;
