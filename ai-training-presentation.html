@@ -371,6 +371,16 @@
     .context-consequence strong { font:800 42px/.95 "Bodoni Moda";letter-spacing:-.035em; }
     .context-consequence span { font-size:18px;font-weight:600;line-height:1.25; }
     @keyframes contextFill { from { width:18%; } to { width:89%; } }
+    .context-quality-stage { position:relative;height:735px;display:grid;grid-template-columns:620px 1fr;gap:64px;align-items:center; }
+    .context-quality-copy h2 { font-size:82px;line-height:.96; }
+    .context-quality-copy p { margin-top:32px;max-width:540px;font-size:25px; }
+    .quality-lenses { display:grid;grid-template-columns:repeat(2,1fr);gap:17px;align-content:center; }
+    .quality-lens { min-height:145px;border:3px solid var(--outline);border-radius:30px;padding:22px 25px;background:var(--white);box-shadow:6px 6px 0 var(--shadow);display:grid;grid-template-columns:58px 1fr;gap:17px;align-items:center;transition:transform .25s var(--ease),background .25s var(--ease); }
+    .quality-lens:hover { transform:translate(-4px,-4px) rotate(-.5deg);background:var(--lens-color); }
+    .quality-lens .lens-mark { width:54px;height:54px;border:3px solid;border-radius:50%;display:grid;place-items:center;background:var(--lens-color);font:800 24px "Bodoni Moda"; }
+    .quality-lens h3 { font-size:28px;letter-spacing:-.02em; }
+    .quality-lens p { margin-top:7px;font-size:16px;line-height:1.25; }
+    .quality-lens:last-child { grid-column:1 / -1;min-height:120px;grid-template-columns:58px 1fr; }
 
 
 
@@ -1061,6 +1071,24 @@ First inspect the named code and summarize the current call path. Then propose t
         </div>
       </div></div>
       <aside class="speaker-notes"><p><strong>Why should we care about managing context?</strong> Because both excess and missing context impose real costs.</p><ul><li><strong>Token cost:</strong> Models process the supplied context on each turn. Unnecessary files, logs, tool output, and repeated history increase input-token spend and often latency without improving the answer.</li><li><strong>Context rot:</strong> A larger context window does not guarantee that every detail will be used reliably. As conversations and agent traces grow, relevant instructions and evidence can become diluted, overlooked, or confused with stale information, degrading model performance.</li><li><strong>Earlier compaction:</strong> Harnesses eventually summarize or discard older context to remain within the model's window. Filling that window with low-value material means less productive work can happen before compaction, and summaries can lose detail that later becomes important.</li><li><strong>Attention and grounding:</strong> Irrelevant context can distract the model toward the wrong files, examples, or hypotheses. The opposite failure is equally important: when required constraints, repository conventions, errors, or business facts are missing, the model must guess or stop.</li></ul><p>The objective of context engineering is therefore not to provide as much context as possible. It is to provide the <strong>smallest complete, relevant, current, and trustworthy context</strong> needed for the next task or decision.</p></aside>
+    </section>
+
+    <!-- === 60 CONTEXT QUALITY CRITERIA === -->
+    <section class="slide" data-title="Context quality criteria">
+      <div class="slide-head"><div class="pill" style="background:var(--mint)">Context pre-flight · inspect before adding</div><div class="slide-num">60</div></div>
+      <div class="content"><div class="context-quality-stage">
+        <div class="context-quality-copy reveal"><div class="eyebrow">Before information enters the window</div><h2>Make every token<br>earn its place.</h2><p class="muted">Seven questions separate useful evidence from expensive noise.</p></div>
+        <div class="quality-lenses reveal" aria-label="Seven context quality criteria">
+          <div class="quality-lens" style="--lens-color:var(--yellow)"><div class="lens-mark">R</div><div><h3>Relevance</h3><p>Does it affect this decision?</p></div></div>
+          <div class="quality-lens" style="--lens-color:var(--sky)"><div class="lens-mark">A</div><div><h3>Authority</h3><p>Canonical source or direct evidence?</p></div></div>
+          <div class="quality-lens" style="--lens-color:var(--coral)"><div class="lens-mark">F</div><div><h3>Freshness</h3><p>Could it describe an older system?</p></div></div>
+          <div class="quality-lens" style="--lens-color:var(--lime)"><div class="lens-mark">S</div><div><h3>Sufficiency</h3><p>Enough information to avoid invention?</p></div></div>
+          <div class="quality-lens" style="--lens-color:var(--lavender)"><div class="lens-mark">S</div><div><h3>Specificity</h3><p>Concrete files, symbols, commands, behavior?</p></div></div>
+          <div class="quality-lens" style="--lens-color:var(--peach)"><div class="lens-mark">C</div><div><h3>Consistency</h3><p>Does it conflict with another source?</p></div></div>
+          <div class="quality-lens" style="--lens-color:var(--mint)"><div class="lens-mark">E</div><div><h3>Economy</h3><p>Can fewer, clearer tokens communicate the same information?</p></div></div>
+        </div>
+      </div></div>
+      <aside class="speaker-notes"><p>Before adding information to the context, evaluate it against seven quality criteria:</p><ul><li><strong>Relevance:</strong> Does this information affect the current decision? Context that is generally interesting but immaterial to the immediate task competes with useful evidence.</li><li><strong>Authority:</strong> Is it a canonical source, current source code, or direct runtime evidence? Prefer the sources closest to reality over recollections, generated summaries, duplicated documentation, or speculation.</li><li><strong>Freshness:</strong> Could it describe an older version of the system? Check dates, branches, deployed versions, dependency versions, and whether documentation still matches the code.</li><li><strong>Sufficiency:</strong> Does the assistant have enough information to avoid inventing missing details? Include the constraints, behavior, evidence, and success conditions needed to act, or instruct the assistant to inspect or ask rather than guess.</li><li><strong>Specificity:</strong> Does the context identify concrete files, symbols, commands, or behavior? Precise anchors help the assistant locate and verify the relevant implementation.</li><li><strong>Consistency:</strong> Does it conflict with another instruction or document? Resolve conflicts or state the applicable precedence; do not leave the model to choose silently between incompatible sources.</li><li><strong>Economy:</strong> Can the same information be communicated with fewer, clearer tokens? Remove repetition and low-value output without deleting details required for correct decisions.</li></ul><p>These criteria are a pre-flight check, not a demand for perfect documentation. The practical question is whether each context item increases the probability of a correct, grounded next action enough to justify the attention and tokens it consumes.</p></aside>
     </section>
   </main></div>
 
