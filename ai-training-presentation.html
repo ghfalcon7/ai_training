@@ -354,6 +354,24 @@
     .prompt-flip.flipped .prompt-face.back { opacity:1;transform:translateX(0) scale(1);pointer-events:auto; }
     .flip-action { position:absolute;right:40px;bottom:34px;border:3px solid;border-radius:999px;padding:15px 25px;background:var(--yellow);color:var(--ink);font:600 16px "Space Grotesk";letter-spacing:.08em;text-transform:uppercase; }
 
+    /* === CONTEXT ENGINEERING === */
+    .context-cost-stage { position:relative;height:735px;display:grid;grid-template-columns:690px 1fr;gap:76px;align-items:center; }
+    .context-cost-copy h2 { font-size:88px;line-height:.96; }
+    .context-cost-copy p { margin-top:34px;max-width:610px;font-size:26px; }
+    .context-window { position:relative;height:650px;border:3px solid var(--outline);border-radius:48px;background:var(--ink);box-shadow:12px 12px 0 var(--shadow);overflow:hidden; }
+    .context-window::before { content:"CONTEXT WINDOW";position:absolute;left:35px;top:28px;color:var(--cream);font-size:15px;font-weight:600;letter-spacing:.16em; }
+    .context-meter { position:absolute;left:36px;right:36px;top:78px;height:28px;border:2px solid var(--cream);border-radius:999px;overflow:hidden; }
+    .context-meter::before { content:"";display:block;width:89%;height:100%;background:linear-gradient(90deg,var(--mint) 0 24%,var(--yellow) 24% 53%,var(--coral) 53%);animation:contextFill 2.2s var(--ease) both; }
+    .context-consequences { position:absolute;inset:138px 35px 34px;display:grid;grid-template-columns:1fr 1fr;gap:20px; }
+    .context-consequence { border:3px solid var(--outline);border-radius:30px;padding:28px;background:var(--cream);display:flex;flex-direction:column;justify-content:space-between;transform:rotate(var(--tilt)); }
+    .context-consequence:nth-child(1) { --tilt:-1.5deg;background:var(--yellow); }
+    .context-consequence:nth-child(2) { --tilt:1.2deg;background:var(--coral); }
+    .context-consequence:nth-child(3) { --tilt:1deg;background:var(--sky); }
+    .context-consequence:nth-child(4) { --tilt:-1.2deg;background:var(--lavender); }
+    .context-consequence strong { font:800 42px/.95 "Bodoni Moda";letter-spacing:-.035em; }
+    .context-consequence span { font-size:18px;font-weight:600;line-height:1.25; }
+    @keyframes contextFill { from { width:18%; } to { width:89%; } }
+
 
 
 
@@ -1025,6 +1043,24 @@ Keep the current Checkout API response schema, add no dependency, and do not cha
 First inspect the named code and summarize the current call path. Then propose the smallest implementation plan and wait for approval before editing. Reuse an existing timeout error if one exists. If timeout ownership or retry semantics remain unclear, ask one focused question instead of guessing.</p><div class="flip-action">Reset</div></div>
       </div></div></div>
       <aside class="speaker-notes"><p>Begin with the exact weak prompt used on slide 56, then click the card. The corrected prompt is not better because it is longer; it is better because every sentence removes consequential ambiguity.</p><p>Point out the transformation: the role-playing phrase is replaced by observed behavior and impact; the desired timeout and API result are explicit; concrete symbols, paths, a comparable implementation, and trace evidence orient the assistant; constraints protect compatibility and existing declined-payment behavior; acceptance criteria identify the tests and unchanged behavior; the requested interaction requires inspection and a plan before edits; and uncertainty handling prevents invented conventions or retry semantics.</p><p>This full prompt is written as a natural request rather than a rigid template. The eight-part structure is a thinking aid, not mandatory formatting.</p></aside>
+    </section>
+
+    <!-- === 59 WHY CONTEXT MANAGEMENT MATTERS === -->
+    <section class="slide" data-title="Why context management matters">
+      <div class="slide-head"><div class="pill" style="background:var(--sky)">Topic 2.3 · Context engineering</div><div class="slide-num">59</div></div>
+      <div class="content"><div class="context-cost-stage">
+        <div class="context-cost-copy reveal"><div class="eyebrow">More context is not free</div><h2>Manage the window,<br>or pay four times.</h2><p class="muted">The goal is not maximum context. It is the smallest complete context for the task.</p></div>
+        <div class="context-window reveal" aria-label="Four costs of unmanaged context">
+          <div class="context-meter" aria-hidden="true"></div>
+          <div class="context-consequences">
+            <div class="context-consequence"><strong>Token<br>cost</strong><span>Every irrelevant token is processed again.</span></div>
+            <div class="context-consequence"><strong>Context<br>rot</strong><span>Performance degrades as useful signals get buried.</span></div>
+            <div class="context-consequence"><strong>Earlier<br>compaction</strong><span>Less useful work fits before history is compressed.</span></div>
+            <div class="context-consequence"><strong>Wrong<br>attention</strong><span>Noise distracts; missing facts force guesses.</span></div>
+          </div>
+        </div>
+      </div></div>
+      <aside class="speaker-notes"><p><strong>Why should we care about managing context?</strong> Because both excess and missing context impose real costs.</p><ul><li><strong>Token cost:</strong> Models process the supplied context on each turn. Unnecessary files, logs, tool output, and repeated history increase input-token spend and often latency without improving the answer.</li><li><strong>Context rot:</strong> A larger context window does not guarantee that every detail will be used reliably. As conversations and agent traces grow, relevant instructions and evidence can become diluted, overlooked, or confused with stale information, degrading model performance.</li><li><strong>Earlier compaction:</strong> Harnesses eventually summarize or discard older context to remain within the model's window. Filling that window with low-value material means less productive work can happen before compaction, and summaries can lose detail that later becomes important.</li><li><strong>Attention and grounding:</strong> Irrelevant context can distract the model toward the wrong files, examples, or hypotheses. The opposite failure is equally important: when required constraints, repository conventions, errors, or business facts are missing, the model must guess or stop.</li></ul><p>The objective of context engineering is therefore not to provide as much context as possible. It is to provide the <strong>smallest complete, relevant, current, and trustworthy context</strong> needed for the next task or decision.</p></aside>
     </section>
   </main></div>
 
