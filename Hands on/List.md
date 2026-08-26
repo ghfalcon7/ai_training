@@ -1,4 +1,4 @@
-in the skills section, we can dissect the 
+in the skills section, we can dissect https://github.com/addyosmani/agent-skills/tree/main/skills
 make sure the participants have opencode and they can use it to run their day to day commands (git, docker, kubectl, aws, read/edit files..), windows users can use wsl? linux users should be good.
 
 Ask the participants before hand what tasks currently they feel they are struggling with in their day to day work and would like to explore how to do them better with AI. 

@@ -393,20 +393,20 @@
     .investigation-console { display:grid;grid-template-rows:auto 1fr auto;gap:20px;min-width:0; }
     .incident-title { display:flex;align-items:center;gap:18px;border:3px solid;border-radius:999px;padding:15px 24px;background:var(--coral);font-size:20px;font-weight:700; }
     .incident-title::before { content:"!";width:38px;height:38px;border:3px solid;border-radius:50%;display:grid;place-items:center;background:var(--cream);font:800 24px "Bodoni Moda";flex:none; }
-    .investigation-card { position:relative;padding:32px 36px;border:3px solid;border-radius:35px;background:var(--white);box-shadow:9px 9px 0 var(--shadow);overflow:hidden; }
-    .investigation-stage-label { display:flex;align-items:center;justify-content:space-between;margin-bottom:22px; }
+    .investigation-card { position:relative;overflow:hidden; }
+    .investigation-stage-label { display:flex;align-items:center;justify-content:space-between;margin:0 4px 16px; }
     .investigation-stage-label span { font-size:15px;font-weight:700;letter-spacing:.13em;text-transform:uppercase; }
     .investigation-stage-label strong { font:800 53px/1 "Bodoni Moda";color:var(--stage-color); }
-    .investigation-question { font:700 37px/1.05 "Bodoni Moda";min-height:76px; }
-    .reasoning-chain { display:grid;grid-template-columns:1fr 34px 1fr 34px 1fr 34px 1fr;align-items:stretch;margin-top:22px; }
-    .reasoning-node { min-width:0;min-height:245px;border:3px solid;border-radius:25px;padding:22px 20px;background:var(--cream);display:flex;flex-direction:column; }
+    .investigation-question { font:700 29px/1.05 "Bodoni Moda";min-height:34px;margin:0 4px 16px; }
+    .reasoning-viewport { width:100%;overflow:hidden;padding:0 8px 10px; }
+    .reasoning-chain { display:flex;gap:44px;align-items:stretch;will-change:transform;transform:translateX(0); }
+    .reasoning-chain.moving { transition:transform .78s var(--ease); }
+    .reasoning-node { flex:0 0 calc(50% - 22px);min-width:0;height:390px;border:3px solid;border-radius:25px;padding:28px 26px;background:var(--cream);display:flex;flex-direction:column;overflow:hidden;box-shadow:7px 7px 0 var(--shadow); }
     .reasoning-node .eyebrow { font-size:12px;margin-bottom:14px; }
-    .reasoning-node p { font-size:16px;line-height:1.3; }
-    .reasoning-node.context-node { background:var(--stage-color);animation:contextArrives .55s var(--ease); }
+    .reasoning-node p { flex:1;min-height:0;overflow:hidden;font-size:17px;line-height:1.3; }
+    .reasoning-node.context-node { background:var(--node-color,var(--mint)); }
     .reasoning-node.evidence-node { background:var(--ink);color:var(--cream); }
     .reasoning-node.evidence-node .eyebrow { color:var(--yellow); }
-    .reasoning-node.next-node { background:var(--white); }
-    .reasoning-arrow { display:grid;place-items:center;font:800 30px "Bodoni Moda"; }
     .investigation-controls { display:flex;align-items:center;gap:18px; }
     .investigation-next,.investigation-previous { min-width:210px;border:3px solid;border-radius:999px;padding:17px 25px;color:var(--ink);font:700 16px "Space Grotesk";letter-spacing:.08em;text-transform:uppercase;cursor:pointer;box-shadow:6px 6px 0 var(--shadow); }
     .investigation-next { background:var(--yellow); }
@@ -1145,19 +1145,14 @@ First inspect the named code and summarize the current call path. Then propose t
           <div class="incident-title">A production customers-contracts-manager pod restarted</div>
           <div class="investigation-card" id="investigationCard" style="--stage-color:var(--yellow)">
             <div class="investigation-stage-label"><span id="investigationStage">Starting point</span><strong id="investigationNumber">0</strong></div>
-            <div class="investigation-question" id="investigationQuestion">What is the smallest context needed to explain the restart?</div>
-            <div class="reasoning-chain" aria-label="Investigation reasoning chain">
-              <div class="reasoning-node" id="investigationHypothesis"><div class="eyebrow">Hypothesis</div><p>Probe failure, OOM, eviction, process exit, or rollout.</p></div><div class="reasoning-arrow">→</div>
-              <div class="reasoning-node context-node" id="investigationContext"><div class="eyebrow">Disclose</div><p>Only the reported symptom.</p></div><div class="reasoning-arrow">→</div>
-              <div class="reasoning-node evidence-node" id="investigationEvidence"><div class="eyebrow">Evidence</div><p>Cause remains unclassified.</p></div><div class="reasoning-arrow">→</div>
-              <div class="reasoning-node next-node" id="investigationNextStep"><div class="eyebrow">Next</div><p>Classify the restart before opening application internals.</p></div>
-            </div>
+            <div class="investigation-question" id="investigationQuestion">Follow evidence, not the first plausible cause.</div>
+            <div class="reasoning-viewport"><div class="reasoning-chain" id="reasoningChain" aria-label="Investigation reasoning chain"></div></div>
           </div>
           <div class="investigation-controls"><button class="investigation-previous" id="investigationPrevious" type="button" disabled>Previous</button><button class="investigation-next" id="investigationNext" type="button">Disclose stage 1</button><div class="investigation-progress" aria-label="Investigation progress"><span id="investigationProgress" style="--progress:0%"></span></div></div>
         </div>
         <div class="active-context" id="activeContext" style="--fill:7%;--stage-color:var(--yellow)">
           <div class="context-tank-head"><h3>Active Context</h3><span id="contextCount">Symptom only</span></div>
-          <div class="context-tank" id="contextTank"><div class="tank-summary">Raw evidence enters only when a hypothesis requires it.</div><div class="tank-item current">Incident: production CCM pod restarted</div></div>
+          <div class="context-tank" id="contextTank"><div class="tank-summary">Checked context accumulates; irrelevant context stays out.</div><div class="tank-item current">Incident: production CCM pod restarted</div></div>
         </div>
       </div></div>
       <aside class="speaker-notes"><p><strong>How to present:</strong> Start with only the incident. Each click answers five questions: what is uncertain, what minimum context is disclosed, why that source is needed now, what evidence it provides, and how that evidence determines the next retrieval. In this case, the tank retains every disclosed conclusion throughout the investigation.</p><ol><li><strong>Classify the restart.</strong> Possible causes were application crash, deployment, eviction, OOM, or failed probe. Kubernetes pod status, previous state, StatefulSet, probes, and events showed repeated liveness timeouts, exit 137, and no direct <code>OOMKilled</code>. Kubernetes caused termination after probe failures, but memory could still explain unresponsiveness, so test it next.</li><li><strong>Test memory configuration.</strong> Resources, ConfigMap, secrets, environment, and command showed a 2000Mi limit, initial 570Mi request, and no <code>-Xmx</code>, <code>-Xms</code>, or <code>JAVA_OPTS</code>. This justified retrieving historical usage: capacity does not prove consumption.</li><li><strong>Compare actual use.</strong> CloudWatch retained pre-restart evidence unavailable from current <code>kubectl top</code>. The pod peaked around 570Mi, 28.5% of its limit, with no OOM event. Container OOM was rejected, but the similar 570Mi footprint raised the JVM-heap question.</li><li><strong>Verify JVM behavior.</strong> <code>java -XX:+PrintFlagsFinal</code>, process command, and Actuator showed <code>UseContainerSupport</code> and <code>MaxHeapSize = 524288000</code> bytes without explicit flags. A small heap was verified, but no GC or exhaustion evidence existed. Logs showing 135–223 second requests redirected the investigation toward blocking and RDS.</li><li><strong>Test database latency.</strong> <code>context/RDS.md</code> supplied the correct instance and PI resource. PostgreSQL logs and PI showed repeated CCM SQL, elevated load, and a later, larger <code>shopping_cart</code> <code>Lock:tuple</code> spike. Timing and ownership had to separate two hypotheses.</li><li><strong>Evaluate the competing cause.</strong> Per-minute waits and SQL showed CCM saturation around 16:05 UTC and the lock storm around 16:18–16:21. The user confirmed <code>shopping_cart</code> belonged to another service. It may have added shared-instance pressure but could not explain onset, so attention returned to repeated CCM SQL.</li><li><strong>Map SQL to code.</strong> Focused reads of <code>RegularConsumerServiceImpl</code>, <code>RegularConsumerCustomRepositoryImpl</code>, and <code>ContractProductConsumerRepository</code> on <code>hotfix-1.82.0</code> showed <code>findConsumerAggregatesByCustomer</code> calling <code>findContractProductConsumerByConsumerBusinessId(...)</code> inside a consumer stream, plus a broad <code>contractProducts</code> graph. One request could therefore produce many calls, but HTTP rate was still unknown.</li><li><strong>Separate SQL rate from HTTP rate.</strong> OpenSearch filters by endpoint, time, pod, user, IP, session, and correlation ID found 7,286 requests across both pods from 16:00–16:22 UTC, about 5–6 requests/s. <code>rueckdeuapi</code> represented 97.4% of authenticated traffic, and requests lasted 135–223 seconds. Moderate sustained traffic was being amplified and accumulating.</li><li><strong>Explain probe starvation quantitatively.</strong> Request rates and durations plus observed Tomcat thread names and no custom pool override allowed a capacity comparison. Little's Law gives approximately <code>5.7 requests/s × 150 seconds = 855</code> in flight; logs showed about 200 request-processing threads. Long requests occupied effective capacity, preventing liveness service before timeout.</li><li><strong>Route the action.</strong> Only now disclose <code>memory/PSBUGS.md</code>. It mapped CCM to Customer &amp; Contracts, Product Area child <code>17810</code>, assigned to <code>Zammouri.Refka</code>. Create <a href="https://sb-jira.ads.local/browse/PSBUGS-11378">PSBUGS-11378</a> with the N+1 path, impact, metrics, and proposed batch-query fix; preserve the RCA at <code>memory/incidents/2026-03-27-ccm-pod-restart.md</code>.</li></ol><p><strong>Core lesson:</strong> Progressive disclosure retrieves context only when the current hypothesis makes it relevant; this investigation retained the resulting context without compaction.</p></aside>
@@ -1381,56 +1376,214 @@ First inspect the named code and summarize the current call path. Then propose t
     const promptFlip=document.getElementById('promptFlip');const togglePromptFlip=()=>{const flipped=promptFlip.classList.toggle('flipped');promptFlip.setAttribute('aria-pressed',String(flipped));};promptFlip?.addEventListener('click',togglePromptFlip);promptFlip?.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();togglePromptFlip();}});
     /* === PROGRESSIVE CONTEXT INVESTIGATION === */
     const investigationStages=[
-      {name:'Classify the restart',color:'var(--yellow)',question:'Crash, rollout, eviction, OOM, or failed probe?',hypothesis:'The restart may be a crash, rollout, eviction, OOM kill, or failed health probe.',context:'Pod state, StatefulSet, probes, events. Kubernetes is authoritative for termination.',why:'Kubernetes is authoritative for who terminated the container and why.',evidence:'Repeated liveness timeouts; exit 137; no direct OOMKilled reason.',next:'Kubernetes killed it after probe failures. Test memory as the underlying cause.',summary:'Probe failures → Kubernetes kill; exit 137 ambiguous'},
-      {name:'Test memory configuration',color:'var(--peach)',question:'OOM, or vulnerable to node-pressure eviction?',context:'Requests/limits, ConfigMap, secrets, environment, and container command.',why:'The spec exposes memory boundaries, QoS implications, and explicit JVM settings.',evidence:'Limit 2000Mi; request 570Mi; no -Xmx, -Xms, or JAVA_OPTS.',next:'Configuration cannot prove exhaustion. Retrieve historical consumption at restart time.',summary:'2000Mi limit; 570Mi request; no heap flags'},
-      {name:'Compare actual memory',color:'var(--sky)',question:'Did the container actually approach 2 GiB?',context:'CloudWatch memory metrics for both CCM pods during the incident window.',why:'The old container is gone; current kubectl top cannot reconstruct its pre-restart peak.',evidence:'Affected pod peaked near 570Mi: 28.5% of limit. No OOM event.',next:'Reject container OOM. Verify whether the JVM chose a small heap that could still create pressure.',summary:'570Mi peak (28.5%): container OOM rejected'},
-      {name:'Verify JVM behavior',color:'var(--lavender)',question:'Did a small ergonomic heap cause severe pressure?',context:'PrintFlagsFinal, process command line, and available Actuator endpoints.',why:'A guessed 25% ergonomic heap depends on JVM and container-support settings; measure it.',evidence:'UseContainerSupport enabled; MaxHeapSize exactly 524,288,000 B; no explicit flags.',next:'Small heap verified, exhaustion not proven. 135–223s request logs shift attention to blocking and RDS.',summary:'~500Mi JVM heap verified; exhaustion unproven'},
-      {name:'Test database latency',color:'var(--coral)',question:'Were requests waiting on SQL, CPU, connections, or locks?',context:'context/RDS.md, PostgreSQL logs, and Performance Insights for the incident.',why:'The RDS guide routes to the right instance; live evidence can correlate SQL waits with latency.',evidence:'Repeated CCM SQL and elevated load; later, a larger shopping_cart Lock:tuple spike.',next:'Separate repeated CCM cost from the competing lock-storm hypothesis using timing and ownership.',summary:'Repeated CCM SQL + later shopping_cart lock spike'},
-      {name:'Evaluate competing cause',color:'var(--peach)',question:'Did the shopping_cart lock storm initiate CCM failure?',context:'Per-minute waits, top SQL, event timing, and database-object ownership.',why:'Whole-window aggregates make concurrent activity look causal; causality needs chronology and ownership.',evidence:'CCM saturated ≈16:05; lock storm ≈16:18–16:21; shopping_cart belongs elsewhere.',next:'Reject it as initiator. Return to repeated CCM SQL; inspect only the implicated source methods.',summary:'Lock storm came 13 min later; not initiating cause'},
-      {name:'Map SQL to code',color:'var(--lime)',question:'Did one request trigger N+1 work or a huge object graph?',context:'RegularConsumerServiceImpl, RegularConsumerCustomRepositoryImpl, and ContractProductConsumerRepository on hotfix-1.82.0.',why:'PI method and table names now narrow the search; the rest of the repository is unnecessary.',evidence:'findConsumerAggregatesByCustomer queries inside a consumer stream and loads broad contractProducts.',next:'One request can generate many SQL calls. Measure HTTP rate to separate traffic from amplification.',summary:'N+1 query per consumer + broad graph fetch'},
-      {name:'Separate SQL and HTTP rates',color:'var(--sky)',question:'Did >100 SQL calls/s mean >100 client requests/s?',context:'OpenSearch by endpoint, time, pod, user, IP, session, and correlation ID.',why:'SQL executions and HTTP arrivals are different units; only request logs connect them.',evidence:'7,286 requests; ≈5–6 req/s; 97.4% rueckdeuapi; each request lasted 135–223s.',next:'Moderate sustained traffic plus amplification accumulates. Quantify whether concurrency starved probes.',summary:'5–6 req/s; 135–223s each; 97.4% one account'},
-      {name:'Explain probe starvation',color:'var(--yellow)',question:'Was that workload enough to exhaust request concurrency?',context:'OpenSearch rate/duration plus observed Tomcat thread names and no custom pool override.',why:'Causality requires comparing arrival rate × service time with effective processing capacity.',evidence:'Little’s Law: 5.7 × 150s ≈ 855 in flight; logs showed ≈200 request threads.',next:'Root cause connected end to end: long requests occupied capacity, so liveness could not be served.',summary:'≈855 in flight vs ≈200 threads → liveness starved'},
-      {name:'Route the action',color:'var(--mint)',question:'Which team and Product Area should own the fix?',context:'memory/PSBUGS.md service, Product Area, and assignee mappings.',why:'Routing has no diagnostic value; disclose it only after evidence supports a development action.',evidence:'CCM → Customer & Contracts → Product Area child 17810 → Zammouri.Refka.',next:'Create PSBUGS-11378 with N+1 path, impact, metrics, and proposed batch-query fix.',summary:'PSBUGS-11378 → PA 17810 → Zammouri.Refka'}
+      {name:'Restart classification',color:'var(--yellow)',hypothesis:`The pod restarted because of an application crash, deployment, eviction,
+OOM kill, or failed health probe.`,context:`Live Kubernetes pod status, previous container state, StatefulSet
+configuration, liveness-probe configuration, and Kubernetes events.`,evidence:`Kubernetes terminated the container after repeated liveness-probe timeouts.
+There was no direct OOMKilled reason and no evidence that a deployment caused
+the restart.`,summary:'Live Kubernetes pod status, previous container state, StatefulSet configuration, liveness-probe configuration, and Kubernetes events.'},
+      {name:'Memory configuration',color:'var(--peach)',hypothesis:`The application may have stopped responding because it exhausted its
+container memory or was affected by node memory pressure.`,context:`StatefulSet resource requests and limits, pod QoS configuration, ConfigMap,
+secret keys, environment variables, and the container command.`,evidence:`The container had a 2000Mi memory limit and initially requested 570Mi.
+No -Xmx, -Xms, JAVA_OPTS, or other explicit JVM heap configuration was found.
+
+The configuration made memory behavior worth investigating, but it did not
+show whether the container had actually approached its limit.`,summary:'StatefulSet resources, pod QoS, ConfigMap, secret keys, environment variables, and container command.'},
+      {name:'Historical memory',color:'var(--sky)',hypothesis:`The container may have reached its 2000Mi memory limit immediately before
+the restart, despite Kubernetes not reporting OOMKilled.`,context:`Historical CloudWatch Container Insights memory metrics for both
+customers-contracts-manager pods during the incident window, together with
+Kubernetes OOM and eviction events.`,evidence:`The affected pod peaked at approximately 570Mi, around 28.5% of its 2000Mi
+limit. No OOMKilling or node-pressure eviction event was recorded.
+
+Container-level memory exhaustion was therefore rejected as the cause of
+the restart.`,summary:'Historical CloudWatch memory metrics for both pods, plus Kubernetes OOM and eviction events.'},
+      {name:'JVM heap',color:'var(--lavender)',hypothesis:`Even though the container was below its limit, the JVM may have selected a
+much smaller heap and become unresponsive because of heap pressure or
+excessive garbage collection.`,context:`Runtime JVM flags using:
+
+java -XX:+PrintFlagsFinal
+
+The running Java command line and available Actuator endpoints were also
+examined.`,evidence:`UseContainerSupport was enabled and MaxHeapSize was 524288000 bytes,
+approximately 500Mi. No explicit heap arguments were present.
+
+This confirmed that the JVM used a relatively small heap, but it did not
+prove heap exhaustion. No heap-error or garbage-collection evidence had been
+found that explained the liveness failure.`,summary:'Runtime JVM flags, Java command line, and available Actuator endpoints.'},
+      {name:'Request processing',color:'var(--coral)',hypothesis:`The process may have remained alive but failed its liveness probe because
+request-processing threads were occupied by slow or blocked application work.`,context:`OpenSearch application logs for both customers-contracts-manager pods,
+restricted to the incident window.
+
+The logs were examined for:
+
+- Request and method durations
+- Endpoint activity
+- Errors and timeouts
+- Thread names
+- Activity around the first probe failures and final restart`,evidence:`Calls to findConsumerAggregatesByCustomer were taking approximately
+135–223 seconds.
+
+This showed that requests remained active for several minutes. Such
+long-running work could retain Tomcat request threads and eventually prevent
+the liveness endpoint from being served.
+
+The method name also identified the application path that required deeper
+investigation.`,summary:'OpenSearch application logs for both pods during the incident window.'},
+      {name:'Database latency',color:'var(--mint)',hypothesis:`The long-running findConsumerAggregatesByCustomer requests may have been
+waiting on slow SQL, database CPU, exhausted connections, or database locks.`,context:`context/RDS.md was loaded to identify:
+
+- The RDS instance hosting the customerscontracts database
+- The production AWS profile and region
+- The Performance Insights resource ID
+- The available RDS log and PI query procedures
+
+Using that routing information, PostgreSQL logs and RDS Performance Insights
+were queried for the incident window.`,evidence:`The PostgreSQL slow-query log did not show one individually slow CCM query
+that could independently explain every 135–223 second request.
+
+Performance Insights did show:
+
+- Repeated CCM-related SQL executions
+- Elevated database activity during the degradation
+- A later and much larger Lock:tuple spike involving shopping_cart
+
+This produced two competing explanations:
+
+1. CCM generated excessive repeated database work.
+2. The shopping_cart lock storm blocked the shared RDS instance and caused
+   CCM requests to stall.`,summary:'context/RDS.md, PostgreSQL logs, and RDS Performance Insights.'},
+      {name:'Lock chronology',color:'var(--peach)',hypothesis:`The shopping_cart Lock:tuple storm may have caused the CCM slowdown and
+subsequent liveness failure.`,context:`Per-minute Performance Insights wait events and SQL statements were checked
+to establish when the lock storm began.
+
+The ownership of the shopping_cart database objects was also clarified.`,evidence:`CCM degradation and probe failures had already started around 16:05 UTC.
+
+The shopping_cart lock storm appeared later, around 16:18–16:21 UTC.
+The user confirmed that shopping_cart belongs to a separate service.
+
+The lock storm may have added pressure to the shared RDS instance near the
+end of the incident, but it began approximately 13 minutes after CCM was
+already degraded. It could not explain the onset of the CCM problem.`,summary:'Per-minute PI wait events and SQL statements, plus shopping_cart object ownership.'},
+      {name:'Code amplification',color:'var(--lime)',hypothesis:`A CCM code path may have amplified each API request into many database
+executions or loaded more data than the endpoint required.`,context:`Targeted GitLab source reads were performed against the deployed
+hotfix-1.82.0 branch.
+
+The investigation was narrowed using the method and SQL identifiers already
+found in logs and Performance Insights. Relevant code included:
+
+- RegularConsumerServiceImpl
+- RegularConsumerCustomRepositoryImpl
+- ContractProductConsumerRepository
+- The findConsumerAggregatesByCustomer code path
+- The findConsumersByCustomer query path`,evidence:`findConsumerAggregatesByCustomer called:
+
+findContractProductConsumerByConsumerBusinessId(...)
+
+inside a stream over the consumers returned for a page.
+
+This created an N+1 access pattern: one additional database query per
+consumer per page.
+
+The source review also found that the consumer query loaded a broad
+contractProducts graph, which could further increase the cost of processing
+customers with large consumer populations.`,summary:'Targeted GitLab source reads against deployed hotfix-1.82.0.'},
+      {name:'Traffic measurement',color:'var(--sky)',hypothesis:`Performance Insights reporting more than 100 executions per second for a SQL
+statement may mean that the customer was sending more than 100 HTTP API
+requests per second.`,context:`OpenSearch application logs were queried again, this time specifically to
+measure inbound traffic.
+
+The searches were restricted by:
+
+- Incident time window
+- Endpoint path
+- Both CCM pods
+- Authenticated user
+- Source IP
+- Session
+- Correlation ID`,evidence:`The HTTP request rate was approximately 5–6 requests per second, not more
+than 100 requests per second.
+
+Across both pods, 7,286 requests were observed during the 16:00–16:22 UTC
+window. The rueckdeuapi account represented 97.4% of authenticated traffic.
+
+The Performance Insights rate represented database statement executions,
+not HTTP requests. A smaller number of API calls was being amplified into
+many SQL executions by the application code path.`,summary:'OpenSearch inbound traffic by time, endpoint, pods, user, IP, session, and correlation ID.'},
+      {name:'Capacity exhaustion',color:'var(--yellow)',hypothesis:`A sustained rate of 5–6 requests per second may still have generated enough
+concurrent slow requests to exhaust the application's processing capacity.`,context:`The following evidence was correlated:
+
+- HTTP arrival rate from OpenSearch
+- Request durations from application logs
+- Tomcat request-thread names in application logs
+- Tomcat configuration and the absence of a custom pool-size override
+- Timing of the liveness-probe failures`,evidence:`Requests lasted approximately 135–223 seconds while new requests continued
+to arrive at approximately 5.7 requests per second.
+
+Using a representative service time of 150 seconds, Little's Law gives:
+
+5.7 requests/second x 150 seconds
+    ≈ 855 concurrent in-flight requests
+
+Application logs showed approximately 200 distinct request-processing thread
+names active during the incident window.
+
+The estimated concurrency demand was therefore substantially greater than
+the available request-processing capacity. Slow requests accumulated,
+occupied the request threads, and prevented the liveness probe from being
+served before its timeout.`,summary:'HTTP arrival rate, request durations, Tomcat threads/configuration, and liveness timing.'},
+      {name:'Ownership routing',color:'var(--mint)',hypothesis:`The technical defect was sufficiently understood and now needed to be routed
+to the development team responsible for customers-contracts-manager.`,context:`memory/PSBUGS.md was loaded to obtain:
+
+- Service ownership
+- Jira Product Area
+- Product Area child ID
+- Responsible assignee`,evidence:`customers-contracts-manager mapped to:
+
+- Product Area: Customer & Contracts
+- Product Area child ID: 17810
+- Assignee: Zammouri.Refka`,summary:'memory/PSBUGS.md service ownership and Jira routing.'}
     ];
-    let investigationIndex=-1;
+    const investigationChain=investigationStages.flatMap((stage,index)=>[
+      {type:'Hypothesis',text:stage.hypothesis,color:'var(--cream)',stage,index},
+      {type:'Context checked',text:stage.context,color:stage.color,stage,index},
+      {type:'Insight',text:stage.evidence,color:'var(--ink)',stage,index}
+    ]);
+    let investigationIndex=0;let investigationMoving=false;let renderedContextCount=-1;
     const investigationNext=document.getElementById('investigationNext');
     const investigationPrevious=document.getElementById('investigationPrevious');
+    const formatChainText=text=>text.trim().split(/\n{2,}/).map(block=>{
+      const sourceLines=block.split('\n');const lines=[];
+      sourceLines.forEach(line=>{const trimmed=line.trim();if(/^\s+/.test(line)&&lines.length&&/^(-|\d+\.)\s/.test(lines.at(-1)))lines[lines.length-1]+=` ${trimmed}`;else lines.push(trimmed);});
+      const hasList=lines.some(line=>/^(-|\d+\.)\s/.test(line));
+      return hasList?lines.join('<br>'):lines.join(' ');
+    }).join('<br><br>');
+    const chainNode=item=>`<article class="reasoning-node ${item.type==='Context checked'?'context-node':''} ${item.type==='Insight'?'evidence-node':''}" style="--node-color:${item.color}"><div class="eyebrow">${item.type}</div><p>${formatChainText(item.text)}</p></article>`;
+    const completedContexts=()=>investigationChain.slice(0,investigationIndex+2).filter(item=>item.type==='Context checked');
     const renderInvestigationStart=()=>{
-      investigationIndex=-1;
+      investigationIndex=0;renderedContextCount=-1;
       const card=document.getElementById('investigationCard');const activeContext=document.getElementById('activeContext');
       card.style.setProperty('--stage-color','var(--yellow)');activeContext.style.setProperty('--stage-color','var(--yellow)');activeContext.style.setProperty('--fill','7%');
-      document.getElementById('investigationStage').textContent='Starting point';document.getElementById('investigationNumber').textContent='0';
-      document.getElementById('investigationQuestion').textContent='What is the smallest context needed to explain the restart?';
-      document.getElementById('investigationHypothesis').innerHTML='<div class="eyebrow">Hypothesis</div><p>Probe failure, OOM, eviction, process exit, or rollout.</p>';
-      document.getElementById('investigationContext').innerHTML='<div class="eyebrow">Disclose</div><p>Only the reported symptom.</p>';
-      document.getElementById('investigationEvidence').innerHTML='<div class="eyebrow">Evidence</div><p>Cause remains unclassified.</p>';
-      document.getElementById('investigationNextStep').innerHTML='<div class="eyebrow">Next</div><p>Classify the restart before opening application internals.</p>';
-      document.getElementById('contextTank').innerHTML='<div class="tank-summary">Raw evidence enters only when a hypothesis requires it.</div><div class="tank-item current">Incident: production CCM pod restarted</div>';
-      document.getElementById('contextCount').textContent='Symptom only';document.getElementById('investigationProgress').style.setProperty('--progress','0%');
-      investigationPrevious.disabled=true;investigationNext.textContent='Disclose stage 1';
+      document.getElementById('reasoningChain').innerHTML=investigationChain.slice(0,2).map(chainNode).join('');
+      renderInvestigationMeta();fitInvestigationText();
     };
-    const renderInvestigation=()=>{
-      const stage=investigationStages[investigationIndex];
-      const card=document.getElementById('investigationCard');
-      const activeContext=document.getElementById('activeContext');
-      card.style.setProperty('--stage-color',stage.color);activeContext.style.setProperty('--stage-color',stage.color);
-      document.getElementById('investigationStage').textContent=stage.name;
-      document.getElementById('investigationNumber').textContent=String(investigationIndex+1);
-      document.getElementById('investigationQuestion').textContent=stage.question;
-      document.getElementById('investigationHypothesis').innerHTML=`<div class="eyebrow">Hypothesis</div><p>${stage.hypothesis||stage.question}</p>`;
-      document.getElementById('investigationContext').innerHTML=`<div class="eyebrow">Disclose</div><p>${stage.context}<br><br><strong>Why:</strong> ${stage.why}</p>`;
-      document.getElementById('investigationEvidence').innerHTML=`<div class="eyebrow">Evidence</div><p>${stage.evidence}</p>`;
-      document.getElementById('investigationNextStep').innerHTML=`<div class="eyebrow">Next</div><p>${stage.next}</p>`;
-      const completed=investigationStages.slice(0,investigationIndex+1);
-      document.getElementById('contextTank').innerHTML=completed.map((item,index)=>`<div class="tank-item ${index===completed.length-1?'current':''}">${item.summary}</div>`).join('');
-      document.getElementById('contextCount').textContent=`${investigationIndex+1} / ${investigationStages.length} layers`;
-      activeContext.style.setProperty('--fill',`${12+(investigationIndex+1)*8}%`);
-      document.getElementById('investigationProgress').style.setProperty('--progress',`${((investigationIndex+1)/investigationStages.length)*100}%`);
-      investigationPrevious.disabled=false;investigationNext.disabled=investigationIndex===investigationStages.length-1;
-      investigationNext.textContent=investigationIndex===investigationStages.length-1?'Investigation complete':`Disclose stage ${investigationIndex+2}`;
+    const fitInvestigationText=()=>document.querySelectorAll('.reasoning-node p').forEach(text=>{let size=17;text.style.fontSize=`${size}px`;while(text.scrollHeight>text.clientHeight&&size>9){size-=.5;text.style.fontSize=`${size}px`;}});
+    const renderInvestigationMeta=()=>{
+      const visible=investigationChain[investigationIndex];const contexts=completedContexts();const activeContext=document.getElementById('activeContext');
+      document.getElementById('investigationStage').textContent=visible.stage.name;document.getElementById('investigationNumber').textContent=`${Math.min(investigationIndex+2,investigationChain.length)} / ${investigationChain.length}`;
+      document.getElementById('investigationQuestion').textContent='One continuous evidence chain';
+      if(contexts.length!==renderedContextCount){
+        activeContext.style.setProperty('--stage-color',contexts.at(-1)?.stage.color||'var(--yellow)');
+        document.getElementById('contextTank').innerHTML=contexts.length?contexts.map((item,index)=>`<div class="tank-item ${index===contexts.length-1?'current':''}" style="background:${item.stage.color};color:var(--ink);border-color:var(--ink)">${item.stage.summary}</div>`).join(''):'<div class="tank-summary">Context enters only when it is checked.</div>';
+        document.getElementById('contextCount').textContent=`${contexts.length} / ${investigationStages.length} checks`;activeContext.style.setProperty('--fill',`${7+contexts.length*8}%`);renderedContextCount=contexts.length;
+      }
+      document.getElementById('investigationProgress').style.setProperty('--progress',`${((investigationIndex+1)/(investigationChain.length-1))*100}%`);
+      investigationPrevious.disabled=investigationIndex===0;investigationNext.disabled=investigationIndex>=investigationChain.length-2;
+      investigationNext.textContent=investigationNext.disabled?'Chain complete':'Advance chain';
     };
-    investigationNext?.addEventListener('click',()=>{if(investigationIndex<investigationStages.length-1){investigationIndex++;renderInvestigation();}});
-    investigationPrevious?.addEventListener('click',()=>{if(investigationIndex<=0){renderInvestigationStart();}else{investigationIndex--;renderInvestigation();}});
+    const moveInvestigationForward=()=>{if(investigationMoving||investigationIndex>=investigationChain.length-2)return;investigationMoving=true;const chain=document.getElementById('reasoningChain');chain.insertAdjacentHTML('beforeend',chainNode(investigationChain[investigationIndex+2]));fitInvestigationText();chain.classList.add('moving');chain.style.transform=`translateX(calc(-50% - 22px))`;chain.addEventListener('transitionend',()=>{investigationIndex++;chain.classList.remove('moving');chain.style.transform='translateX(0)';chain.firstElementChild.remove();renderInvestigationMeta();investigationMoving=false;},{once:true});};
+    const moveInvestigationBack=()=>{if(investigationMoving||investigationIndex===0)return;investigationMoving=true;const chain=document.getElementById('reasoningChain');chain.insertAdjacentHTML('afterbegin',chainNode(investigationChain[investigationIndex-1]));chain.style.transform=`translateX(calc(-50% - 22px))`;fitInvestigationText();requestAnimationFrame(()=>requestAnimationFrame(()=>{chain.classList.add('moving');chain.style.transform='translateX(0)';}));chain.addEventListener('transitionend',()=>{investigationIndex--;chain.classList.remove('moving');chain.lastElementChild.remove();renderInvestigationMeta();investigationMoving=false;},{once:true});};
+    investigationNext?.addEventListener('click',moveInvestigationForward);
+    investigationPrevious?.addEventListener('click',moveInvestigationBack);
+    renderInvestigationStart();
     const deck=new SlidePresentation();const editor=new InlineEditor();const toggle=document.getElementById('editToggle');const hotzone=document.querySelector('.edit-hotzone');let hideTimer;
     toggle.addEventListener('click',()=>editor.toggle());hotzone.addEventListener('click',()=>editor.toggle());hotzone.addEventListener('mouseenter',()=>{clearTimeout(hideTimer);toggle.classList.add('show')});hotzone.addEventListener('mouseleave',()=>hideTimer=setTimeout(()=>{if(!editor.active)toggle.classList.remove('show')},400));toggle.addEventListener('mouseenter',()=>clearTimeout(hideTimer));toggle.addEventListener('mouseleave',()=>hideTimer=setTimeout(()=>{if(!editor.active)toggle.classList.remove('show')},400));document.addEventListener('keydown',e=>{if(e.key.toLowerCase()==='e'&&!e.target.isContentEditable)editor.toggle();if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='s'&&editor.active){e.preventDefault();editor.save();}});
   </script>
