@@ -442,6 +442,40 @@
     .cycle-core { position:absolute;left:175px;top:175px;width:270px;height:270px;border:3px solid;border-radius:50%;background:var(--lime);display:grid;place-items:center;text-align:center;font:700 40px/1 "Bodoni Moda"; }
     .cycle-label { position:absolute;border:3px solid;border-radius:999px;padding:17px 25px;background:#fff;font-size:18px;font-weight:600; }
 
+    /* === REPOSITORY INSTRUCTIONS === */
+    .repo-readme-stage { display:grid;grid-template-columns:1fr 720px;gap:90px;align-items:center;height:735px; }
+    .repo-readme-stage h2 { font-size:90px;line-height:.94; }
+    .agent-file { position:relative;height:610px;padding:52px 48px;background:var(--ink);color:var(--cream);transform:rotate(2deg);overflow:hidden; }
+    .agent-file::before { content:"";position:absolute;left:0;top:0;bottom:0;width:18px;background:var(--yellow); }
+    .agent-file .file-tab { display:inline-block;border:3px solid var(--cream);border-radius:999px;padding:13px 24px;color:var(--yellow);font-size:18px;font-weight:700; }
+    .agent-file h3 { margin-top:56px;color:var(--cream);font-size:69px; }
+    .agent-file p { margin-top:34px;font-size:25px;color:#f5f5f0c7; }
+    .instruction-shelf { display:grid;grid-template-columns:repeat(3,1fr);gap:25px;margin-top:54px; }
+    .instruction-card { min-height:270px;padding:30px;display:flex;flex-direction:column;justify-content:space-between;transition:transform .25s var(--ease); }
+    .instruction-card:hover { transform:translate(-4px,-4px) rotate(-.5deg); }
+    .instruction-card .glyph { font:800 56px/1 "Bodoni Moda"; }
+    .instruction-card h3 { font-size:34px; }
+    .instruction-card p { font-size:18px;line-height:1.3; }
+    .canonical-route { display:grid;grid-template-columns:1fr 180px 1fr;gap:36px;align-items:center;height:700px; }
+    .canonical-panel { min-height:520px;padding:48px;display:flex;flex-direction:column;justify-content:space-between; }
+    .canonical-panel h3 { font-size:54px; }
+    .canonical-panel p { font-size:24px; }
+    .canonical-arrow { text-align:center;font:800 92px/1 "Bodoni Moda"; }
+    .instruction-stack { position:relative;height:540px;margin-top:10px; }
+    .stack-rule { position:absolute;left:50%;transform:translateX(-50%);height:155px;border:3px solid;border-radius:38px;padding:32px 45px;display:flex;align-items:center;justify-content:space-between;box-shadow:9px 9px 0 var(--shadow); }
+    .stack-rule strong { font:700 40px "Bodoni Moda"; }
+    .stack-rule span { font-size:21px;font-weight:600; }
+    .stack-arrow { position:absolute;left:50%;transform:translateX(-50%);font:800 48px/1 "Bodoni Moda"; }
+    .agents-example { display:grid;grid-template-columns:580px 1fr;gap:55px;height:735px;align-items:center; }
+    .agents-example h2 { font-size:78px; }
+    .real-agents-link { height:620px;padding:48px;background:var(--ink);color:var(--cream);display:flex;flex-direction:column;justify-content:space-between;text-decoration:none;transform:rotate(1deg);transition:transform .25s var(--ease),box-shadow .25s var(--ease); }
+    .real-agents-link:hover,.real-agents-link:focus-visible { transform:rotate(0) translate(-5px,-5px);box-shadow:17px 17px 0 var(--shadow);outline:none; }
+    .real-agents-link h3 { color:var(--cream);font-size:60px; }
+    .real-agents-link .repo-path { color:var(--yellow);font-size:22px;font-weight:700; }
+    .real-agents-link .link-signals { display:flex;flex-wrap:wrap;gap:12px; }
+    .real-agents-link .link-signals span { border:2px solid var(--cream);border-radius:999px;padding:10px 15px;font-size:14px;font-weight:600; }
+    .real-agents-link .open-link { display:flex;align-items:center;justify-content:space-between;border-top:2px solid #f5f5f055;padding-top:24px;font-size:18px;font-weight:700; }
+
     /* === PRESENTER AND EDITOR UI === */
     .speaker-notes { display:none; }
     .counter { position:fixed;right:26px;bottom:22px;z-index:1002;color:#fff;font:600 13px "Space Grotesk";letter-spacing:.14em; }
@@ -1176,6 +1210,51 @@ First inspect the named code and summarize the current call path. Then propose t
         </div>
       </div></div>
       <aside class="speaker-notes"><p>This case maps cleanly onto the repository's context architecture.</p><p><code>AGENTS.md</code> provides operational routing and rules. <code>context/KUBERNETES.md</code> locates clusters and workloads. <code>context/OPENSEARCH.md</code> provides log access and schemas. <code>context/RDS.md</code> identifies the shared database and Performance Insights resources. <code>context/GITLAB.md</code> maps services to repositories. <code>context/infinite/services/customers-contracts-manager.md</code> supplies deeper static service knowledge where available.</p><p>Volatile truth comes from live systems: kubectl, CloudWatch, Performance Insights, RDS logs, OpenSearch, and GitLab. Only after diagnosis does <code>memory/PSBUGS.md</code> route organizational action. The reusable conclusion is preserved in <code>memory/incidents/2026-03-27-ccm-pod-restart.md</code>.</p><p>The design principle is that the repository does not attempt to put all knowledge into the initial prompt. <code>AGENTS.md</code> acts as an index and routing layer. Broad context files identify the correct subsystem and tools. Service files provide deeper static implementation knowledge. Live systems provide volatile truth. Memory files retain only reusable conclusions.</p><p>The CCM incident traversed the entire hierarchy, but only one evidence-driven layer at a time. That is progressive context disclosure in practice.</p></aside>
+    </section>
+
+    <!-- === 63 REPOSITORY INSTRUCTIONS === -->
+    <section class="slide" data-title="AGENTS.md is a README for coding agents">
+      <div class="slide-head"><div class="pill" style="background:var(--yellow)">Topic 2.4 · Repository instructions</div><div class="slide-num">63</div></div>
+      <div class="content"><div class="repo-readme-stage">
+        <div class="reveal"><div class="eyebrow">Durable · predictable · version-controlled</div><h2>A README<br>for coding<br>agents.</h2><p class="muted" style="margin-top:35px;max-width:760px">Encode stable project knowledge once. Apply it across many tasks.</p></div>
+        <div class="agent-file card reveal"><span class="file-tab">/AGENTS.md</span><h3>How to build,<br>test &amp; change<br>this repository.</h3><p>Standard Markdown. Practical instructions. Scoped where needed.</p></div>
+      </div></div>
+      <aside class="speaker-notes"><p><strong>Objective:</strong> Teach developers to encode stable repository knowledge in a predictable, version-controlled form that AI coding assistants can consume.</p><p><code>AGENTS.md</code> can be treated as a README for coding agents. It gives an assistant practical instructions for understanding, building, testing, and modifying a repository. It uses standard Markdown and can be layered for different repository areas.</p><p>The distinction from a task prompt matters: repository instructions are durable project knowledge intended to apply across many tasks. Temporary requirements for one change belong in the current task prompt.</p></aside>
+    </section>
+
+    <!-- === 64 WHAT BELONGS === -->
+    <section class="slide" data-title="What belongs in repository instructions">
+      <div class="slide-head"><div class="pill" style="background:var(--mint)">Six high-signal categories</div><div class="slide-num">64</div></div>
+      <div class="content"><h2 class="reveal" style="font-size:75px">Give the agent a map,<br>commands, and boundaries.</h2><div class="instruction-shelf reveal">
+        <div class="instruction-card card" style="background:var(--sky)"><div class="glyph">01</div><h3>Repository map</h3><p>Where the application, tests, libraries, generated code, docs, and package boundaries live.</p></div>
+        <div class="instruction-card card" style="background:var(--yellow)"><div class="glyph">02</div><h3>Setup</h3><p>Installation, local startup, database initialization, code generation, and environment preparation.</p></div>
+        <div class="instruction-card card" style="background:var(--lime)"><div class="glyph">03</div><h3>Validation</h3><p>Targeted and full tests, lint, type-check, build, and formatting, including when to run each.</p></div>
+        <div class="instruction-card card" style="background:var(--lavender)"><div class="glyph">04</div><h3>Conventions</h3><p>Architecture, errors, naming, public APIs, tests, logging, and shared abstractions.</p></div>
+        <div class="instruction-card card" style="background:var(--coral)"><div class="glyph">05</div><h3>Boundaries</h3><p>Generated files, dependencies, package boundaries, public interfaces, and unrelated cleanup.</p></div>
+        <div class="instruction-card card" style="background:var(--peach)"><div class="glyph">06</div><h3>Documentation</h3><p>When APIs, migrations, changelogs, architecture, and examples must be updated.</p></div>
+      </div></div>
+      <aside class="speaker-notes"><p><strong>Repository map:</strong> Give concise orientation to the main application directory, test locations, shared libraries, generated-code locations, documentation locations, and important package boundaries. Do not reproduce the complete repository tree.</p><p><strong>Setup commands:</strong> Include commands that actually work for dependency installation, local development startup, database initialization, required code generation, and environment preparation.</p><p><strong>Build and validation:</strong> Include targeted test commands, the full test command, lint, type-check, build, and formatting where applicable. Explain when each command should be used.</p><p><strong>Coding conventions:</strong> Document what formatters and linters cannot reliably discover: preferred architectural patterns, error handling, naming rules, public API expectations, test organization, logging conventions, and shared abstraction locations.</p><p><strong>Change boundaries:</strong> Examples include: do not edit generated files directly; do not add a production dependency unless explicitly required; keep package boundaries intact; avoid changing public interfaces for internal fixes; and do not perform unrelated cleanup.</p><p><strong>Documentation expectations:</strong> State when a change requires public API documentation, migration notes, changelog entries, architecture documentation, or example updates.</p></aside>
+    </section>
+
+    <!-- === 65 LAYERING MODEL === -->
+    <section class="slide" data-title="Layer repository instructions by scope">
+      <div class="slide-head"><div class="pill" style="background:var(--lavender)">More specific context, closer to the work</div><div class="slide-num">65</div></div>
+      <div class="content"><h2 class="reveal" style="font-size:76px">One repository.<br>Three instruction layers.</h2><div class="instruction-stack reveal">
+        <div class="stack-rule" style="top:0;width:1450px;background:var(--sky)"><strong>/AGENTS.md</strong><span>Repository-wide guidance</span></div><div class="stack-arrow" style="top:150px">↓</div>
+        <div class="stack-rule" style="top:190px;width:1110px;background:var(--lavender)"><strong>/services/payments/AGENTS.md</strong><span>Rules for this subtree</span></div><div class="stack-arrow" style="top:340px">↓</div>
+        <div class="stack-rule" style="top:380px;width:770px;background:var(--yellow)"><strong>Current task prompt</strong><span>Temporary requirements</span></div>
+      </div></div>
+      <aside class="speaker-notes"><p>The recommended layering model has three levels. A root <code>/AGENTS.md</code> contains repository-wide guidance. A package or service file such as <code>/services/payments/AGENTS.md</code> contains rules applying only to that subtree. The current task prompt contains temporary requirements for the work at hand.</p><p>The useful hierarchy is repository-wide rule, then subproject-specific rule, then current task instruction. Where the selected tool supports hierarchical instructions, the more specific rule should clarify or override the general rule.</p><p>Use nested files when a monorepo's packages have materially different workflows. Do not duplicate the root file in every package; add only the scoped differences.</p></aside>
+    </section>
+
+    <!-- === 66 AGENTS EXAMPLE === -->
+    <section class="slide" data-title="A real AGENTS.md in practice">
+      <div class="slide-head"><div class="pill" style="background:var(--lime)">Real-world example · OpenAI Codex</div><div class="slide-num">66</div></div>
+      <div class="content"><div class="agents-example">
+        <div class="reveal"><div class="eyebrow">Inspect the living source</div><h2>Specific.<br>Scoped.<br>Operational.</h2><p class="muted" style="margin-top:32px;font-size:24px">A production repository shows what durable instructions look like at real scale.</p></div>
+        <a class="real-agents-link card reveal" href="https://github.com/openai/codex/blob/main/AGENTS.md" target="_blank" rel="noopener noreferrer" aria-label="Open the OpenAI Codex AGENTS.md example on GitHub"><div><div class="repo-path">openai / codex / AGENTS.md</div><h3 style="margin-top:38px">Rules tied to<br>real code and<br>real workflows.</h3></div><div class="link-signals"><span>Rust conventions</span><span>Sandbox boundaries</span><span>Required commands</span><span>Testing policy</span><span>Review rules</span><span>Subsystem guidance</span></div><div class="open-link"><span>Open on GitHub</span><span aria-hidden="true">↗</span></div></a>
+      </div></div>
+      <aside class="speaker-notes"><p>Open the living example: <a href="https://github.com/openai/codex/blob/main/AGENTS.md">openai/codex/AGENTS.md</a>. Do not treat it as a universal template; inspect how its instructions reflect the actual repository.</p><p>At the time of preparation, this is a substantial root file with guidance for the Rust <code>codex-rs</code> workspace. It contains concrete naming and coding conventions, explicit sandbox boundaries, architectural constraints, required formatting and test commands, dependency and generated-file procedures, code-review rules, context-size limits, and detailed subsystem guidance for areas such as the TUI, tests, app-server APIs, and Python.</p><p>Notice the characteristics discussed in this topic: instructions name real symbols and directories; commands explain when and where to run them; prohibitions protect repository-specific invariants; validation expectations are explicit; and broader sections route work into more specialized guidance.</p><p>The file is longer than a small repository's instructions should be because the repository and its workflows are complex. Length is not the goal. The lesson is proportionality, specificity, and operational value. Because this is a living external file, use the link rather than presenting a copied snapshot as permanently current.</p></aside>
     </section>
   </main></div>
 
