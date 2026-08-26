@@ -475,6 +475,48 @@
     .real-agents-link .link-signals { display:flex;flex-wrap:wrap;gap:12px; }
     .real-agents-link .link-signals span { border:2px solid var(--cream);border-radius:999px;padding:10px 15px;font-size:14px;font-weight:600; }
     .real-agents-link .open-link { display:flex;align-items:center;justify-content:space-between;border-top:2px solid #f5f5f055;padding-top:24px;font-size:18px;font-weight:700; }
+    .agents-workshop { display:grid;grid-template-columns:1fr 760px;gap:75px;align-items:center;height:735px; }
+    .agents-workshop h2 { font-size:88px;line-height:.94; }
+    .agents-workshop-steps { display:grid;gap:18px; }
+    .agents-workshop-step { min-height:125px;padding:25px 30px;display:grid;grid-template-columns:62px 1fr;gap:22px;align-items:center; }
+    .agents-workshop-step strong { width:58px;height:58px;border:3px solid;border-radius:50%;display:grid;place-items:center;font:800 26px "Bodoni Moda"; }
+    .agents-workshop-step span { font-size:24px;font-weight:600;line-height:1.25; }
+
+    /* === PLAN-FIRST DEVELOPMENT === */
+    .plan-first { display:grid;grid-template-columns:690px 1fr;gap:72px;align-items:center;height:735px; }
+    .plan-first h2 { font-size:84px;line-height:.94; }
+    .plan-ladder { display:grid;gap:17px;align-content:center; }
+    .plan-level { min-height:126px;border:3px solid;border-radius:34px;padding:24px 31px;display:grid;grid-template-columns:80px 1fr auto;gap:24px;align-items:center;box-shadow:8px 8px 0 var(--shadow); }
+    .plan-level strong { width:68px;height:68px;border:3px solid;border-radius:50%;display:grid;place-items:center;font:800 28px "Bodoni Moda";background:var(--cream); }
+    .plan-level h3 { font-size:32px; }
+    .plan-level span { font-size:17px;font-weight:600;letter-spacing:.08em;text-transform:uppercase; }
+
+    /* === MODEL SELECTION === */
+    .model-selection { display:grid;grid-template-columns:620px 1fr;gap:74px;align-items:center;height:735px; }
+    .model-selection h2 { font-size:78px;line-height:.94; }
+    .selection-principle { margin-top:38px;padding:25px 29px;border:3px solid;border-radius:28px;background:var(--yellow);box-shadow:8px 8px 0 var(--shadow);font-size:25px;font-weight:700;line-height:1.2;transform:rotate(-1deg); }
+    .selection-path { display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:210px 90px 210px;gap:20px 25px;align-items:center; }
+    .selection-step { height:178px;padding:25px 22px;border:3px solid;border-radius:28px;box-shadow:7px 7px 0 var(--shadow);display:flex;flex-direction:column;justify-content:space-between; }
+    .selection-step b { width:42px;height:42px;border:3px solid;border-radius:50%;display:grid;place-items:center;background:var(--cream);font:800 19px "Bodoni Moda"; }
+    .selection-step h3 { font-size:27px;line-height:1.04; }
+    .selection-step small { font-size:15px;font-weight:650;line-height:1.2; }
+    .selection-compare { grid-column:2 / 4;height:74px;border:3px solid;border-radius:999px;background:var(--ink);color:var(--cream);display:flex;align-items:center;justify-content:center;font-size:23px;font-weight:700;letter-spacing:.03em; }
+    .selection-risk { grid-column:4;grid-row:3;height:178px;padding:24px;border:3px solid;border-radius:28px;background:var(--coral);box-shadow:7px 7px 0 var(--shadow);display:flex;flex-direction:column;justify-content:space-between; }
+    .selection-risk h3 { font-size:28px; }
+    .selection-risk p { font-size:20px;font-weight:700;line-height:1.15; }
+    .model-workshop { display:grid;grid-template-columns:720px 1fr;gap:74px;align-items:center;height:735px; }
+    .model-workshop h2 { font-size:83px;line-height:.93; }
+    .model-workshop-steps { display:grid;gap:24px; }
+    .model-workshop-step { min-height:156px;padding:30px 34px;border:3px solid;border-radius:34px;box-shadow:8px 8px 0 var(--shadow);display:grid;grid-template-columns:72px 1fr;gap:25px;align-items:center; }
+    .model-workshop-step strong { width:66px;height:66px;border:3px solid;border-radius:50%;display:grid;place-items:center;background:var(--cream);font:800 28px "Bodoni Moda"; }
+    .model-workshop-step h3 { font-size:30px;line-height:1.08; }
+    .model-workshop-step p { margin-top:8px;font-size:18px;line-height:1.25; }
+    .benchmark-table { width:100%;border-collapse:collapse;margin-top:14px;table-layout:fixed;border:2px solid var(--ink);background:var(--white); }
+    .benchmark-table th { padding:16px 24px;text-align:left;border:1px solid var(--ink);background:var(--ink);color:var(--cream);font-size:18px;letter-spacing:.07em;text-transform:uppercase; }
+    .benchmark-table th:first-child { width:42%; }
+    .benchmark-table td { padding:15px 24px;border:1px solid #18181780;background:var(--white);font-size:22px;font-weight:600;line-height:1.1; }
+    .benchmark-table td:first-child { font-family:"Bodoni Moda";font-size:24px;font-weight:700; }
+    .benchmark-table tbody tr:nth-child(even) td { background:#f0eee8; }
 
     /* === PRESENTER AND EDITOR UI === */
     .speaker-notes { display:none; }
@@ -1256,6 +1298,109 @@ First inspect the named code and summarize the current call path. Then propose t
       </div></div>
       <aside class="speaker-notes"><p>Open the living example: <a href="https://github.com/openai/codex/blob/main/AGENTS.md">openai/codex/AGENTS.md</a>. Do not treat it as a universal template; inspect how its instructions reflect the actual repository.</p><p>At the time of preparation, this is a substantial root file with guidance for the Rust <code>codex-rs</code> workspace. It contains concrete naming and coding conventions, explicit sandbox boundaries, architectural constraints, required formatting and test commands, dependency and generated-file procedures, code-review rules, context-size limits, and detailed subsystem guidance for areas such as the TUI, tests, app-server APIs, and Python.</p><p>Notice the characteristics discussed in this topic: instructions name real symbols and directories; commands explain when and where to run them; prohibitions protect repository-specific invariants; validation expectations are explicit; and broader sections route work into more specialized guidance.</p><p>The file is longer than a small repository's instructions should be because the repository and its workflows are complex. Length is not the goal. The lesson is proportionality, specificity, and operational value. Because this is a living external file, use the link rather than presenting a copied snapshot as permanently current.</p></aside>
     </section>
+
+    <!-- === 67 AGENTS.MD HANDS-ON === -->
+    <section class="slide" data-title="Generate an AGENTS.md for a repository">
+      <div class="slide-head"><div class="pill" style="background:var(--coral)">Hands-on activity</div><div class="slide-num">67</div></div>
+      <div class="content"><div class="agents-workshop">
+        <div class="reveal"><div class="eyebrow">Your repository · your durable guidance</div><h2>Choose a repo.<br>Generate its<br>AGENTS.md.</h2><p class="muted" style="margin-top:34px;max-width:820px">Inspect first. Generate second. Review before trusting.</p></div>
+        <div class="agents-workshop-steps reveal">
+          <div class="agents-workshop-step card" style="background:var(--sky)"><strong>1</strong><span>Choose a repository you know.</span></div>
+          <div class="agents-workshop-step card" style="background:var(--yellow)"><strong>2</strong><span>Ask the agent to inspect its docs, structure, scripts, and conventions.</span></div>
+          <div class="agents-workshop-step card" style="background:var(--lime)"><strong>3</strong><span>Generate a concise root <code>AGENTS.md</code>.</span></div>
+          <div class="agents-workshop-step card" style="background:var(--lavender)"><strong>4</strong><span>Verify every command, rule, path, and boundary.</span></div>
+        </div>
+      </div></div>
+      <aside class="speaker-notes"><p><strong>Activity:</strong> Each participant chooses a repository they understand and asks an AI coding assistant to generate a root <code>AGENTS.md</code>.</p><p>Require inspection before generation. The assistant should examine the repository tree, README, contribution guide, package or build scripts, existing tests, formatting and lint configuration, generated-code locations, architectural documentation, and representative code patterns. It should not invent conventions from the technology stack alone.</p><p>The resulting file should provide a concise repository map, working setup commands, targeted and full validation commands, important conventions that automation does not already communicate, change boundaries, documentation expectations, and completion-report expectations where useful.</p><p>Participants must review the generated file rather than accepting it as authoritative. Verify that every command runs, every path exists, rules match current practice, temporary task requirements were not encoded as permanent guidance, canonical documentation is linked rather than copied, and package-specific guidance is not incorrectly generalized to the entire repository.</p><p>If the repository already has instructions, improve them instead of replacing them blindly. If packages have materially different workflows, identify where a nested <code>AGENTS.md</code> would be justified without duplicating the root.</p><p>Ask participants to share one useful rule the agent discovered and one generated rule they removed or corrected. The exercise succeeds when the final guidance is actionable, specific, testable, current, concise, scoped, direct, and suitable for version control.</p></aside>
+    </section>
+
+    <!-- === 68 PLAN-FIRST DEVELOPMENT === -->
+    <section class="slide" data-title="Plan in proportion to uncertainty">
+      <div class="slide-head"><div class="pill" style="background:var(--yellow)">Plan-first development</div><div class="slide-num">68</div></div>
+      <div class="content"><div class="plan-first">
+        <div class="reveal"><div class="eyebrow">Investigate before implementation</div><h2>Plan in proportion<br>to <span class="quote-highlight">uncertainty.</span></h2><p class="muted" style="margin-top:34px;max-width:650px">Ground the path in repository evidence. Make every milestone independently verifiable.</p></div>
+        <div class="plan-ladder reveal">
+          <div class="plan-level" style="background:var(--mint)"><strong>0</strong><h3>Direct execution</h3><span>Mechanical</span></div>
+          <div class="plan-level" style="background:var(--sky)"><strong>1</strong><h3>Short plan</h3><span>Known multi-file</span></div>
+          <div class="plan-level" style="background:var(--lavender)"><strong>2</strong><h3>Grounded plan</h3><span>Cross-cutting</span></div>
+          <div class="plan-level" style="background:var(--coral)"><strong>3</strong><h3>Living execution plan</h3><span>Substantial + uncertain</span></div>
+        </div>
+      </div></div>
+      <aside class="speaker-notes"><p><strong>Objective:</strong> Investigate and describe a non-trivial change before asking an AI assistant to implement it. This is planning as a development discipline, not the Plan Mode interface of any particular harness. Strong execution plans are self-contained, outcome-focused, kept current during implementation, and divided into independently verifiable milestones.</p><p><strong>When to plan:</strong> Use a written plan when several files or packages will change; the task crosses architectural boundaries; the area is unfamiliar; requirements are ambiguous; a public interface may change; migration or compatibility concerns exist; a new abstraction is required; technical unknowns remain; approaches have meaningful trade-offs; or work may span several periods.</p><p><strong>When not to over-plan:</strong> Detailed planning is usually unnecessary for spelling corrections, localized configuration changes, tool-supported mechanical renames, one-line test expectation updates, or well-understood single-file edits with obvious acceptance criteria. Planning has a cost, so depth should be proportional to uncertainty and scope.</p><p><strong>The ladder:</strong> Level 0 is direct execution for a small, mechanical, reversible edit. Level 1 is a short sequence of roughly three to seven steps for a known multi-file change. Level 2 is a grounded implementation plan containing current-state findings, affected files and symbols, the approach, alternatives, milestones, and acceptance checks. Level 3 is a living execution plan for substantial or uncertain work; maintain progress, discoveries, decisions, changes to the approach, outcomes, and remaining work.</p><p><strong>Investigate first:</strong> A plan must come from repository evidence, not only the issue description. Inspect repository instructions, the existing implementation, related interfaces, closest tests, callers or consumers, similar repository patterns, and dependency or configuration constraints. A detailed plan that invents the current architecture is not useful.</p><p><strong>Strong-plan contents:</strong> State the goal and user-visible outcome; explain the current state; separate verified facts, assumptions, and unknowns; justify the proposed technical direction; name concrete paths, classes, functions, interfaces, or configuration keys; sequence coherent increments; define milestones with their resulting outcome, changed areas, checks, and completion evidence; describe observable acceptance checks rather than only saying “tests pass”; record decisions and evidence-driven discoveries; and define both the completion state and what remains out of scope.</p><p><strong>Review before approval:</strong> Ask whether the plan is grounded in inspected evidence, describes an observable outcome, names concrete files and symbols, preserves scope, separates facts from assumptions, makes each milestone independently verifiable, explains fit with the existing system, identifies important unknowns, lets another developer resume the task, and uses effort proportional to the task.</p><p><strong>Anti-patterns:</strong> Do not merely rephrase the issue as numbered steps; list files without explaining why; choose architecture before inspection; omit desired behavior while describing implementation; stay too abstract to guide edits; copy the future implementation into the plan; freeze the plan despite new evidence; hide unresolved assumptions; or create a large execution plan for a trivial edit.</p><p><strong>Exercise:</strong> Given a feature request and a small repository, inspect the relevant implementation, produce a five-step plan before editing, mark facts versus assumptions, identify one event that would require changing the plan, and define observable acceptance evidence for every milestone.</p><p><strong>Scope boundary:</strong> This topic does not cover tool-specific Plan Mode, multi-agent assignment, parallel execution, approval checkpoints, workspace isolation, detailed design-exploration methods, or formal validation-first architectures.</p></aside>
+    </section>
+
+    <!-- === 69 MODEL SELECTION === -->
+    <section class="slide workflow-slide" data-title="A risk-aware model selection workflow">
+      <div class="slide-head"><div class="pill" style="background:var(--lime)">Model selection · cost optimization</div><div class="slide-num">69</div></div>
+      <div class="content"><h2 class="reveal" style="font-size:68px">Navigate model selection by capability and risk</h2>
+        <div class="reveal" style="position:relative;width:100%">
+          <div class="mermaid-controls"><button data-mermaid-action="in" title="Zoom In">+</button><button data-mermaid-action="out" title="Zoom Out">−</button><button data-mermaid-action="up" title="Scroll Up">↑</button><button data-mermaid-action="down" title="Scroll Down">↓</button></div>
+          <div class="mermaid-scroll-container" style="margin-top:0">
+            <div class="mermaid">
+flowchart TD
+    A["1. Define the coding task"] --> B["2. Identify required capability"]
+    B --> B1["Simple generation"]
+    B --> B2["Reasoning"]
+    B --> B3["Agentic coding"]
+    B --> B4["Terminal / tool use"]
+    B --> B5["Long context"]
+    B1 & B2 & B3 & B4 & B5 --> C["3. Assess task risk"]
+    C --> C1["Low risk"]
+    C --> C2["Medium risk"]
+    C --> C3["High risk / production-critical"]
+    C1 & C2 & C3 --> D["4. Check relevant Artificial Analysis benchmarks"]
+    D --> D1["Coding / SciCode"]
+    D --> D2["Terminal-Bench"]
+    D --> D3["ITBench"]
+    D --> D4["Long Context"]
+    D --> D5["Coding Agent Index"]
+    D1 & D2 & D3 & D4 & D5 --> E["5. Shortlist capable models"]
+    E --> F["6. Compare trade-offs<br/>Quality × Cost × Speed × Latency"]
+    F --> G{"7. Select the model"}
+    G -->|Low risk| H["Optimize more for cost / speed"]
+    G -->|High risk| I["Favor stronger, reliable models"]
+            </div>
+          </div>
+        </div>
+      </div>
+      <aside class="speaker-notes"><p><strong>Selection workflow:</strong> First define the coding task. Second identify the required capability: simple generation, reasoning, agentic coding, terminal or tool use, or long context. Third assess whether the task is low risk, medium risk, or high risk and production-critical. Fourth consult the relevant Artificial Analysis benchmarks: Coding or SciCode, Terminal-Bench, ITBench, Long Context, and the Coding Agent Index. Fifth shortlist models that meet the capability requirement. Sixth compare quality, cost, speed, and latency. Seventh select according to risk: optimize low-risk work more aggressively for cost and speed; for high-risk work, favor stronger and more reliable models.</p><p>Use the controls to zoom and scroll, drag the workflow directly, or use <code>J</code>/<code>K</code> and <code>+</code>/<code>−</code>. Risk changes the acceptable trade-off. It does not replace verification, and benchmark results remain decision aids rather than guarantees.</p></aside>
+    </section>
+
+    <!-- === 70 TASK-TO-BENCHMARK GUIDE === -->
+    <section class="slide" data-title="Match the benchmark to the workload">
+      <div class="slide-head"><div class="pill" style="background:var(--yellow)">Artificial Analysis · routing guide</div><div class="slide-num">70</div></div>
+      <div class="content"><h2 class="reveal" style="font-size:64px">Match the benchmark to the workload</h2>
+        <table class="benchmark-table reveal">
+          <thead><tr><th>Task</th><th>What to prioritize on Artificial Analysis</th></tr></thead>
+          <tbody>
+            <tr><td>Generate simple code</td><td>Coding score + speed + cost</td></tr>
+            <tr><td>Complex algorithm</td><td>SciCode + reasoning / intelligence</td></tr>
+            <tr><td>Debug difficult issue</td><td>Coding + reasoning</td></tr>
+            <tr><td>Agent modifies repository</td><td>Terminal-Bench + agentic performance</td></tr>
+            <tr><td>Agent runs CLI / tools</td><td>Terminal-Bench + tool use</td></tr>
+            <tr><td>Kubernetes troubleshooting</td><td>ITBench-AA</td></tr>
+            <tr><td>Huge codebase / context</td><td>Long-context reasoning + context window</td></tr>
+            <tr><td>Interactive coding assistant</td><td>Latency + output speed + coding</td></tr>
+            <tr><td>High-volume repetitive coding</td><td>Cost + speed + acceptable coding score</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <aside class="speaker-notes"><p>Use this table to decide which Artificial Analysis evidence deserves the most weight for a particular workload. Generate simple code: coding score, speed, and cost. Complex algorithm: SciCode and reasoning or intelligence. Difficult debugging: coding and reasoning. Repository-modifying agents: Terminal-Bench and agentic performance. CLI or tool-running agents: Terminal-Bench and tool use. Kubernetes troubleshooting: ITBench-AA. Huge codebases or context: long-context reasoning and context-window size. Interactive coding assistants: latency, output speed, and coding capability. High-volume repetitive coding: cost and speed while maintaining an acceptable coding score.</p><p>Do not treat any single score as universal. Use the row closest to the real task, account for task risk, shortlist only models available in the approved environment, and validate important choices on representative internal work.</p></aside>
+    </section>
+
+    <!-- === 71 MODEL SELECTION HANDS-ON === -->
+    <section class="slide" data-title="Build your model shortlist">
+      <div class="slide-head"><div class="pill" style="background:var(--coral)">Hands-on activity</div><div class="slide-num">71</div></div>
+      <div class="content"><div class="model-workshop">
+        <div class="reveal"><div class="eyebrow">Your workloads · your shortlist</div><h2>Pick a model<br>for the work<br>you do often.</h2><p class="muted" style="margin-top:34px;max-width:650px">Do not choose one winner. Choose the right fit for each workload.</p></div>
+        <div class="model-workshop-steps reveal">
+          <div class="model-workshop-step" style="background:var(--sky)"><strong>1</strong><div><h3>Open Artificial Analysis</h3><p>Start from evidence, not model reputation.</p></div></div>
+          <div class="model-workshop-step" style="background:var(--yellow)"><strong>2</strong><div><h3>Name your frequent workloads</h3><p>Debugging, repository changes, CLI work, algorithms, large context...</p></div></div>
+          <div class="model-workshop-step" style="background:var(--lime)"><strong>3</strong><div><h3>Select your favorite for each</h3><p>Choose only from models available in your GitHub Copilot account.</p></div></div>
+        </div>
+      </div></div>
+      <aside class="speaker-notes"><p><strong>Activity:</strong> Go to Artificial Analysis and identify the models available through your GitHub Copilot account. List the workload types you perform frequently, then select a favorite model for each workload rather than choosing one model for everything.</p><p>Use the decision process from the previous slide. Define what each workload requires, open the relevant benchmark or index, shortlist the models you can actually access in GitHub Copilot, and compare quality, cost, speed, and latency. Examples of workload types include simple code generation, complex algorithms, difficult debugging, repository-wide agentic changes, CLI or tool use, Kubernetes troubleshooting, huge codebases or long-context tasks, interactive coding assistance, and high-volume repetitive coding.</p><p>Record each choice with a short reason: the workload, required capability, evidence consulted, chosen model, and the trade-off accepted. If a task is high risk, note the stronger model and human verification you would require. The goal is a practical personal routing guide, not a permanent ranking; available models and benchmark results will change.</p></aside>
+    </section>
   </main></div>
 
   <!-- === PRESENTER CHROME === -->
@@ -1360,15 +1505,13 @@ First inspect the named code and summarize the current call path. Then propose t
       load(){const values=JSON.parse(localStorage.getItem(this.key)||'null');if(!values)return;const els=[...document.querySelectorAll('.slide h1,.slide h2,.slide h3,.slide p,.slide .pill,.slide .chip,.slide .node,.slide .loop-step,.slide .limit-pill')];values.forEach((v,i)=>{if(els[i])els[i].innerHTML=v});}
     }
     /* === MERMAID WORKFLOW ZOOM & SCROLL CONTROLS === */
-    window.currentMermaidZoom = 0.4;
     document.addEventListener('DOMContentLoaded', () => {
-        const container = document.querySelector('.mermaid-scroll-container');
-        if (!container) return;
-
+      document.querySelectorAll('.mermaid-scroll-container').forEach(container => {
+        container.dataset.zoom = '0.4';
         const updateZoom = () => {
             const svg = container.querySelector('svg');
             if (svg) {
-                svg.style.transform = `scale(${window.currentMermaidZoom})`;
+                svg.style.transform = `scale(${container.dataset.zoom})`;
                 svg.style.transformOrigin = 'top center';
             }
         };
@@ -1380,13 +1523,14 @@ First inspect the named code and summarize the current call path. Then propose t
             }
         }, 100);
 
-        const zoomInBtn = document.getElementById('zoomInBtn');
-        const zoomOutBtn = document.getElementById('zoomOutBtn');
-        const scrollUpBtn = document.getElementById('scrollUpBtn');
-        const scrollDownBtn = document.getElementById('scrollDownBtn');
+        const controls = container.parentElement.querySelector('.mermaid-controls');
+        const zoomInBtn = controls?.querySelector('#zoomInBtn,[data-mermaid-action="in"]');
+        const zoomOutBtn = controls?.querySelector('#zoomOutBtn,[data-mermaid-action="out"]');
+        const scrollUpBtn = controls?.querySelector('#scrollUpBtn,[data-mermaid-action="up"]');
+        const scrollDownBtn = controls?.querySelector('#scrollDownBtn,[data-mermaid-action="down"]');
 
-        if (zoomInBtn) zoomInBtn.addEventListener('click', () => { window.currentMermaidZoom += 0.1; updateZoom(); });
-        if (zoomOutBtn) zoomOutBtn.addEventListener('click', () => { window.currentMermaidZoom = Math.max(0.3, window.currentMermaidZoom - 0.1); updateZoom(); });
+        if (zoomInBtn) zoomInBtn.addEventListener('click', () => { container.dataset.zoom = String(Number(container.dataset.zoom) + 0.1); updateZoom(); });
+        if (zoomOutBtn) zoomOutBtn.addEventListener('click', () => { container.dataset.zoom = String(Math.max(0.3, Number(container.dataset.zoom) - 0.1)); updateZoom(); });
         if (scrollUpBtn) scrollUpBtn.addEventListener('click', () => container.scrollBy({top: -200, behavior: 'smooth'}));
         if (scrollDownBtn) scrollDownBtn.addEventListener('click', () => container.scrollBy({top: 200, behavior: 'smooth'}));
 
@@ -1443,6 +1587,7 @@ First inspect the named code and summarize the current call path. Then propose t
                 container.querySelectorAll('.node').forEach(n => n.classList.remove('highlighted'));
             }
         });
+      });
     });
 
     const exerciseHint=document.getElementById('terminalExerciseHint');const exerciseCommand=document.getElementById('terminalExerciseCommand');
