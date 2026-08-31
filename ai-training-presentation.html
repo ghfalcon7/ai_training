@@ -530,35 +530,28 @@
     .cache-price strong { color:var(--yellow);font:800 190px/.75 "Bodoni Moda";letter-spacing:-.08em; }
     .cache-price span { max-width:260px;font-size:23px;font-weight:700;line-height:1.12; }
     .cache-rule { position:relative;border:3px solid var(--cream);border-radius:999px;padding:19px 25px;color:var(--mint);font-size:20px;font-weight:700;text-align:center; }
-    .cache-explainer { height:735px;display:grid;grid-template-rows:auto 1fr auto;gap:25px; }
+    .cache-explainer { height:735px;display:grid;grid-template-rows:auto 1fr;gap:25px; }
     .cache-explainer h2 { font-size:66px;line-height:.94; }
-    .prefix-pipeline { position:relative;display:grid;grid-template-columns:1.05fr .85fr 1.2fr 1fr .8fr;gap:13px;align-items:center; }
+    .prefix-pipeline { position:relative;display:grid;grid-template-columns:1.05fr .85fr 1.2fr 1fr .8fr;gap:0;align-items:center; }
     .prefix-block { position:relative;min-height:225px;padding:27px 23px;border:3px solid;border-radius:30px;background:var(--white);box-shadow:7px 7px 0 var(--shadow);display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;opacity:0;transform:translateY(35px); }
+    .prefix-block.stable { border-radius:0;box-shadow:0 7px 0 var(--shadow);margin-right:-3px; }
+    .prefix-block.stable:first-child { border-radius:30px 0 0 30px; }
+    .prefix-block.stable:nth-child(4) { border-radius:0 30px 30px 0;box-shadow:7px 7px 0 var(--shadow);margin-right:0; }
+    .prefix-block.changed { margin-left:24px; }
     .prefix-block strong { font:700 31px/1.04 "Bodoni Moda"; }
     .prefix-block span { font-size:16px;font-weight:600;line-height:1.25; }
     .prefix-block.stable::after { content:"CACHE HIT";position:absolute;right:16px;top:15px;border:2px solid;border-radius:999px;padding:7px 10px;background:var(--mint);font-size:11px;font-weight:800;letter-spacing:.08em;opacity:0;transform:scale(.7); }
-    .prefix-bracket { position:absolute;left:0;right:21%;bottom:-53px;height:35px;border:4px solid var(--mint);border-top:0;border-radius:0 0 25px 25px;opacity:0; }
+    .prefix-bracket { position:absolute;left:0;right:calc(20% + 24px);bottom:-53px;height:35px;border:4px solid var(--mint);border-top:0;border-radius:0 0 25px 25px;opacity:0; }
     .prefix-bracket::after { content:"reusable matching prefix";position:absolute;left:50%;top:29px;transform:translateX(-50%);border:3px solid;border-radius:999px;padding:10px 22px;background:var(--ink);color:var(--mint);font-size:15px;font-weight:700;white-space:nowrap; }
-    .cache-compute { display:grid;grid-template-columns:1fr 360px 1fr;gap:26px;align-items:center;margin-top:96px; }
-    .compute-path { border:3px solid;border-radius:999px;padding:18px 24px;text-align:center;background:var(--white);font-size:19px;font-weight:700;opacity:0; }
-    .compute-path.cached { background:var(--mint); }
-    .compute-path.fresh { background:var(--yellow); }
-    .compute-arrow { height:5px;background:var(--ink);position:relative;transform:scaleX(0);transform-origin:left; }
-    .compute-arrow::after { content:"";position:absolute;right:-1px;top:-8px;border-left:14px solid;border-top:10px solid transparent;border-bottom:10px solid transparent; }
-    .prefix-rule { justify-self:center;border:3px solid;border-radius:999px;padding:16px 34px;background:var(--coral);font:700 29px "Bodoni Moda";opacity:0;transform:translateY(20px); }
+    .prefix-visual { position:relative;align-self:center;width:100%;transform:translateY(-35px); }
     .visible .prefix-block { animation:prefixEnter .45s var(--ease) forwards;animation-delay:calc(var(--i) * .16s); }
     .visible .prefix-block.stable::after { animation:cacheHit .4s var(--ease) forwards;animation-delay:1.45s; }
     .visible .prefix-bracket { animation:fadeIn .45s ease forwards 1.2s; }
-    .visible .compute-arrow { animation:drawLine .55s var(--ease) forwards 1.7s; }
-    .visible .compute-path { animation:fadeIn .45s ease forwards 1.95s; }
     .visible .prefix-block.changed { animation:prefixEnter .45s var(--ease) forwards calc(var(--i) * .16s),invalidatePrefix .7s var(--ease) forwards 2.8s; }
-    .visible .prefix-rule { animation:prefixRule .55s var(--ease) forwards 3.3s; }
     @keyframes prefixEnter { to { opacity:1;transform:translateY(0); } }
     @keyframes cacheHit { to { opacity:1;transform:scale(1); } }
     @keyframes fadeIn { to { opacity:1; } }
-    @keyframes drawLine { to { transform:scaleX(1); } }
     @keyframes invalidatePrefix { 55% { transform:translateY(-8px) rotate(1deg);background:var(--coral); } 100% { transform:translateY(0);background:var(--coral); } }
-    @keyframes prefixRule { to { opacity:1;transform:translateY(0); } }
 
     /* === PRESENTER AND EDITOR UI === */
     .speaker-notes { display:none; }
@@ -1471,22 +1464,18 @@ flowchart TD
       <div class="slide-head"><div class="pill" style="background:var(--sky)">Prompt caching · animated explainer</div><div class="slide-num">73</div></div>
       <div class="content"><div class="cache-explainer">
         <div><div class="eyebrow">Reuse starts at the beginning</div><h2>Keep the <span class="quote-highlight">prefix</span> stable.</h2></div>
-        <div style="position:relative">
+        <div class="prefix-visual">
           <div class="prefix-pipeline">
-            <div class="prefix-block stable" style="--i:0;background:var(--sky)"><strong>Copilot<br>instructions</strong><span>Harness-level behavior and constraints</span></div>
+            <div class="prefix-block stable" style="--i:0;background:var(--sky)"><strong>System<br>prompt</strong><span>System-level behavior and constraints</span></div>
             <div class="prefix-block stable" style="--i:1;background:var(--yellow)"><strong>Tools<br>&amp; MCP</strong><span>Definitions and enabled capabilities</span></div>
             <div class="prefix-block stable" style="--i:2;background:var(--lavender)"><strong>Repository<br>instructions</strong><span><code>AGENTS.md</code> custom instructions</span></div>
             <div class="prefix-block stable" style="--i:3;background:var(--lime)"><strong>Conversation</strong><span>Repeated context from the session</span></div>
             <div class="prefix-block changed" style="--i:4"><strong>New<br>prompt</strong><span>The changing suffix</span></div>
             <div class="prefix-bracket"></div>
           </div>
-          <div class="cache-compute">
-            <div class="compute-path cached">Cached prefix → reuse prior computation</div><div class="compute-arrow"></div><div class="compute-path fresh">Changed suffix → process normally</div>
-          </div>
         </div>
-        <div class="prefix-rule">Keep the beginning stable. Change the end.</div>
       </div></div>
-      <aside class="speaker-notes"><p><strong>Mental model:</strong> Prompt caching commonly works by matching the beginning, or prefix, of a request with input processed earlier. On the first request, the provider performs the normal model computation and temporarily retains reusable intermediate results associated with the eligible prefix. On a later request with the same prefix, the provider can reuse those results and process only the new or changed suffix normally.</p><p>This is why cached input tokens can be cheaper: the tokens still participate in the request, but the provider avoids repeating all of the expensive model computation already performed for the matching prefix. Exact eligibility, implementation, retention, and pricing vary by provider and product.</p><p>The blocks show a practical conceptual ordering: Copilot or harness instructions, tool and MCP definitions, repository instructions, conversation context, and the new user prompt. <code>AGENTS.md</code> belongs under <strong>repository custom instructions</strong>; it should not be described as the model's system prompt. GitHub Copilot discovers applicable instruction files and adds their content to model context, but GitHub does not guarantee the exact internal message role or request ordering shown here.</p><p>The animation first constructs the request. The stable blocks then receive cache-hit markers, showing that their prior computation can be reused. The new prompt changes and is processed normally. The practical rule is: <strong>keep the beginning stable and change the end.</strong></p><p>Prefix matching is not semantic similarity. Rewording, reordering, inserting content early, or changing configuration may prevent reuse. A change typically prevents reuse from the changed point onward, although an unchanged earlier portion may remain reusable depending on the implementation. Switching model, reasoning effort, context configuration, enabled tools, or MCP servers can also lose cache reuse.</p><p>Place stable material early when the product gives you control: durable instructions, stable tool definitions, and persistent repository guidance. Place volatile task details, recent logs, current evidence, and the newest request later. Do not distort a prompt or retain stale context solely to protect a cache; correctness, security, relevance, and product behavior come first.</p></aside>
+      <aside class="speaker-notes"><p><strong>Mental model:</strong> Prompt caching commonly works by matching the beginning, or prefix, of a request with input processed earlier. On the first request, the provider performs the normal model computation and temporarily retains reusable intermediate results associated with the eligible prefix. On a later request with the same prefix, the provider can reuse those results and process only the new or changed suffix normally.</p><p>This is why cached input tokens can be cheaper: the tokens still participate in the request, but the provider avoids repeating all of the expensive model computation already performed for the matching prefix. Exact eligibility, implementation, retention, and pricing vary by provider and product.</p><p>The blocks show a practical conceptual ordering: the system prompt, tool and MCP definitions, repository instructions, conversation context, and the new user prompt. <code>AGENTS.md</code> belongs under <strong>repository custom instructions</strong>; it should not be described as the model's system prompt. GitHub Copilot discovers applicable instruction files and adds their content to model context, but GitHub does not guarantee the exact internal request ordering shown here.</p><p>The animation first constructs the request. The stable blocks then receive cache-hit markers, showing that their prior computation can be reused. The new prompt changes and is processed normally. The practical rule is: <strong>keep the beginning stable and change the end.</strong></p><p>Prefix matching is not semantic similarity. Rewording, reordering, inserting content early, or changing configuration may prevent reuse. A change typically prevents reuse from the changed point onward, although an unchanged earlier portion may remain reusable depending on the implementation. Switching model, reasoning effort, context configuration, enabled tools, or MCP servers can also lose cache reuse.</p><p>Place stable material early when the product gives you control: durable instructions, stable tool definitions, and persistent repository guidance. Place volatile task details, recent logs, current evidence, and the newest request later. Do not distort a prompt or retain stale context solely to protect a cache; correctness, security, relevance, and product behavior come first.</p></aside>
     </section>
   </main></div>
 
